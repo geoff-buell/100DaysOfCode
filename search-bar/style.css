@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Raleway", sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: #e6e6ea;
+}
+.container .input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 3.2rem;
+  padding: 0 1rem 0 1rem;
+  background: #009fb7;
+  border-radius: 0.8rem;
+  box-sizing: border-box;
+}
+.container .input-wrapper i {
+  font-size: 1.5rem;
+  color: #f4f4f8;
+}
+.container .input-wrapper #input-label {
+  display: none;
+}
+.container .input-wrapper #product-search {
+  width: 100%;
+  height: 100%;
+  font-size: 1.8rem;
+  color: #f4f4f8;
+  padding-left: 1rem;
+  background: #009fb7;
+  border: none;
+  outline: none;
+}
+.container .input-wrapper #product-search::placeholder {
+  color: #f4f4f8;
+  opacity: 0.7;
+}
+.container .input-wrapper .fa-times {
+  cursor: pointer;
+}
+.container .results-wrapper {
+  width: 50%;
+  height: 25rem;
+  margin-top: 1rem;
+  padding: 1rem 1rem 1rem 3.5rem;
+  box-sizing: border-box;
+}
+.container .results-wrapper .fake-results {
+  list-style-type: none;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+.container .results-wrapper .fake-results a {
+  text-decoration: none;
+  color: #6b6b6e;
+}
+.container .results-wrapper .fake-results a:hover {
+  color: #fe4a49;
+  transition: 200ms ease-in;
+}
+
+@media (max-width: 768px) {
+  .container .input-wrapper {
+    width: 96%;
+  }
+  .container .results-wrapper {
+    width: 96%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
