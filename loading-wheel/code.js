@@ -11,7 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
     isBtn ? btn.style.display = 'block' : btn.style.display = 'none';
     isLoading ? loading.style.display = 'block' : loading.style.display = 'none';
   }
+
+  const startLoading = () => {
+    const percentage = document.querySelector('.percentage');
+    let count = 0;
+    const timer= setInterval(() => {
+      count++;
+      percentage.textContent = `${count}%`;
+      if (count > 100) {
+        clearInterval(timer);
+        toggleElements();
+      }
+    }, 200);
+  }
   
-  btn.addEventListener('click', () => toggleElements());
+  btn.addEventListener('click', () => {
+    toggleElements();
+    startLoading();
+  });
 
 });

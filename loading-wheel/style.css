@@ -57,11 +57,17 @@
   animation: shift2 6s infinite;
 }
 .container .loading-wrapper .percentage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  top: 2.5rem;
-  left: 2rem;
+  width: 3rem;
+  height: 3rem;
+  top: 1.45rem;
+  left: 1.45rem;
   font-size: 0.8rem;
   text-transform: uppercase;
+  text-align: center;
   color: #f7ece1;
 }
 

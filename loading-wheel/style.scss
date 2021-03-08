@@ -61,11 +61,15 @@ $blue: rgba(0, 0, 255, 0.5);
       }
     }
     .percentage {
+      @include mainFlex;
       position: absolute;
-      top: 2.5rem;
-      left: 2rem;
+      width: 3rem;
+      height: 3rem;
+      top: 1.45rem;
+      left: 1.45rem;
       font-size: 0.8rem;
       text-transform: uppercase;
+      text-align: center;
       color: $linen;
     }
   }
