@@ -1,0 +1,87 @@
+@mixin mainFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+$linen: #f7ece1;
+$red: rgba(255, 0, 0, 0.5);
+$green: rgba(0, 255, 0, 0.5);
+$blue: rgba(0, 0, 255, 0.5);
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.container {
+  @include mainFlex;
+  width: 100vw;
+  height: 100vh;
+  background: $linen;
+  button {
+    width: 8rem;
+    height: 4rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: $blue;
+    background: $green;
+    border: 0.1rem solid $blue;
+    box-shadow: 0.5rem 0.5rem $red;
+    border-radius: 1rem;
+    outline: none;
+    cursor: pointer;
+  }
+  .loading-wrapper {
+    @include mainFlex;
+    position: relative;
+    display: none;
+    .circle1 {
+      position: relative;
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      background: $red;
+      animation: spinRight 60s infinite;
+      .circle2 {
+        position: absolute;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background: $green;
+        animation: shift1 6s infinite;
+      }
+      .circle3 {
+        position: absolute;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background: $blue;
+        animation: shift2 6s infinite;
+      }
+    }
+    .percentage {
+      position: absolute;
+      top: 2.5rem;
+      left: 2rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: $linen;
+    }
+  }
+}
+
+@keyframes shift1 {
+  0%    { top: -1rem; left: -1rem; }
+  50%   { top: 3rem; left: 3rem; }
+  100%  { top: -1rem; left: -1rem; }
+}
+@keyframes shift2 {
+  0%    { top: -2.5rem; left: -2.5rem; }
+  50%   { top: 6.5rem; left: 6.5rem; }
+  100%  { top: -2.5rem; left: -2.5rem; } 
+}
+@keyframes spinRight {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

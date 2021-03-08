@@ -56,16 +56,16 @@
   padding: 1rem 1rem 1rem 3.5rem;
   box-sizing: border-box;
 }
-.container .results-wrapper .fake-results {
+.container .results-wrapper .list-item {
   list-style-type: none;
   font-size: 1.2rem;
   line-height: 1.5rem;
 }
-.container .results-wrapper .fake-results a {
+.container .results-wrapper .list-item a {
   text-decoration: none;
   color: #6b6b6e;
 }
-.container .results-wrapper .fake-results a:hover {
+.container .results-wrapper .list-item a:hover {
   color: #fe4a49;
   transition: 200ms ease-in;
 }
