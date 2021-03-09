@@ -1,14 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const btn = document.querySelector('.collapse-btn');
-  const icon = document.querySelector('.icon');
+  const btnIcon = document.querySelector('.btn-icon');
+  const btnText = document.querySelector('.btn-text');
   const content = document.querySelector('.content');
   let isOpen = true;
 
-  // toggle fn
+  const toggle = () => {
+    isOpen = !isOpen;
+    if (isOpen) {
+      btnText.innerHTML = 'Collapse';
+      btnIcon.innerHTML = '−';
+      content.style.display = 'block';
+    } else {
+      btnText.innerHTML = 'Expand';
+      btnIcon.innerHTML = '+';
+      content.style.display = 'none';
+    }
+  }
 
-  btn.addEventListener('click', () => {
-    // toggle
-  });
+  btn.addEventListener('click', () => toggle());
 
 });
