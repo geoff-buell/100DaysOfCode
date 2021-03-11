@@ -27,7 +27,7 @@ $tomatoRed: #fe4a49;
   .input-wrapper {
     @include mainFlex;
     width: 50%;
-    height: 3.2rem;
+    height: 3.5rem;
     padding: 0 1rem 0 1rem;
     background: $darkAqua;
     border-radius: 0.8rem;
@@ -59,20 +59,27 @@ $tomatoRed: #fe4a49;
   }
   .results-wrapper {
     width: 50%;
-    height: 25rem;
+    min-height: 11rem;
+    max-height: auto;
     margin-top: 1rem;
-    padding: 1rem 1rem 1rem 3.5rem;
+    padding: 1rem;
     box-sizing: border-box;
-    .list-item {
-      list-style-type: none;
-      font-size: 1.2rem;
-      line-height: 1.5rem;
-      a {
-        text-decoration: none;
-        color: $darkGrey;
-        &:hover {
-          color: $tomatoRed;
-          transition: 200ms ease-in;
+    .list {
+      .list-item {
+        display: inline-flex;
+        word-wrap: initial;
+        list-style-type: none;
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+        text-transform: capitalize;
+        margin-right: 0.5rem;
+        a {
+          text-decoration: none;
+          color: $darkGrey;
+          &:hover {
+            color: $tomatoRed;
+            transition: 200ms ease-in;
+          }
         }
       }
     }
