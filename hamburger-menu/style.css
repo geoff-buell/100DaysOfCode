@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: #c7cbb3;
+}
+.container .hamburger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 250px;
+  height: 250px;
+  border: 1px solid #ff3333;
+}
+.container .hamburger .top-bun {
+  position: relative;
+  width: 100px;
+  height: 50px;
+  background: #e4a667;
+  border-radius: 100px 100px 15px 15px;
+}
+.container .hamburger .top-bun .seed1 {
+  position: absolute;
+  width: 3px;
+  height: 5px;
+  background: white;
+  border-radius: 90% 0 90% 0;
+  opacity: 0.4;
+  top: 5px;
+  left: 25px;
+  transform: rotate(35deg);
+}
+.container .hamburger .top-bun .seed2 {
+  position: absolute;
+  width: 3px;
+  height: 5px;
+  background: white;
+  border-radius: 90% 0 90% 0;
+  opacity: 0.4;
+  top: 2px;
+  left: 48px;
+  transform: rotate(-55deg);
+}
+.container .hamburger .top-bun .seed3 {
+  position: absolute;
+  width: 3px;
+  height: 5px;
+  background: white;
+  border-radius: 90% 0 90% 0;
+  opacity: 0.4;
+  top: 5px;
+  left: 72px;
+  transform: rotate(-75deg);
+}
+.container .hamburger .top-bun .seed4 {
+  position: absolute;
+  width: 3px;
+  height: 5px;
+  background: white;
+  border-radius: 90% 0 90% 0;
+  opacity: 0.4;
+  top: 5px;
+  left: 37px;
+  transform: rotate(15deg);
+}
+.container .hamburger .top-bun .seed5 {
+  position: absolute;
+  width: 3px;
+  height: 5px;
+  background: white;
+  border-radius: 90% 0 90% 0;
+  opacity: 0.4;
+  top: 5px;
+  left: 59px;
+  transform: rotate(-55deg);
+}
+.container .hamburger .lettuce {
+  width: 110px;
+  height: 6px;
+  background: #b3f075;
+  border-radius: 10px;
+}
+.container .hamburger .tomato {
+  width: 90px;
+  height: 8px;
+  background: #ff3333;
+}
+.container .hamburger .cheese {
+  width: 100px;
+  height: 5px;
+  background: #ffcc33;
+}
+.container .hamburger .patty {
+  width: 95px;
+  height: 20px;
+  background: #332600;
+  border-radius: 8px;
+}
+.container .hamburger .bottom-bun {
+  width: 100px;
+  height: 20px;
+  background: #e4a667;
+  border-radius: 5px 5px 15px 15px;
+}
+
+/*# sourceMappingURL=style.css.map */

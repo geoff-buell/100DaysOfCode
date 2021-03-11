@@ -1,0 +1,106 @@
+$sage: #c7cbb3;
+$toasty: #d1985e;
+$bun: #e4a667;
+$tomato: #ff3333;
+$lettuce: #b3f075;
+$cheese: #ffcc33;
+$patty: #332600;
+
+@mixin mainFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin seed {
+  position: absolute;
+  width: 3px;
+  height: 5px;
+  background: white;
+  border-radius: 90% 0 90% 0;
+  opacity: 0.4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  @include mainFlex;
+  width: 100vw;
+  height: 100vh;
+  background: $sage;
+  .hamburger {
+    @include mainFlex;
+    flex-direction: column;
+    width: 250px;
+    height: 250px;
+    border: 1px solid $tomato;
+    .top-bun {
+      position: relative;
+      width: 100px;
+      height: 50px;
+      background: $bun;
+      border-radius: 100px 100px 15px 15px;
+      .seed1 {
+        @include seed;
+        top: 5px;
+        left: 25px;
+        transform: rotate(35deg);
+      }
+      .seed2 {
+        @include seed;
+        top: 2px;
+        left: 48px;
+        transform: rotate(-55deg);
+      }
+      .seed3 {
+        @include seed;
+        top: 5px;
+        left: 72px;
+        transform: rotate(-75deg);
+      }
+      .seed4 {
+        @include seed;
+        top: 5px;
+        left: 37px;
+        transform: rotate(15deg);
+      }
+      .seed5 {
+        @include seed;
+        top: 5px;
+        left: 59px;
+        transform: rotate(-55deg);
+      }
+    }
+    .lettuce {
+      width: 110px;
+      height: 6px;
+      background: $lettuce;
+      border-radius: 10px;
+    }
+    .tomato {
+      width: 90px;
+      height: 8px;
+      background: $tomato;
+    }
+    .cheese {
+      width: 100px;
+      height: 5px;
+      background: $cheese;
+    }
+    .patty {
+      width: 95px;
+      height: 20px;
+      background: $patty;
+      border-radius: 8px;
+    }
+    .bottom-bun {
+      width: 100px;
+      height: 20px;
+      background: $bun;
+      border-radius: 5px 5px 15px 15px;
+    }
+  }
+}
