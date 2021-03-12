@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+$champagne: #f0cea0;
+$marigold: #f3a712;
+$spaceCadet: #29335c;
+$darkLava: #534d41;
+$roseMadder: #db2b39;
+
+@mixin mainFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  @include mainFlex();
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: $spaceCadet;
+  .btn {
+    @include mainFlex();
+    top: 20rem;
+    left: 20rem;
+    width: 5rem;
+    height: 4rem;
+    font-size: 2rem;
+    border-radius: 1rem;
+    border: 0.4rem solid $marigold;
+    background: $darkLava;
+    outline: none;
+    cursor: pointer;
+    &:hover {
+      border-color: $roseMadder;
+      transition: 0.2s ease-in;
+    }
+  }
+  h1 {
+    margin-top: 2rem;
+    font-family: 'Righteous', sans-serif;
+    font-size: 2rem;
+    color: white;
+    user-select: none;
+  }
+}
