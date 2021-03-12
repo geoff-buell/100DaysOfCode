@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+
 $sage: #c7cbb3;
+$shadow: #acb09b;
 $toasty: #d1985e;
 $bun: #e4a667;
 $tomato: #ff3333;
@@ -34,15 +37,16 @@ $patty: #332600;
   .hamburger {
     @include mainFlex;
     flex-direction: column;
+    position: relative;
     width: 250px;
     height: 250px;
-    border: 1px solid $tomato;
     .top-bun {
       position: relative;
       width: 100px;
       height: 50px;
       background: $bun;
       border-radius: 100px 100px 15px 15px;
+      cursor: pointer;
       .seed1 {
         @include seed;
         top: 5px;
@@ -72,6 +76,43 @@ $patty: #332600;
         top: 5px;
         left: 59px;
         transform: rotate(-55deg);
+      }
+      .close-btn {
+        display: none;
+        position: absolute;
+        font-size: 2rem;
+        top: 12px;
+        left: 39px;
+        color: $toasty;
+      }
+    }
+    .menu-wrap {
+      position: absolute;
+      top: 67px;
+      width: auto;
+      max-height: auto;
+      .menu {
+        font-family: 'Comfortaa', sans-serif;
+        font-size: 1.5rem;
+        line-height: 2.3rem;
+        text-transform: uppercase;
+        text-align: center;
+        list-style: none;
+        .menu-item {
+          text-shadow: 1px 1px 2px $cheese;
+          &:hover {
+            transform: scale(1.2);
+            transition: 150ms ease-in;
+          }
+          a {
+            text-decoration: none;
+            color: $patty;
+            &:hover {
+              color: $tomato;
+              transition: 150ms ease-in;
+            }
+          }
+        }
       }
     }
     .lettuce {

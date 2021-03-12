@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -16,9 +17,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
   width: 250px;
   height: 250px;
-  border: 1px solid #ff3333;
 }
 .container .hamburger .top-bun {
   position: relative;
@@ -26,6 +27,7 @@
   height: 50px;
   background: #e4a667;
   border-radius: 100px 100px 15px 15px;
+  cursor: pointer;
 }
 .container .hamburger .top-bun .seed1 {
   position: absolute;
@@ -81,6 +83,43 @@
   top: 5px;
   left: 59px;
   transform: rotate(-55deg);
+}
+.container .hamburger .top-bun .close-btn {
+  display: none;
+  position: absolute;
+  font-size: 2rem;
+  top: 12px;
+  left: 39px;
+  color: #d1985e;
+}
+.container .hamburger .menu-wrap {
+  position: absolute;
+  top: 67px;
+  width: auto;
+  max-height: auto;
+}
+.container .hamburger .menu-wrap .menu {
+  font-family: "Comfortaa", sans-serif;
+  font-size: 1.5rem;
+  line-height: 2.3rem;
+  text-transform: uppercase;
+  text-align: center;
+  list-style: none;
+}
+.container .hamburger .menu-wrap .menu .menu-item {
+  text-shadow: 1px 1px 2px #ffcc33;
+}
+.container .hamburger .menu-wrap .menu .menu-item:hover {
+  transform: scale(1.2);
+  transition: 150ms ease-in;
+}
+.container .hamburger .menu-wrap .menu .menu-item a {
+  text-decoration: none;
+  color: #332600;
+}
+.container .hamburger .menu-wrap .menu .menu-item a:hover {
+  color: #ff3333;
+  transition: 150ms ease-in;
 }
 .container .hamburger .lettuce {
   width: 110px;
