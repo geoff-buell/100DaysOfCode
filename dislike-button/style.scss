@@ -12,6 +12,14 @@ $roseMadder: #db2b39;
   align-items: center;
 }
 
+@keyframes fall {
+  0%     { top: 0; opacity: 1; transform: scale(1); }
+  25%    { transform: scale(1.5); }
+  50%    { transform: scale(1); }
+  75%    { transform: scale(1.5); }
+  100%   { top: 100vh; opacity: 0; transform: scale(1); }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,11 +28,20 @@ $roseMadder: #db2b39;
 .container {
   @include mainFlex();
   flex-direction: column;
+  position: relative;
   width: 100vw;
   height: 100vh;
   background: $spaceCadet;
+  .emoji {
+    position: absolute;
+    z-index: 0;
+    width: 5rem;
+    height: 5rem;
+    animation: fall 15s linear 
+  }
   .btn {
     @include mainFlex();
+    z-index: 1;
     top: 20rem;
     left: 20rem;
     width: 5rem;
@@ -34,6 +51,7 @@ $roseMadder: #db2b39;
     border: 0.4rem solid $marigold;
     background: $darkLava;
     outline: none;
+    user-select: none;
     cursor: pointer;
     &:hover {
       border-color: $roseMadder;
@@ -41,9 +59,11 @@ $roseMadder: #db2b39;
     }
   }
   h1 {
+    z-index: 1;
     margin-top: 2rem;
     font-family: 'Righteous', sans-serif;
     font-size: 2rem;
+    text-align: center;
     color: white;
     user-select: none;
   }
