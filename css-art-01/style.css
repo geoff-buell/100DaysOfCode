@@ -1,0 +1,145 @@
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(-360deg);
+  }
+}
+@keyframes moveBack {
+  0% {
+    transform: translateZ(-100px);
+  }
+  50% {
+    transform: translateZ(-50px);
+  }
+  100% {
+    transform: translateZ(-100px);
+  }
+}
+@keyframes moveLeft {
+  0% {
+    transform: translateX(-100px) rotateY(90deg);
+  }
+  50% {
+    transform: translateX(-50px) rotateY(90deg);
+  }
+  100% {
+    transform: translateX(-100px) rotateY(90deg);
+  }
+}
+@keyframes moveRight {
+  0% {
+    transform: translateX(100px) rotateY(90deg);
+  }
+  50% {
+    transform: translateX(50px) rotateY(90deg);
+  }
+  100% {
+    transform: translateX(100px) rotateY(90deg);
+  }
+}
+@keyframes moveTop {
+  0% {
+    transform: translateY(-100px) rotateX(90deg);
+  }
+  50% {
+    transform: translateY(-50px) rotateX(90deg);
+  }
+  100% {
+    transform: translateY(-100px) rotateX(90deg);
+  }
+}
+@keyframes moveBottom {
+  0% {
+    transform: translateY(100px) rotateX(90deg);
+  }
+  50% {
+    transform: translateY(50px) rotateX(90deg);
+  }
+  100% {
+    transform: translateY(100px) rotateX(90deg);
+  }
+}
+@keyframes moveFront {
+  0% {
+    transform: translateZ(100px);
+  }
+  50% {
+    transform: translateZ(50px);
+  }
+  100% {
+    transform: translateZ(100px);
+  }
+}
+@keyframes moveCubePos {
+  0% {
+    transform: rotate(0deg);
+    border: 1px solid #e9c46a;
+  }
+  50% {
+    border: 1px solid #2a9d8f;
+  }
+  100% {
+    transform: rotate(360deg);
+    border: 1px solid #e9c46a;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #264653;
+}
+.container .circle {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  animation: moveCubePos 30s linear infinite;
+}
+.container .circle .cube-wrap {
+  perspective: 800px;
+}
+.container .circle .cube-wrap .ext-cube {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg) rotateY(195deg);
+  animation: rotate 60s linear infinite;
+}
+.container .circle .cube-wrap .ext-cube .side {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(244, 162, 97, 0.7);
+  border: 3px solid #e76f51;
+  box-sizing: border-box;
+}
+.container .circle .cube-wrap .ext-cube .ext-back {
+  animation: moveBack 2s linear infinite;
+}
+.container .circle .cube-wrap .ext-cube .ext-left {
+  animation: moveLeft 2s linear infinite;
+}
+.container .circle .cube-wrap .ext-cube .ext-right {
+  animation: moveRight 2s linear infinite;
+}
+.container .circle .cube-wrap .ext-cube .ext-top {
+  animation: moveTop 2s linear infinite;
+}
+.container .circle .cube-wrap .ext-cube .ext-bottom {
+  animation: moveBottom 2s linear infinite;
+}
+.container .circle .cube-wrap .ext-cube .ext-front {
+  animation: moveFront 2s linear infinite;
+}
+
+/*# sourceMappingURL=style.css.map */
