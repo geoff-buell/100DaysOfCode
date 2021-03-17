@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ============== COLORS =============== //
+  // ============== COLORS AND THEMES =============== //
 
   const colors = {
     white: '#FFFFFF',
@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     darkGray: '#161A1D',
     almostBlack: '#0B090A'
   }
+
+  let isLight = true;
+  let isDark = false;
+  let isRed = false;
 
   // =============== EXAMPLE ARTICLE INFO =============== //
 
@@ -60,14 +64,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const light = document.createElement('a');
   light.textContent = 'Light Mode';
   light.href = '#';
+  light.addEventListener('click', () => {
+    isLight = true;
+    [isDark, isRed] = [false, false];
+    renderTheme();
+  });
   
   const dark = document.createElement('a');
   dark.textContent = 'Dark Mode';
   dark.href = '#';
+  dark.addEventListener('click', () => {
+    isDark = true;
+    [isLight, isRed] = [false, false];
+    renderTheme();
+  });
 
   const red = document.createElement('a');
   red.textContent = 'Red Mode';
   red.href = '#';
+  red.addEventListener('click', () => {
+    isRed = true;
+    [isLight, isDark] = [false, false];
+    renderTheme();
+  });
 
   const main = document.createElement('main');
 
@@ -146,6 +165,27 @@ document.addEventListener('DOMContentLoaded', () => {
     p2.style.color = colors.tomatoRed;
   }
 
+  function renderTheme() {
+    if (isLight === true) {
+      light.textContent = 'Light Mode ✓';
+      applyLight();
+    } else {
+      light.textContent = 'Light Mode';
+    }
+    if (isDark === true) {
+      dark.textContent = 'Dark Mode ✓';
+      applyDark();
+    } else {
+      dark.textContent = 'Dark Mode';
+    }
+    if (isRed === true) {
+      red.textContent = 'Red Mode ✓';
+      applyRed();
+    } else {
+      red.textContent = 'Red Mode';
+    }
+  }
+
   function addContent() {
     body.appendChild(container);
     container.appendChild(header);
@@ -166,6 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   addContent();
-  applyLight();
+  renderTheme();
 
 });
