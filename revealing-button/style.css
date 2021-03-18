@@ -1,56 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Merriweather', serif;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: gray;
+h1 {
+  margin-top: 50px;
+  color: #a31414;
+  font-size: 24px;
+  user-select: none;
 }
 
 .container {
-  width: 200px;
-  height: 150px;
+  width: 100vw;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  /* border: 2px solid purple; */
+  background: gray;
 }
 
-.btn {
-  /* display: none; */
-  position: absolute;
-  width: 200px;
-  height: 150px;
-  font-size: 16px;
-  color: #fa6161;
-  text-align: center;
-  background: #054a61;
-  border-radius: 8px;
-  box-shadow: 15px 15px 0 #fa6161;
-  border: none;
-  outline: none;
+.glass-wrap {
+  margin: 50 auto 0;
+  perspective: 800px;
+}
+
+.glass {
+  position: relative;
+  width: 110px;
+  height: 300px;
+  transform-style: preserve-3d;
+  transform: rotateX(-5deg) rotateY(-40deg);
   cursor: pointer;
 }
 
-.hidden-gem {
-  width: 150px;
-  height: 150px;
-  position: relative;
-  /* border: 1px solid purple; */
+.g-side {
+  position: absolute;
+  width: 110px;
+  height: 300px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.07);
   box-sizing: border-box;
 }
 
-.gem {
+.g-back {
+  transform: translateZ(-55px);
+}
+
+.g-left {
+  transform: translateX(-55px) rotateY(90deg);
+}
+
+.g-right {
+  transform: translateX(55px) rotateY(90deg);
+}
+
+.g-bottom {
+  height: 110px;
+  transform: translateY(245px) rotateX(90deg);
+}
+
+.g-front {
+  transform: translateZ(55px);
+}
+
+.ruby-wrap {
+  position: absolute;
+  top: 160px;
+  left: -20px;
+  width: 150px;
+  height: 150px;
+  box-sizing: border-box;
+  transform:  rotateY(40deg);
+}
+
+.ruby {
   position: absolute;
 }
 
-.upper-left {
-  top: 16px;
+.r-upper-left {
   width: 0;
   height: 0;
   border-left: 37px solid transparent;
@@ -58,8 +90,7 @@ body {
   border-bottom: 40px solid #bd2222;
 }
 
-.upper-middle {
-  top: 16px;
+.r-upper-middle {
   left: 37px;
   width: 0;
   height: 0;
@@ -68,8 +99,7 @@ body {
   border-top: 40px solid #de4040;
 }
 
-.upper-right {
-  top: 16px;
+.r-upper-right {
   left: 74px;
   width: 0;
   height: 0;
@@ -78,12 +108,21 @@ body {
   border-bottom: 40px solid #fa6161;
 }
 
-.bottom {
-  top: 56px;
+.r-bottom {
+  top: 40px;
   width: 0;
   height: 0;
   border-left: 74px solid transparent;
   border-right: 74px solid transparent;
   border-top: 74px solid #a31414;
+}
+
+.r-shadow {
+  top: 130px;
+  left: 10px;
+  width: 130px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
 }
 
