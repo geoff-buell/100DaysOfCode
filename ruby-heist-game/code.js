@@ -1,10 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ==== ELEMENTS ==== //
+
+  const container = document.querySelector('.container');
+
+  // Lasers
+  const vLasers = document.querySelectorAll('.v-laser'),
+        hLasers = document.querySelectorAll('.h-laser');
+  
   // Ruby divs
-  const ruby = document.querySelector('.ruby-wrap');
-  const upperLeft = document.querySelector('.r-upper-left');
-  const upperMiddle = document.querySelector('.r-upper-middle');
-  const upperRight = document.querySelector('.r-upper-right');
+  const ruby = document.querySelector('.ruby-wrap'),
+        upperLeft = document.querySelector('.r-upper-left'),
+        upperMiddle = document.querySelector('.r-upper-middle'),
+        upperRight = document.querySelector('.r-upper-right');
 
   // Ruby Colors
   // Colors start with red, light red, highlight red, and then shadow red.
@@ -14,8 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         color1 = `40px solid ${rubyColors[1]}`,
         color2 = `40px solid ${rubyColors[2]}`;
 
-  
-  const alarmBox = document.querySelector('.alarm-box');
+  // ==== FUNCTIONS ==== //
 
   // Ruby Rotation Fns
   function changeColors() {
@@ -37,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   rotateRuby();
 
-  // dragRuby(ruby);
+  // dragRuby(ruby); //change to absolute pos
 
   function dragRuby(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -77,5 +84,45 @@ document.addEventListener('DOMContentLoaded', () => {
       document.onmousemove = null;
     }
   }
+
+  function displayLasers() {
+    // First display all lasers 
+    vLasers.forEach(laser => laser.style.display = 'block');
+    hLasers.forEach(laser => laser.style.display = 'block');
+
+    // Then display one random vertical and one random horizontal laser at a time
+    setInterval(() => {
+      let randomI = Math.floor(Math.random() * 6);
+      let randomJ = Math.floor(Math.random() * 6);
+
+      setTimeout(() => {
+        for (i = 0; i < vLasers.length; i++) {
+          if (i === randomI) {
+            vLasers[i].style.display = 'block';
+          } else {
+            vLasers[i].style.display = 'none';
+          }
+        }
+      }, 400);
+
+      setTimeout(() => {
+        for (j = 0; j < hLasers.length; j++) {
+          if (j === randomJ) {
+            hLasers[j].style.display = 'block';
+          } else {
+            hLasers[j].style.display = 'none';
+          }
+        }
+      }, 200);
+      
+    }, 800);
+  }
+
+  // ==== EVENT LISTENERS ==== //
+
+  ruby.addEventListener('mousedown', () => {
+    container.style.background = 'linear-gradient(30deg, #ff0000, #ffccff)';
+    displayLasers();
+  });
 
 });
