@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==== ELEMENTS ==== //
 
   const container = document.querySelector('.container');
+  const stealThis = document.querySelector('.steal-this');
+
+  // Game Over box
+  const messageBox = document.querySelector('.message-box'),
+        messageTitle = document.querySelector('.message-title'),
+        message = document.querySelector('.message'),
+        closeBtn = document.querySelector('.close-btn');
 
   // Lasers
   const vLasers = document.querySelectorAll('.v-laser'),
@@ -21,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const color0 = `40px solid ${rubyColors[0]}`,
         color1 = `40px solid ${rubyColors[1]}`,
         color2 = `40px solid ${rubyColors[2]}`;
+
+  let isGameOver = false;
 
   // ==== FUNCTIONS ==== //
 
@@ -41,11 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
       changeColors();
     }, 1000);
   }
-
+  
   rotateRuby();
 
-  // dragRuby(ruby); //change to absolute pos
-
+  // Ruby grab and drag
   function dragRuby(elmnt) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.querySelector('.glass')) {
@@ -118,11 +126,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 800);
   }
 
-  // ==== EVENT LISTENERS ==== //
+  function gameOver(id) {
+    isGameOver = true;
+    if (isGameOver) {
+      messageBox.style.display = 'block';
+      messageTitle.textContent = 'Game Over:'
+    } 
+    if (id === 'drop') {
+      ruby.style.display = 'none';
+      message.textContent = 'You dropped the ruby.'
+    } else if (id === 'laser') {
+      message.textContent = 'You ran into a security laser.'
+    }
+  }
 
+  function win() {
+    isGameOver = true;
+    if (isGameOver) {
+      messageBox.style.display = 'block';
+      messageTitle.textContent = 'You Win!';
+      message.textContent = 'Congratulations, you are a thief.'
+    }
+  }
+
+  // ==== EVENT LISTENERS ==== //
   ruby.addEventListener('mousedown', () => {
     container.style.background = 'linear-gradient(30deg, #ff0000, #ffccff)';
+    stealThis.style.display = 'none';
     displayLasers();
+    dragRuby(ruby);
+  });
+
+  ruby.addEventListener('mouseup', () => gameOver('drop'));
+
+  closeBtn.addEventListener('click', () => {
+    messageBox.style.display = 'none';
+    gameOver = false;
   });
 
 });

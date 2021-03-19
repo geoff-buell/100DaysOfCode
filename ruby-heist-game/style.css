@@ -6,14 +6,6 @@
   font-family: 'Merriweather', serif;
 }
 
-h1 {
-  position: absolute;
-  bottom: calc(1/3 * 100vh);
-  color: #a31414;
-  font-size: 24px;
-  user-select: none;
-}
-
 .container {
   width: 100vw;
   height: 100vh;
@@ -24,6 +16,67 @@ h1 {
   position: relative;
   background: #8f9bbc;
 }
+
+.message-box {
+  display: none;
+  z-index: 2;
+  position: absolute;
+  width: 250px;
+  height: 100px;
+  padding: 20px;
+  background: #a31414;
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3)
+}
+
+.message-title, .message {
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+
+.message {
+  margin-top: 5px;
+}
+
+.close-btn {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #bd2222;
+  width: 40px;
+  height: 40px;
+  background: #de4040;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.close {
+  position: absolute;
+  top: -4px;
+  left: 9px;
+}
+
+.steal-this {
+  position: absolute;
+  bottom: calc(1/4 * 100vh);
+  width: 200px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: #a31414;
+}
+
+h1 {
+  font-size: 24px;
+  user-select: none;
+}
+
 
 .v-laser {
   display: none;
