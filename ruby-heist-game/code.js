@@ -14,13 +14,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // Lasers
   const vLasers = document.querySelectorAll('.v-laser'),
         hLasers = document.querySelectorAll('.h-laser');
-  
+
+  // Laser positions
+  const vLasersOffset = vLasers.forEach(laser => laser.offsetLeft);
+  const hLasersOffset = hLasers.forEach(laser => laser.offsetTop);
+
   // Ruby divs
   const ruby = document.querySelector('.ruby-wrap'),
         upperLeft = document.querySelector('.r-upper-left'),
         upperMiddle = document.querySelector('.r-upper-middle'),
         upperRight = document.querySelector('.r-upper-right');
 
+  // Ruby position      
+  const rubyOffsetLeft = ruby.offsetLeft,
+        rubyOffsetRight = ruby.offsetLeft + 150,
+        rubyOffsetTop = ruby.offsetTop,
+        rubyOffsetBottom = ruby.offsetTop + 150;
+  
   // Ruby Colors
   // Colors start with red, light red, highlight red, and then shadow red.
   const rubyColors = ['#bd2222', '#de4040', '#fa6161', '#a31414'];
@@ -30,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         color2 = `40px solid ${rubyColors[2]}`;
 
   let isGameOver = false;
+  let flashLasers;
 
   // ==== FUNCTIONS ==== //
 
@@ -94,36 +105,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function displayLasers() {
-    // First display all lasers 
-    vLasers.forEach(laser => laser.style.display = 'block');
-    hLasers.forEach(laser => laser.style.display = 'block');
-
-    // Then display one random vertical and one random horizontal laser at a time
-    setInterval(() => {
-      let randomI = Math.floor(Math.random() * 6);
-      let randomJ = Math.floor(Math.random() * 6);
-
-      setTimeout(() => {
-        for (i = 0; i < vLasers.length; i++) {
-          if (i === randomI) {
-            vLasers[i].style.display = 'block';
-          } else {
-            vLasers[i].style.display = 'none';
+      container.style.background = 'linear-gradient(30deg, #ff0000, #ffccff)';
+      stealThis.style.visibility = 'hidden';
+      // First display all lasers 
+      vLasers.forEach(laser => laser.style.visibility = 'visible');
+      hLasers.forEach(laser => laser.style.visibility = 'visible');
+  
+      // Then display one random vertical and one random horizontal laser at a time
+      flashLasers = setInterval(() => {
+        let randomI = Math.floor(Math.random() * 6);
+        let randomJ = Math.floor(Math.random() * 6);
+  
+        setTimeout(() => {
+          for (i = 0; i < vLasers.length; i++) {
+            if (i === randomI) {
+              vLasers[i].style.display = 'block';
+            } else {
+              vLasers[i].style.display = 'none';
+            }
           }
-        }
-      }, 400);
-
-      setTimeout(() => {
-        for (j = 0; j < hLasers.length; j++) {
-          if (j === randomJ) {
-            hLasers[j].style.display = 'block';
-          } else {
-            hLasers[j].style.display = 'none';
+        }, 100);
+  
+        setTimeout(() => {
+          for (j = 0; j < hLasers.length; j++) {
+            if (j === randomJ) {
+              hLasers[j].style.display = 'block';
+            } else {
+              hLasers[j].style.display = 'none';
+            }
           }
-        }
+        }, 200);
+        
       }, 200);
-      
-    }, 800);
+    
   }
 
   function gameOver(id) {
@@ -149,19 +163,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function reset() {
+    isGameOver = false;
+    vLasers.forEach(laser => laser.style.visibility = 'hidden');
+    hLasers.forEach(laser => laser.style.visibility = 'hidden');
+    messageBox.style.display = 'none';
+    container.style.background = '#8f9bbc';
+    // reset the ruby in the center
+    ruby.style.display = 'block';
+    ruby.style.top = '50%';
+    ruby.style.left = '50%';
+    ruby.style.transform = 'translate(-50%, -50%)';
+    stealThis.style.visibility = 'visible';
+  }
+
+  function checkForGameOVer() {
+    // Check for tripped lasers
+    if (rubyOffsetLeft === vLasersOffset && 
+      vLasersOffset.style.display === 'block') {
+        gameOver('laser');
+    } else if (rubyOffsetRight === vLasersOffset && 
+      vLasersOffset.style.display === 'block') {
+        gameOver('laser');
+    } else if (rubyOffsetTop === hLasersOffset && 
+      hLasersOffset.style.display === 'block') {
+        gameOver('laser');
+    } else if (rubyOffsetBottom === hLasersOffset && 
+      hLasersOffset.style.display === 'block') {
+        gameOver('laser');
+    }
+  }
+
   // ==== EVENT LISTENERS ==== //
   ruby.addEventListener('mousedown', () => {
-    container.style.background = 'linear-gradient(30deg, #ff0000, #ffccff)';
-    stealThis.style.display = 'none';
     displayLasers();
     dragRuby(ruby);
+    checkForGameOVer();
   });
 
   ruby.addEventListener('mouseup', () => gameOver('drop'));
 
   closeBtn.addEventListener('click', () => {
-    messageBox.style.display = 'none';
-    gameOver = false;
+    clearInterval(flashLasers);
+    reset();
   });
 
 });

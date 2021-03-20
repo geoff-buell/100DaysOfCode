@@ -9,10 +9,6 @@
 .container {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   position: relative;
   background: #8f9bbc;
 }
@@ -21,6 +17,9 @@
   display: none;
   z-index: 2;
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 250px;
   height: 100px;
   padding: 20px;
@@ -62,7 +61,9 @@
 
 .steal-this {
   position: absolute;
+  left: 50%;
   bottom: calc(1/4 * 100vh);
+  transform: translateX(-50%);
   width: 200px;
   height: 50px;
   display: flex;
@@ -117,6 +118,9 @@ h1 {
 
 .ruby-wrap {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 150px;
   height: 150px;
   box-sizing: border-box;
