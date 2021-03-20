@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background: linear-gradient(15deg, blue, purple);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .bubble-wrap {
+  width: 90%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+}
+.container .bubble-wrap .bubble {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 10px #fff, inset -10px 10px 15px #f0f, inset 5px 5px 10px #edd224, inset -5px 5px 20px #fff, inset 15px -25px 20px #24edea;
+}
+.container .bubble-wrap .bubble .detail-1 {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: inset -2px 8px 5px #fff;
+  transform: rotate(15deg);
+}
+.container .bubble-wrap .bubble .detail-1 .detail-2 {
+  width: 201px;
+  height: 201px;
+  border-radius: 50%;
+  box-shadow: inset 0 -8px 10px rgba(0, 0, 0, 0.8), -1px 3px 10px rgba(0, 0, 0, 0.5);
+}
+.container .bubble-wrap .bubble .detail-1 .detail-2 .detail-3 {
+  width: 201px;
+  height: 201px;
+  border-radius: 50%;
+  box-shadow: inset 0 -8px 10px blue;
+}
+.container .bubble-wrap .bubble-2 {
+  transform: scale(0.75);
+  align-self: flex-end;
+}
+.container .bubble-wrap .bubble-3 {
+  transform: scale(0.5);
+}
+
+@media (max-width: 768px) {
+  .container .bubble-wrap {
+    flex-direction: column;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
