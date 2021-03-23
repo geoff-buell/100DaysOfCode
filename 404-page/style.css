@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+body {
+  background: #F8EDEB;
+}
+
 .container {
   position: relative;
   width: 100vw;
@@ -12,7 +16,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #F8EDEB;
 }
 
 h1 {
@@ -23,8 +26,8 @@ h1 {
 
 .pizza {
   position: absolute;
-  width: 130px;
-  height: 130px;
+  width: 131px;
+  height: 131px;
   border-radius: 50%;
   background: #f77f00;
 }
@@ -102,8 +105,10 @@ h1 {
 
 .line {
   position: absolute;
+  top: 55px;
+  left: -10px;
   width: 130px;
-  height: 2px;
+  height: 1px;
   background: #6a040f;
   opacity: 0.25;
 }
