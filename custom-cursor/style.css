@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #2B2D42;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #EDF2F4;
+  position: relative;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 12rem;
+}
+
+button {
+  font-size: 1rem;
+  color: #2B2D42;
+  width: 10rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  border: 0.2rem solid #2B2D42;
+  box-sizing: border-box;
+  background: #8D99AE;
+  outline: none;
+  box-shadow: 1rem 1rem #8D99AE;
+}
+
+button:hover {
+  transition: 200ms ease-in;
+  border: 0.2rem solid #EF233C;
+  opacity: 0.8;
+}
+
+#cursor {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  position: absolute;
+  width: 3.2rem;
+  height: 3.2rem;
+  background: #2B2D42;
+  border-radius: 50%;
+}
+
+.fa-basketball-ball {
+  position: absolute;
+  z-index: 2;
+  font-size: 3rem;
+  color: #d68213;
+}
