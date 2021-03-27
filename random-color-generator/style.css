@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Slab', serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: gainsboro;
+  position: relative;
+}
+
+.stripe {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 250px;
+  background: lightslategrey;
+  opacity: 0.3;
+}
+
+.container {
+  width: 400px;
+  height: 500px;
+}
+
+h1 {
+  color: slategrey;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.color-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 375px;
+  background: ghostwhite;
+  box-shadow: 0 3px 8px silver;
+}
+
+.color {
+  width: 110%;
+  height: 70%;
+  margin-bottom: 10px;
+  background: steelblue;
+  box-shadow: 0 3px 8px silver;
+}
+
+.color-info {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+.color-labels {
+  margin-right: 25px;
+}
+
+.color-values {
+  text-align: right;
+}
+
+p {
+  color: slategrey;
+}
+
+button {
+  font-size: 16px;
+  color: green;
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  background: lightgreen;
+  border: 2px solid green;
+  border-radius: 4px;
+}
+
+button:hover {
+  transition: 200ms ease-in;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+
