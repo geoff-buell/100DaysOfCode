@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+
+body {
+  font-family: 'Fugaz One', sans-serif;
+  color: slategrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linen;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-wrap {
+  position: relative;
+  width: 6rem;
+  height: 6rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emoji {
+  font-size: 4rem;
+  padding: 1rem;
+}
+
+.btn {
+  font-size: 2rem;
+  color: slategrey;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6rem;
+  height: 6rem;
+  background: powderblue;
+  border: 0.2rem solid slategrey;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.btn:hover {
+  color: tomato;
+  transition: 200ms ease-in;
+  border: 0.2rem solid tomato;
+  cursor: pointer;
+}
