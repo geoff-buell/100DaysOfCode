@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
+// Colors
+$bgColor: #290325;
+$bluePurple: #480CA8;
+$purple: #7209B7;
+$darkPink: #B5179E;
+$hotPink: #F72585;
+$lightPink: #f7d7e5;
+
+@keyframes flicker {
+  0%    { text-shadow: 
+            0 0 0 $hotPink, 
+            0 0 0 $darkPink, 
+            0 0 0 $purple; 
+          color: $bluePurple;  
+        }
+  5%    { text-shadow: 
+            0 0 30px $hotPink, 
+            0 0 40px $darkPink, 
+            0 0 50px $purple; 
+          color: $lightPink;  
+        }
+  10%   { text-shadow: 
+            0 0 20px $hotPink, 
+            0 0 30px $darkPink, 
+            0 0 40px $purple; 
+          color: $lightPink;
+        }
+  100%  { text-shadow: 
+            0 0 20px $hotPink, 
+            0 0 30px $darkPink, 
+            0 0 40px $purple; 
+          color: $lightPink;
+        }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: radial-gradient($bgColor, black);
+}
+
+.container {
+  width: 300px;
+  height: auto;
+  h1 {
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 5rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: $lightPink;
+    animation: flicker 2s linear infinite;
+  }
+}
+

@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap");
+@keyframes flicker {
+  0% {
+    text-shadow: 0 0 0 #F72585, 0 0 0 #B5179E, 0 0 0 #7209B7;
+    color: #480CA8;
+  }
+  5% {
+    text-shadow: 0 0 30px #F72585, 0 0 40px #B5179E, 0 0 50px #7209B7;
+    color: #f7d7e5;
+  }
+  10% {
+    text-shadow: 0 0 20px #F72585, 0 0 30px #B5179E, 0 0 40px #7209B7;
+    color: #f7d7e5;
+  }
+  100% {
+    text-shadow: 0 0 20px #F72585, 0 0 30px #B5179E, 0 0 40px #7209B7;
+    color: #f7d7e5;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: radial-gradient(#290325, black);
+}
+
+.container {
+  width: 300px;
+  height: auto;
+}
+.container h1 {
+  font-family: "Comfortaa", sans-serif;
+  font-size: 5rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: #f7d7e5;
+  animation: flicker 2s linear infinite;
+}
+
+/*# sourceMappingURL=style.css.map */
