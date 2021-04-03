@@ -3,13 +3,15 @@
 
 $bgColor: #e0d8d7;
 $mainGray: #2e2c2c;
-$green: #29a329;
-$greenLit: #33cc33;
-$red: #e60000;
-$redLit: #ff1a1a;
-$blue: #0000e6;
-$blueLit: #1a1aff;
-$yellow: #e6e600;
+$green: #00b300;
+$greenLit: #00e600;
+$redBtn: #e60000;
+$red: #b30000;
+$redLit: #ff0000;
+$blue: #0047b3;
+$blueLit: #0066ff;
+$yellowBtn: #e6e600;
+$yellow: #b3b300;
 $yellowLit: #ffff1a;
 
 * {
@@ -124,7 +126,7 @@ body {
           padding: 3px;
           box-sizing: border-box;
           #power-btn {
-            float: right;
+            float: left;
             width: 23px;
             height: 24px;
             border-radius: 2px;
@@ -140,7 +142,7 @@ body {
         #start {
           width: 30px;
           height: 30px;
-          background: $red;
+          background: $redBtn;
           border-radius: 50%;
           border: 3px solid $mainGray;
           box-sizing: border-box;
@@ -154,7 +156,7 @@ body {
         #strict {
           width: 30px;
           height: 30px;
-          background: $yellow;
+          background: $yellowBtn;
           border-radius: 50%;
           border: 3px solid $mainGray;
           box-sizing: border-box;
@@ -173,7 +175,7 @@ body {
           height: 10px;
           border-radius: 50%;
           border: 2px solid $mainGray;
-          background: $redLit;
+          background: $mainGray;
           box-sizing: border-box;
         }
         #count {
@@ -186,6 +188,9 @@ body {
           align-items: center;
           background: #330000;
           border-radius: 10px;
+          #num {
+            opacity: 0.2;
+          }
         }
         .label {
           font-size: 0.7rem;
