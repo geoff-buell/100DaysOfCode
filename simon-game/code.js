@@ -18,6 +18,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Audio 
+  const sound1 = document.getElementById('sound-1'),
+        sound2 = document.getElementById('sound-2'),
+        sound3 = document.getElementById('sound-3'),
+        sound4 = document.getElementById('sound-4');
+
   // Buttons
   const greenBtn = document.getElementById('green-btn'),
         redBtn = document.getElementById('red-btn'),
@@ -25,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         yellowBtn = document.getElementById('yellow-btn'),
         powerBtn = document.getElementById('power-btn'),
         startBtn = document.getElementById('start'),
-        strictBtn = document.getElementById('strict');
+        strictBtn = document.getElementById('strict');   
 
   // Count display
   const count = document.getElementById('num');
@@ -33,11 +39,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // Strict light
   const strictLight = document.getElementById('strict-light');
 
-  // Booleans
+  // * Booleans *
   let isOn = false;
   let isStrict = false;
 
-  // Functions
+  // * Sequences *
+  let simonSeq = [];
+
+  // Assigning numbers to represent buttons      
+  [greenBtn.value, redBtn.value, blueBtn.value, yellowBtn.value] = [1,2,3,4]; 
+
+  // * Functions *
+  const addSimonSeq = () => {
+    const getRandom = () => Math.ceil(Math.random() * 4);
+    let i = 0;
+    while (i < 20) {
+      simonSeq.push(getRandom());
+      i++;
+    }
+    console.log(simonSeq);
+  }
+  addSimonSeq();
+
   const togglePower = () => {
     isOn = !isOn;
     if (isOn) {
@@ -67,10 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const startGame = () => {
     if (isOn) {
       // game starts
+      addSimonSeq();
     }
   }
 
-  // Event Listeners
+  // * Event Listeners *
   powerBtn.addEventListener('click', () => togglePower());
   
   startBtn.addEventListener('mousedown', () => {
@@ -104,44 +128,56 @@ document.addEventListener('DOMContentLoaded', () => {
   greenBtn.addEventListener('mousedown', () => {
     if (isOn) {
       greenBtn.style.background = '#00e600';
+      // sound1.playbackRate = 0.5;
+      // sound1.play();
     }
   });
   greenBtn.addEventListener('mouseup', () => {
     if (isOn) {
       greenBtn.style.background = '#00b300';
+      // sound1.pause();
     }
   });
 
   redBtn.addEventListener('mousedown', () => {
     if (isOn) {
       redBtn.style.background = '#ff0000';
+      // sound2.playbackRate = 0.5;
+      // sound2.play();
     }
   });
   redBtn.addEventListener('mouseup', () => {
     if (isOn) {
       redBtn.style.background = '#b30000';
+      // sound2.pause();
     }
   });
 
   blueBtn.addEventListener('mousedown', () => {
     if (isOn) {
       blueBtn.style.background = '#0066ff';
+      // sound3.playbackRate = 0.5;
+      // sound3.play();
     }
   });
   blueBtn.addEventListener('mouseup', () => {
     if (isOn) {
       blueBtn.style.background = '#0047b3';
+      // sound3.pause();
     }
   });
 
   yellowBtn.addEventListener('mousedown', () => {
     if (isOn) {
       yellowBtn.style.background = '#ffff1a';
+      // sound4.playbackRate = 0.5;
+      // sound4.play();
     }
   });
   yellowBtn.addEventListener('mouseup', () => {
     if (isOn) {
       yellowBtn.style.background = '#b3b300';
+      // sound4.pause();
     }
   });
 
