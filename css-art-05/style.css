@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #ADB5BD;
+}
+
+.head, .body, .tail, .ears,
+.eyes, .eyelids, .pupils,
+.nose, .mouth, .teeth, .tongue {
+  position: absolute;
+}
+
+.cat {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 3px solid #F8F9FA;
+  background: #6C757D;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+.cat .head {
+  width: 200px;
+  height: 150px;
+  border-radius: 50%;
+  background: #212529;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  top: 80px;
+  left: 50px;
+  z-index: 1;
+}
+.cat .head .ears {
+  width: 100px;
+  height: 100px;
+  background: #212529;
+  border-radius: 10% 100% 10% 100%;
+  top: -35px;
+}
+.cat .head #left-ear {
+  left: 2px;
+  transform: rotate(25deg);
+}
+.cat .head #right-ear {
+  right: 2px;
+  transform: rotate(65deg);
+}
+.cat .head .eyes {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 5px solid #99d98c;
+  background: #b5e48c;
+  box-sizing: border-box;
+  overflow: hidden;
+  top: 35px;
+}
+.cat .head .eyes .pupils {
+  width: 20px;
+  height: 20px;
+  border-radius: 100% 0 100% 0;
+  border: 2px solid #d9ed92;
+  box-sizing: border-box;
+  background: #212529;
+  transform: rotate(-45deg);
+  left: 5px;
+  top: 5px;
+}
+.cat .head #left-eye {
+  left: 40px;
+}
+.cat .head #right-eye {
+  right: 40px;
+}
+.cat .head .nose {
+  border-top: 15px solid #343A40;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  height: 0;
+  width: 0;
+  bottom: 45px;
+  left: 90px;
+  z-index: 2;
+}
+.cat .head .mouth {
+  width: 40px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 0 0 #343A40;
+  bottom: 35px;
+  left: 59px;
+  z-index: 2;
+}
+.cat .head .mouth::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: -2px 2px 0 0 #343A40;
+  left: 42px;
+  z-index: 2;
+}
+.cat .head .teeth {
+  border-top: 6px solid #CED4DA;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  width: 0;
+  height: 0;
+  bottom: 28px;
+  left: 80px;
+  z-index: 1;
+}
+.cat .head .teeth::before {
+  content: "";
+  position: absolute;
+  border-top: 6px solid #CED4DA;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  left: 34px;
+  z-index: 1;
+}
+.cat .head .tongue {
+  width: 26px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffb5a7;
+  bottom: 27px;
+  left: 87px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+.cat .body {
+  width: 150px;
+  height: 120px;
+  background: #212529;
+  border-radius: 50% 50% 0 0;
+  bottom: -10px;
+  left: 75px;
+}
+
+/*# sourceMappingURL=style.css.map */
