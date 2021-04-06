@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sound3 = document.getElementById('sound-3'),
         sound4 = document.getElementById('sound-4');
 
-  // Buttons
+  // * Buttons *
   const greenBtn = document.getElementById('green-btn'),
         redBtn = document.getElementById('red-btn'),
         blueBtn = document.getElementById('blue-btn'),
@@ -33,23 +33,35 @@ document.addEventListener('DOMContentLoaded', () => {
         startBtn = document.getElementById('start'),
         strictBtn = document.getElementById('strict');   
 
-  // Count display
-  const count = document.getElementById('num');
+  // * Count display *
+  const countDisplay = document.getElementById('num');
+  let count = 1;
 
-  // Strict light
+  // * Strict light *
   const strictLight = document.getElementById('strict-light');
 
   // * Booleans *
   let isOn = false;
   let isStrict = false;
+  let isStarted = false;
 
   // * Sequences *
   let simonSeq = [];
+  let playerSeq = [];
 
   // Assigning numbers to represent buttons      
   [greenBtn.value, redBtn.value, blueBtn.value, yellowBtn.value] = [1,2,3,4]; 
 
   // * Functions *
+  const greenBtnOn = () => greenBtn.style.background = '#00e600',
+        greenBtnOff = () => greenBtn.style.background = '#00b300',
+        redBtnOn = () => redBtn.style.background = '#ff0000',
+        redBtnOff = () => redBtn.style.background = '#b30000',
+        blueBtnOn = () => blueBtn.style.background = '#0066ff',
+        blueBtnOff = () => blueBtn.style.background = '#0047b3',
+        yellowBtnOn = () => yellowBtn.style.background = '#ffff1a',
+        yellowBtnOff = () => yellowBtn.style.background = '#b3b300';
+
   const addSimonSeq = () => {
     const getRandom = () => Math.ceil(Math.random() * 4);
     let i = 0;
@@ -59,20 +71,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     console.log(simonSeq);
   }
-  addSimonSeq();
+
+  const playSimonSeq = () => {
+    let counter = 0;
+    const interval = setInterval(() => {
+      if (simonSeq[counter] === 1) {
+        greenBtnOn();
+        setTimeout(() => {
+          greenBtnOff();
+        }, 500);
+      } else if (simonSeq[counter] === 2) {
+        redBtnOn();
+        setTimeout(() => {
+          redBtnOff();
+        }, 500);
+      } else if (simonSeq[counter] === 3) {
+        blueBtnOn();
+        setTimeout(() => {
+          blueBtnOff();
+        }, 500);
+      } else if (simonSeq[counter] === 4) {
+        yellowBtnOn();
+        setTimeout(() => {
+          yellowBtnOff();
+        }, 500);
+      }
+      simonSeq[counter++];
+      if (counter === count) {
+        clearInterval(interval);
+      }
+    }, 1000);
+  }
 
   const togglePower = () => {
     isOn = !isOn;
     if (isOn) {
       powerBtn.style.float = 'right';
-      count.style.opacity = 1;
+      countDisplay.style.opacity = 1;
     } else {
       powerBtn.style.float = 'left';
-      count.style.opacity = 0.2;
+      countDisplay.style.opacity = 0.2;
     }
     if (isOn === false) {
-      isStrict = false;
+      [isStrict, isStarted] = [false, false];
       strictLight.style.background = '#2e2c2c';
+      countDisplay.textContent = '––';
+      count = 1;
+      simonSeq = [];
+      // clear interval
     }
   }
 
@@ -87,10 +133,22 @@ document.addEventListener('DOMContentLoaded', () => {
     } 
   }
 
+  const formatCount = (count) => {
+    if (count < 10) {
+      return `0${count}`;
+    } else {
+      return count;
+    }
+  }
+
   const startGame = () => {
     if (isOn) {
-      // game starts
+      isStarted = true;
+      countDisplay.textContent = formatCount(count);
       addSimonSeq();
+      playSimonSeq();
+      pause();
+      checkPlayerSeq();
     }
   }
 
@@ -108,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
       inset 0 -3px 3px rgba(0,0,0,0.3), 
       inset 0 3px 3px rgba(255,255,255,0.3)
     `;
-    startGame();
+    isStarted ? false : startGame();
   });
 
   strictBtn.addEventListener('mousedown', () => {
@@ -126,59 +184,35 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   greenBtn.addEventListener('mousedown', () => {
-    if (isOn) {
-      greenBtn.style.background = '#00e600';
-      // sound1.playbackRate = 0.5;
-      // sound1.play();
-    }
+    isOn ? greenBtnOn() : false;
+    isStarted ? playerSeq.push(1) : false;
   });
   greenBtn.addEventListener('mouseup', () => {
-    if (isOn) {
-      greenBtn.style.background = '#00b300';
-      // sound1.pause();
-    }
+    isOn ? greenBtnOff() : false;
   });
 
   redBtn.addEventListener('mousedown', () => {
-    if (isOn) {
-      redBtn.style.background = '#ff0000';
-      // sound2.playbackRate = 0.5;
-      // sound2.play();
-    }
+    isOn ? redBtnOn() : false;
+    isStarted ? playerSeq.push(2) : false;
   });
   redBtn.addEventListener('mouseup', () => {
-    if (isOn) {
-      redBtn.style.background = '#b30000';
-      // sound2.pause();
-    }
+    isOn ? redBtnOff() : false;
   });
 
   blueBtn.addEventListener('mousedown', () => {
-    if (isOn) {
-      blueBtn.style.background = '#0066ff';
-      // sound3.playbackRate = 0.5;
-      // sound3.play();
-    }
+    isOn ? blueBtnOn() : false;
+    isStarted ? playerSeq.push(3) : false;
   });
   blueBtn.addEventListener('mouseup', () => {
-    if (isOn) {
-      blueBtn.style.background = '#0047b3';
-      // sound3.pause();
-    }
+    isOn ? blueBtnOff() : false;
   });
 
   yellowBtn.addEventListener('mousedown', () => {
-    if (isOn) {
-      yellowBtn.style.background = '#ffff1a';
-      // sound4.playbackRate = 0.5;
-      // sound4.play();
-    }
+    isOn ? yellowBtnOn() : false;
+    isStarted ? playerSeq.push(4) : false;
   });
   yellowBtn.addEventListener('mouseup', () => {
-    if (isOn) {
-      yellowBtn.style.background = '#b3b300';
-      // sound4.pause();
-    }
+    isOn ? yellowBtnOff() : false;
   });
 
 });
