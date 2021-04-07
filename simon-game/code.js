@@ -59,63 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         yellowBtnOn = () => yellowBtn.style.background = '#ffff1a',
         yellowBtnOff = () => yellowBtn.style.background = '#b3b300';
 
-  const addToSimonSeq = () => {
-    simonSeq.push(Math.ceil(Math.random() * 4));
-    console.log(simonSeq);
-  }
-
-  const playSimonSeq = () => {
-    let counter = 0;
-    const interval = setInterval(() => {
-      // conditions
-      if (simonSeq[counter] === 1) {
-        greenBtnOn();
-        setTimeout(() => {
-          greenBtnOff();
-        }, 500);
-      } else if (simonSeq[counter] === 2) {
-        redBtnOn();
-        setTimeout(() => {
-          redBtnOff();
-        }, 500);
-      } else if (simonSeq[counter] === 3) {
-        blueBtnOn();
-        setTimeout(() => {
-          blueBtnOff();
-        }, 500);
-      } else if (simonSeq[counter] === 4) {
-        yellowBtnOn();
-        setTimeout(() => {
-          yellowBtnOff();
-        }, 500);
-      }
-      // display simonSeq counter-index based off of conditions above,
-      // then increase counter / happens every second
-      simonSeq[counter++];
-      if (counter === count) {
-        clearInterval(interval);
-      }
-    }, 1000);
-  }
-
-  const checkPlayerSeq = () => {
-    const a = playerSeq.toString(),
-          b = simonSeq.toString();
-    if (a !== b) {
-      isPlayerCorrect = false;
-      console.log('incorrect');
-      countDisplay.textContent = '! !';
-    } 
-    if (a === b) {
-      isPlayerCorrect = true;
-      console.log('correct');
-      count++;
-      playerSeq = [];
-      addToSimonSeq();
-      playGame();
-    }
-  }
-
   const togglePower = () => {
     isOn = !isOn;
     if (isOn) {
@@ -147,6 +90,78 @@ document.addEventListener('DOMContentLoaded', () => {
     } 
   }
 
+  const addToSimonSeq = () => {
+    simonSeq.push(Math.ceil(Math.random() * 4));
+    console.log(simonSeq);
+  }
+
+  const playSimonSeq = () => {
+    let seqTimingA = 1000;
+    let seqTimingB = 500;
+    // These change as player levels up
+    if (count > 5 &&  count <= 10) {
+      seqTimingA = 800;
+      seqTimingB = 400;
+    } else if (count > 10 && count <= 15) {
+      seqTimingA = 600;
+      seqTimingB = 300;
+    } else if (count > 15 && count <= 20) {
+      seqTimingA = 400;
+      seqTimingB = 200;
+    } 
+    let index = 0;
+    const interval = setInterval(() => {
+      // conditions
+      if (simonSeq[index] === 1) {
+        greenBtnOn();
+        setTimeout(() => {
+          greenBtnOff();
+        }, seqTimingB);
+      } else if (simonSeq[index] === 2) {
+        redBtnOn();
+        setTimeout(() => {
+          redBtnOff();
+        }, seqTimingB);
+      } else if (simonSeq[index] === 3) {
+        blueBtnOn();
+        setTimeout(() => {
+          blueBtnOff();
+        }, seqTimingB);
+      } else if (simonSeq[index] === 4) {
+        yellowBtnOn();
+        setTimeout(() => {
+          yellowBtnOff();
+        }, seqTimingB);
+      }
+      // display simonSeq index based off of conditions above,
+      // then increase index / happens every second
+      simonSeq[index++];
+      if (index === count) {
+        clearInterval(interval);
+      }
+    }, seqTimingA);
+  }
+
+  const checkPlayerSeq = () => {
+    if(isOn) {
+      const a = playerSeq.toString(),
+            b = simonSeq.toString();
+      if (a !== b) {
+        isPlayerCorrect = false;
+        console.log('incorrect');
+        countDisplay.textContent = '! !';
+      } 
+      if (a === b) {
+        isPlayerCorrect = true;
+        console.log('correct');
+        count++;
+        playerSeq = [];
+        addToSimonSeq();
+        playGame();
+      }
+    }
+  }
+
   const formatCount = (count) => {
     if (count < 10) {
       return `0${count}`;
@@ -156,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const playGame = () => {
-    const time = 4000 * count;
+    const time = count * 2000 + 3000; // increase time slowly
     countDisplay.textContent = formatCount(count);
     playSimonSeq();
     setTimeout(() => {
