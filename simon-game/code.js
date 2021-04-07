@@ -13,7 +13,6 @@
 // 9) Game should indicate win if player reaches 20.
 
 document.addEventListener('DOMContentLoaded', () => {
-
   // * Audio * 
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   audioCtx.suspend();
@@ -56,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let isOn = false;
   let isStrict = false;
   let isStarted = false;
-  let isPlayerCorrect = false;
 
   // * Sequences *
   let simonSeq = [];
@@ -69,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const playAudio = (num) => {
     gainNodes[num].gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.01);
   }
-
   const stopAudio = (num) => {
     gainNodes[num].gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.01);
   }
@@ -138,10 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } 
   }
 
-  const addToSimonSeq = () => {
-    simonSeq.push(Math.ceil(Math.random() * 4));
-    console.log(simonSeq);
-  }
+  const addToSimonSeq = () => simonSeq.push(Math.ceil(Math.random() * 4));
 
   const playSimonSeq = () => {
     let seqTimingA = 1200;
@@ -162,24 +156,16 @@ document.addEventListener('DOMContentLoaded', () => {
       // conditions
       if (simonSeq[index] === 1) {
         greenBtnOn();
-        setTimeout(() => {
-          greenBtnOff();
-        }, seqTimingB);
+        setTimeout(() => greenBtnOff(), seqTimingB);
       } else if (simonSeq[index] === 2) {
         redBtnOn();
-        setTimeout(() => {
-          redBtnOff();
-        }, seqTimingB);
+        setTimeout(() => redBtnOff(), seqTimingB);
       } else if (simonSeq[index] === 3) {
         blueBtnOn();
-        setTimeout(() => {
-          blueBtnOff();
-        }, seqTimingB);
+        setTimeout(() => blueBtnOff(), seqTimingB);
       } else if (simonSeq[index] === 4) {
         yellowBtnOn();
-        setTimeout(() => {
-          yellowBtnOff();
-        }, seqTimingB);
+        setTimeout(() => yellowBtnOff(), seqTimingB);
       }
       // display simonSeq index based off of conditions above,
       // then increase index / happens every second
@@ -191,18 +177,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const checkPlayerSeq = () => {
-    if(isOn) {
+    if (isOn) {
       const a = playerSeq.toString(),
             b = simonSeq.toString();
       if (a !== b) {
-        isPlayerCorrect = false;
-        console.log('incorrect');
         countDisplay.textContent = '! !';
         playerSeq = [];
+        playAudio(0);
+        setTimeout(() => stopAudio(0), 1000);
         if (isStrict === false) {
-          setTimeout(() => {
-            playGame();
-          }, 2000);
+          setTimeout(() => playGame(), 2000);
         } else if (isStrict) {
           isStarted = false;
           simonSeq = [];
@@ -210,8 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } 
       if (a === b) {
-        isPlayerCorrect = true;
-        console.log('correct');
         count++;
         if (count >= 21) {
           alert('YOU WIN!!!!!!!')
@@ -228,21 +210,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const formatCount = (count) => {
-    if (count < 10) {
-      return `0${count}`;
-    } else {
-      return count;
-    }
-  }
+  const formatCount = (count) => count < 10 ? `0${count}` : count;
 
   const playGame = () => {
     const time = count * 2000 + 3000; // increase time slowly
     countDisplay.textContent = formatCount(count);
     playSimonSeq();
-    setTimeout(() => {
-      checkPlayerSeq();
-    }, time);
+    setTimeout(() => checkPlayerSeq(), time);
   }
 
   const startGame = () => {
@@ -287,7 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
   greenBtn.addEventListener('mousedown', () => {
     isOn ? greenBtnOn() : false;
     isStarted ? playerSeq.push(1) : false;
-    console.log(playerSeq);
   });
   greenBtn.addEventListener('mouseup', () => {
     isOn ? greenBtnOff() : false;
@@ -296,7 +269,6 @@ document.addEventListener('DOMContentLoaded', () => {
   redBtn.addEventListener('mousedown', () => {
     isOn ? redBtnOn() : false;
     isStarted ? playerSeq.push(2) : false;
-    console.log(playerSeq);
   });
   redBtn.addEventListener('mouseup', () => {
     isOn ? redBtnOff() : false;
@@ -305,7 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
   blueBtn.addEventListener('mousedown', () => {
     isOn ? blueBtnOn() : false;
     isStarted ? playerSeq.push(3) : false;
-    console.log(playerSeq);
   });
   blueBtn.addEventListener('mouseup', () => {
     isOn ? blueBtnOff() : false;
@@ -314,10 +285,8 @@ document.addEventListener('DOMContentLoaded', () => {
   yellowBtn.addEventListener('mousedown', () => {
     isOn ? yellowBtnOn() : false;
     isStarted ? playerSeq.push(4) : false;
-    console.log(playerSeq);
   });
   yellowBtn.addEventListener('mouseup', () => {
     isOn ? yellowBtnOff() : false;
   });
-
 });
