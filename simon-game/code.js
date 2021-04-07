@@ -14,11 +14,27 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Audio 
-  const sound1 = document.getElementById('sound-1'),
-        sound2 = document.getElementById('sound-2'),
-        sound3 = document.getElementById('sound-3'),
-        sound4 = document.getElementById('sound-4');
+  // * Audio * 
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  audioCtx.suspend();
+  
+  const frequencies = [110, 164, 220, 329, 261];
+
+  const oscillators = frequencies.map((frequency) => {
+    const oscillator = audioCtx.createOscillator();
+    oscillator.type = 'triangle';
+    oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+    oscillator.start(0.0);
+    return oscillator;
+  });
+
+  const gainNodes = oscillators.map((oscillator) => {
+    const gain = audioCtx.createGain();
+    oscillator.connect(gain);
+    gain.connect(audioCtx.destination);
+    gain.gain.value = 0;
+    return gain;
+  });
 
   // * Buttons *
   const greenBtn = document.getElementById('green-btn'),
@@ -50,32 +66,64 @@ document.addEventListener('DOMContentLoaded', () => {
   [greenBtn.value, redBtn.value, blueBtn.value, yellowBtn.value] = [1,2,3,4]; 
 
   // * Functions *
-  const greenBtnOn = () => greenBtn.style.background = '#00e600',
-        greenBtnOff = () => greenBtn.style.background = '#00b300',
-        redBtnOn = () => redBtn.style.background = '#ff0000',
-        redBtnOff = () => redBtn.style.background = '#b30000',
-        blueBtnOn = () => blueBtn.style.background = '#0066ff',
-        blueBtnOff = () => blueBtn.style.background = '#0047b3',
-        yellowBtnOn = () => yellowBtn.style.background = '#ffff1a',
-        yellowBtnOff = () => yellowBtn.style.background = '#b3b300';
+  const playAudio = (num) => {
+    gainNodes[num].gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.01);
+  }
+
+  const stopAudio = (num) => {
+    gainNodes[num].gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.01);
+  }
+
+  const greenBtnOn = () => {
+    greenBtn.style.background = '#00e600';
+    playAudio(1);
+  }
+  const greenBtnOff = () => {
+    greenBtn.style.background = '#00b300';
+    stopAudio(1);
+  }
+  const redBtnOn = () => {
+    redBtn.style.background = '#ff0000';
+    playAudio(2);
+  }
+  const redBtnOff = () => {
+    redBtn.style.background = '#b30000';
+    stopAudio(2);
+  }
+  const blueBtnOn = () => {
+    blueBtn.style.background = '#0066ff';
+    playAudio(3);
+  }
+  const blueBtnOff = () => {
+    blueBtn.style.background = '#0047b3';
+    stopAudio(3);
+  }
+  const yellowBtnOn = () => {
+    yellowBtn.style.background = '#ffff1a';
+    playAudio(4);
+  }
+  const yellowBtnOff = () => {
+    yellowBtn.style.background = '#b3b300';
+    stopAudio(4);
+  };
 
   const togglePower = () => {
     isOn = !isOn;
     if (isOn) {
       powerBtn.style.float = 'right';
       countDisplay.style.opacity = 1;
-    } else {
+      audioCtx.resume();
+    } 
+    if (isOn === false) {
       powerBtn.style.float = 'left';
       countDisplay.style.opacity = 0.2;
-    }
-    if (isOn === false) {
-      [isStrict, isStarted] = [false, false];
       strictLight.style.background = '#2e2c2c';
       countDisplay.textContent = '––';
+      [isStrict, isStarted] = [false, false];
       count = 1;
       simonSeq = [];
       playerSeq = [];
-      // clear interval
+      audioCtx.suspend();
     }
   }
 
