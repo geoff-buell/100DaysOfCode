@@ -96,18 +96,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const playSimonSeq = () => {
-    let seqTimingA = 1000;
-    let seqTimingB = 500;
+    let seqTimingA = 1200;
+    let seqTimingB = 600;
     // These change as player levels up
     if (count > 5 &&  count <= 10) {
+      seqTimingA = 1000;
+      seqTimingB = 500;
+    } else if (count > 10 && count <= 15) {
       seqTimingA = 800;
       seqTimingB = 400;
-    } else if (count > 10 && count <= 15) {
+    } else if (count > 15 && count <= 20) {
       seqTimingA = 600;
       seqTimingB = 300;
-    } else if (count > 15 && count <= 20) {
-      seqTimingA = 400;
-      seqTimingB = 200;
     } 
     let index = 0;
     const interval = setInterval(() => {
@@ -165,9 +165,17 @@ document.addEventListener('DOMContentLoaded', () => {
         isPlayerCorrect = true;
         console.log('correct');
         count++;
-        playerSeq = [];
-        addToSimonSeq();
-        playGame();
+        if (count >= 21) {
+          alert('YOU WIN!!!!!!!')
+          isStarted = false;
+          simonSeq = [];
+          playerSeq = [];
+          count = 1;
+        } else {
+          playerSeq = [];
+          addToSimonSeq();
+          playGame();
+        }
       }
     }
   }
