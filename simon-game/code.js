@@ -59,13 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         yellowBtnOn = () => yellowBtn.style.background = '#ffff1a',
         yellowBtnOff = () => yellowBtn.style.background = '#b3b300';
 
-  const addSimonSeq = () => {
-    const getRandom = () => Math.ceil(Math.random() * 4);
-    let i = 0;
-    while (i < 20) {
-      simonSeq.push(getRandom());
-      i++;
-    }
+  const addToSimonSeq = () => {
+    simonSeq.push(Math.ceil(Math.random() * 4));
     console.log(simonSeq);
   }
 
@@ -104,23 +99,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const checkPlayerSeq = () => {
-    const time = 0.75 * (count * 4000); // not super happy with this equation
-    setTimeout(() => {
-      for (let i = 0; i < playerSeq.length; i++) {
-        if (playerSeq[i] === simonSeq[i]) {
-          console.log('correct');
-          isPlayerCorrect = true;
-          playerSeq = [];
-          count++;
-          playGame();
-        } else {
-          console.log('incorrect');
-          isPlayerCorrect = false;
-          countDisplay.textContent = '!!';
-          //game over
-        }
-      }
-    }, time);
+    const a = playerSeq.toString(),
+          b = simonSeq.toString();
+    if (a !== b) {
+      isPlayerCorrect = false;
+      console.log('incorrect');
+      countDisplay.textContent = '! !';
+    } 
+    if (a === b) {
+      isPlayerCorrect = true;
+      console.log('correct');
+      count++;
+      playerSeq = [];
+      addToSimonSeq();
+      playGame();
+    }
   }
 
   const togglePower = () => {
@@ -162,16 +155,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function playGame() {
+  const playGame = () => {
+    const time = 4000 * count;
     countDisplay.textContent = formatCount(count);
     playSimonSeq();
-    checkPlayerSeq();
+    setTimeout(() => {
+      checkPlayerSeq();
+    }, time);
   }
 
   const startGame = () => {
     if (isOn) {
       isStarted = true;
-      addSimonSeq();
+      addToSimonSeq();
       playGame();
     }
   }
