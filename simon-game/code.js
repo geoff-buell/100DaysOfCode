@@ -150,6 +150,16 @@ document.addEventListener('DOMContentLoaded', () => {
         isPlayerCorrect = false;
         console.log('incorrect');
         countDisplay.textContent = '! !';
+        playerSeq = [];
+        if (isStrict === false) {
+          setTimeout(() => {
+            playGame();
+          }, 2000);
+        } else if (isStrict) {
+          isStarted = false;
+          simonSeq = [];
+          count = 1;
+        }
       } 
       if (a === b) {
         isPlayerCorrect = true;
