@@ -4,6 +4,12 @@
   margin: 0;
   padding: 0;
   font-family: "Roboto Condensed", sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -16,11 +22,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 #container #simon {
   width: 500px;
   height: 500px;
-  position: relative;
+  position: absolute;
   background: #2e2c2c;
   border-radius: 50%;
   box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.5), inset 0 10px 10px rgba(255, 255, 255, 0.2);
@@ -31,7 +38,6 @@ body {
   position: absolute;
   border: 15px solid #2e2c2c;
   box-sizing: border-box;
-  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
 }
 #container #simon .btn-main:hover {
   cursor: pointer;
@@ -179,6 +185,11 @@ body {
   text-transform: uppercase;
   color: #2e2c2c;
   margin: 3px 0 0;
+}
+@media screen and (max-width: 767px) {
+  #container #simon {
+    transform: scale(0.5);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
