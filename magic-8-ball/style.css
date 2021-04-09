@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: gainsboro;
+}
+
+.eight-ball, .display, .triangle {
+  position: absolute;
+}
+
+.eight-ball, .display {
+  border-radius: 50%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.container .eight-ball {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+  background: #333;
+}
+.container .eight-ball .display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  background: #444;
+}
+.container .eight-ball .display .triangle {
+  border-top: 100px solid blue;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  width: 0;
+  height: 0;
+}
+
+/*# sourceMappingURL=style.css.map */
