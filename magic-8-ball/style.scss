@@ -6,6 +6,13 @@
   justify-content: center;
 }
 
+@keyframes triangleFloat {
+  25%      { transform: rotateY(10deg) rotateZ(-3deg); }
+  50%     { transform: rotateY(0) rotateZ(0); }
+  75%     { transform: rotateY(-10deg) rotateZ(3deg); }
+  100%     { transform: rotateY(0) rotateZ(0); }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,10 +20,13 @@
   font-size: 0.8rem;
   color: rgba(255,255,255,0.6);
   text-transform: uppercase;
+  user-select: none;
 }
 
 body {
+  @include mainFlex();
   background: #808080;
+  height: 100vh;
 }
 
 .core-shadow, .shadow, .eight-ball, .circle, 
@@ -31,14 +41,14 @@ body {
 
 .container {
   @include mainFlex();
-  width: 100vw;
-  height: 100vh;
+  width: 500px;
+  height: 500px;
   position: relative;
   .core-shadow {
     @include mainFlex();
     width: 320px;
     height: 40px;
-    bottom: 185px;
+    bottom: 35px;
     background: rgba(0,0,0,0.4);
     filter: blur(8px);
     .shadow {
@@ -46,7 +56,7 @@ body {
       height: 15px;
       background: rgba(0,0,0,0.9);
       filter: blur(8px);
-    }
+    }  
   }
   .eight-ball {
     @include mainFlex();
@@ -74,7 +84,7 @@ body {
         @include mainFlex();
         width: 200px;
         height: 200px;
-        background: #111;
+        background: #020214;
         border: 5px solid #000;
         box-sizing: border-box;
         box-shadow: 
@@ -89,6 +99,7 @@ body {
           width: 0;
           height: 0;
           filter: blur(2px);
+          animation: triangleFloat 8s linear infinite;
         }
         .t4 {
           bottom: 29px;
@@ -124,4 +135,8 @@ body {
       filter: blur(25px);
     }
   }
+  @media screen and (max-width: 767px) {
+    transform: scale(0.75);
+  }
 }
+
