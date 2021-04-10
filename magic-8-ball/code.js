@@ -39,15 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
     setTimeout(() => {
       eightBall.style.transform = 'translateX(-40px) translateY(-40px)';
+      shadow.style.transform = 'scale(0.85) translateX(-40px)';
     }, 400);
     setTimeout(() => {
       eightBall.style.transform = 'translateX(0) translateY(-40px)';
+      shadow.style.transform = 'scale(0.85) translateX(0)';
     }, 500);
     setTimeout(() => {
       eightBall.style.transform = 'translateX(40px) translateY(-40px)';
+      shadow.style.transform = 'scale(0.85) translateX(40px)';
     }, 600);
     setTimeout(() => {
       eightBall.style.transform = 'translateX(0) translateY(-40px)';
+      shadow.style.transform = 'scale(0.85) translateX(0)';
     }, 700);
     setTimeout(() => {
       eightBall.style.transform = 'translateY(0)';
