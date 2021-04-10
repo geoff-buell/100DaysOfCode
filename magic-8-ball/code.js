@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  const eightBall = document.querySelector('.eight-ball'),
+        triangles = document.querySelector('.triangle-wrap'),
+        fortune = document.querySelector('.fortune');
+
+  // triangles.style.display = 'none';
+
   const answers = [
     'It is certain',
     'It is decidedly so',
@@ -22,5 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
     'Outlook not so good',
     'Very doubtful'
   ]; 
+
+  const askMagicEightBall = () => {
+    const random = Math.floor(Math.random() * answers.length);
+    fortune.textContent = answers[random];
+    triangles.style.display = 'block';
+  }
+
+  eightBall.addEventListener('click', () => askMagicEightBall());
 
 });
