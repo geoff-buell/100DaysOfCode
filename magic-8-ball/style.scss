@@ -61,6 +61,7 @@ body {
   }
   .eight-ball {
     @include mainFlex();
+    position: relative;
     overflow: hidden;
     width: 400px;
     height: 400px;
@@ -83,7 +84,6 @@ body {
         -2px -1px 5px rgba(255,255,255,0.2),
         2px -2px 3px #000;
       transform: translateX(-400px) scaleX(0);
-      // display: none;
       .display {
         @include mainFlex();
         width: 200px;
@@ -139,7 +139,6 @@ body {
       background: #f5efdf;
       z-index: 2;
       opacity: 0.7;
-      // display: none;
     }
     .highlight {
       width: 120px;
