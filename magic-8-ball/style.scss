@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Graduate&display=swap');
 
 @mixin mainFlex {
   display: flex;
@@ -30,12 +31,12 @@ body {
 }
 
 .core-shadow, .shadow, .eight-ball, .circle, 
-.display, .triangle, .fortune, .highlight {
+.display, .triangle, .fortune, .num-eight, .highlight, .border-shadow {
   position: absolute;
 }
 
 .core-shadow, .shadow, .eight-ball, 
-.circle, .display, .highlight {
+.circle, .display, .num-eight, .highlight, .border-shadow {
   border-radius: 50%;
 }
 
@@ -60,6 +61,7 @@ body {
   }
   .eight-ball {
     @include mainFlex();
+    overflow: hidden;
     width: 400px;
     height: 400px;
     background: #222;
@@ -80,6 +82,8 @@ body {
         inset 0 -3px 3px rgba(255,255,255,0.3),
         -2px -1px 5px rgba(255,255,255,0.2),
         2px -2px 3px #000;
+      transform: translateX(-400px) scaleX(0);
+      // display: none;
       .display {
         @include mainFlex();
         width: 200px;
@@ -125,6 +129,18 @@ body {
         } 
       }
     }
+    .num-eight {
+      @include mainFlex();
+      font-family: 'Graduate', sans-serif;
+      font-size: 10rem;
+      color: #222;
+      width: 170px;
+      height: 170px;
+      background: #f5efdf;
+      z-index: 2;
+      opacity: 0.7;
+      // display: none;
+    }
     .highlight {
       width: 120px;
       height: 70px;
@@ -133,6 +149,15 @@ body {
       left: 55px;
       transform: rotate(-35deg);
       filter: blur(25px);
+    }
+  }
+  .border-shadow {
+    z-index: 3;
+    width: 400px;
+    height: 400px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,1);
+    &:hover {
+      cursor: pointer;
     }
   }
   @media screen and (max-width: 767px) {

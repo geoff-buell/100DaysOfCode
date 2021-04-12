@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Graduate&display=swap");
 @keyframes triangleFloat {
   25% {
     transform: rotateY(10deg) rotateZ(-3deg);
@@ -32,12 +33,12 @@ body {
 }
 
 .core-shadow, .shadow, .eight-ball, .circle,
-.display, .triangle, .fortune, .highlight {
+.display, .triangle, .fortune, .num-eight, .highlight, .border-shadow {
   position: absolute;
 }
 
 .core-shadow, .shadow, .eight-ball,
-.circle, .display, .highlight {
+.circle, .display, .num-eight, .highlight, .border-shadow {
   border-radius: 50%;
 }
 
@@ -69,6 +70,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   width: 400px;
   height: 400px;
   background: #222;
@@ -85,6 +87,7 @@ body {
   height: 220px;
   background: #111;
   box-shadow: inset 0 -3px 3px rgba(255, 255, 255, 0.3), -2px -1px 5px rgba(255, 255, 255, 0.2), 2px -2px 3px #000;
+  transform: translateX(-400px) scaleX(0);
 }
 .container .eight-ball .circle .display {
   display: flex;
@@ -131,6 +134,19 @@ body {
   top: -87px;
   text-align: center;
 }
+.container .eight-ball .num-eight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Graduate", sans-serif;
+  font-size: 10rem;
+  color: #222;
+  width: 170px;
+  height: 170px;
+  background: #f5efdf;
+  z-index: 2;
+  opacity: 0.7;
+}
 .container .eight-ball .highlight {
   width: 120px;
   height: 70px;
@@ -139,6 +155,15 @@ body {
   left: 55px;
   transform: rotate(-35deg);
   filter: blur(25px);
+}
+.container .border-shadow {
+  z-index: 3;
+  width: 400px;
+  height: 400px;
+  box-shadow: inset 0 0 10px black;
+}
+.container .border-shadow:hover {
+  cursor: pointer;
 }
 @media screen and (max-width: 767px) {
   .container {

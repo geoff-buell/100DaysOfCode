@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const eightBall = document.querySelector('.eight-ball'),
+        numEight = document.querySelector('.num-eight'),
+        display = document.querySelector('.circle'),
         triangles = document.querySelector('.triangle-wrap'),
-        shadow = document.querySelector('.core-shadow'),
-        fortune = document.querySelector('.fortune');
+        fortune = document.querySelector('.fortune'),
+        borderShadow = document.querySelector('.border-shadow'),
+        coreShadow = document.querySelector('.core-shadow');
 
   triangles.style.opacity = '0';
-
-  let opacity = 0;
 
   const answers = [
     'It is certain',
@@ -32,32 +33,66 @@ document.addEventListener('DOMContentLoaded', () => {
     'Very doubtful'
   ]; 
 
+  let nPosX = 1,
+      nScale = 1,
+      dPosX = -400,
+      dScale = 0.5;
+
+  const rotate = () => {
+    numEight.style.transform = `translateX(${nPosX}px) scaleX(${nScale})`;
+
+    nPosX++;
+    nScale -= 0.00248756219; // this num is a product of trial and error
+    if (nScale === 0.5) {
+      numEight.style.tranform = 'scaleX(0)';
+    }
+
+    dPosX++;
+    if (dPosX < -200) {
+      display.style.transform = `translateX(${dPosX}px) scaleX(0)`;
+    } else {
+      dScale += 0.00248756219;
+      display.style.transform = `translateX(${dPosX}px) scaleX(${dScale})`;
+    }
+    
+    if (dPosX < 0) {
+      setTimeout(() => rotate(), 10);
+    } else {
+      borderShadow.style.display = 'none';
+      fortune.textContent = 'Ask a question';
+      setTimeout(() => fadeIn(), 1000);
+      setTimeout(() => fadeOut(), 4000);
+    }
+  }
+
   const shake = () => {
     setTimeout(() => {
       eightBall.style.transform = 'translateY(-40px)';
-      shadow.style.transform = 'scale(0.85)';
+      coreShadow.style.transform = 'scale(0.85)';
     }, 100);
     setTimeout(() => {
       eightBall.style.transform = 'translateX(-40px) translateY(-40px)';
-      shadow.style.transform = 'scale(0.85) translateX(-40px)';
+      coreShadow.style.transform = 'scale(0.85) translateX(-40px)';
     }, 400);
     setTimeout(() => {
       eightBall.style.transform = 'translateX(0) translateY(-40px)';
-      shadow.style.transform = 'scale(0.85) translateX(0)';
+      coreShadow.style.transform = 'scale(0.85) translateX(0)';
     }, 500);
     setTimeout(() => {
       eightBall.style.transform = 'translateX(40px) translateY(-40px)';
-      shadow.style.transform = 'scale(0.85) translateX(40px)';
+      coreShadow.style.transform = 'scale(0.85) translateX(40px)';
     }, 600);
     setTimeout(() => {
       eightBall.style.transform = 'translateX(0) translateY(-40px)';
-      shadow.style.transform = 'scale(0.85) translateX(0)';
+      coreShadow.style.transform = 'scale(0.85) translateX(0)';
     }, 700);
     setTimeout(() => {
       eightBall.style.transform = 'translateY(0)';
-      shadow.style.transform = 'scale(1)';
+      coreShadow.style.transform = 'scale(1)';
     }, 1000);
   }
+
+  let opacity = 0;
 
   const fadeIn = () => {
     if (opacity < 1) {
@@ -82,6 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => fadeIn(), 1000);
     setTimeout(() => fadeOut(), 4000);
   }
+
+  borderShadow.addEventListener('click', () => rotate());
 
   eightBall.addEventListener('click', () => opacity > 0 ? false : askMagicEightBall() );
 
