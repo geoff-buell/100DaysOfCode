@@ -13,7 +13,7 @@
 }
 
 body {
-  background: lightslategrey;
+  background: darkslateblue;
 }
 
 .container {
@@ -24,7 +24,7 @@ body {
   h1 {
     font-size: 2rem;
     text-align: center;
-    color: navy;
+    color: white;
   }
   #wheel {
     @include mainFlex();
@@ -57,12 +57,13 @@ body {
       position: absolute;
       font-size: 1.5rem;
       font-style: italic;
+      // text-decoration: underline;
       color: mediumblue;
       width: 180px;
       height: 40px;
       text-shadow: 
         5px 25px 0 orangered,
-        5px -25px 0 lawngreen;
+        5px -25px 0 olivedrab;
     }
     #choice-1 {
       left: 20px;
@@ -109,6 +110,9 @@ body {
       height: 50px;
       background: orangered;
       clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+      &:hover {
+        cursor: pointer;
+      }
     }
     #spinner-cap {
       position: absolute;
