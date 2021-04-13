@@ -1,0 +1,58 @@
+@mixin mainFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: lightslategrey;
+}
+
+.container {
+  @include mainFlex();
+  width: 100vw;
+  height: 100vh;
+  #wheel {
+    @include mainFlex();
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: gainsboro;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    .line {
+      position: absolute;
+      width: 505px;
+      height: 3px;
+      background: lightslategrey;
+    }
+    .line-2 {
+      transform: rotate(45deg);
+    }
+    .line-3 {
+      transform: rotate(-45deg);
+    }
+    .line-4 {
+      transform: rotate(90deg);
+    }
+    #spinner {
+      width: 450px;
+      height: 50px;
+      background: orangered;
+      clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+    }
+    #spinner-cap {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: goldenrod;
+    }
+  }
+}
