@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap");
 * {
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -11,26 +13,33 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
+}
+.container h1 {
+  font-size: 2rem;
+  text-align: center;
+  color: navy;
 }
 .container #wheel {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: gainsboro;
+  border: 6px solid navy;
+  background: lightsteelblue;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 .container #wheel .line {
   position: absolute;
   width: 505px;
   height: 3px;
-  background: lightslategrey;
+  background: navy;
 }
 .container #wheel .line-2 {
   transform: rotate(45deg);
@@ -40,6 +49,59 @@ body {
 }
 .container #wheel .line-4 {
   transform: rotate(90deg);
+}
+.container #wheel .choice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: mediumblue;
+  width: 180px;
+  height: 40px;
+  text-shadow: 5px 25px 0 orangered, 5px -25px 0 lawngreen;
+}
+.container #wheel #choice-1 {
+  left: 20px;
+  top: 172px;
+  transform: rotate(22.5deg);
+}
+.container #wheel #choice-2 {
+  left: 102px;
+  top: 90px;
+  transform: rotate(67.5deg);
+}
+.container #wheel #choice-3 {
+  right: 101px;
+  top: 90px;
+  transform: rotate(112.5deg);
+}
+.container #wheel #choice-4 {
+  right: 20px;
+  top: 172px;
+  transform: rotate(157.5deg);
+}
+.container #wheel #choice-5 {
+  right: 20px;
+  bottom: 171px;
+  transform: rotate(202.5deg);
+}
+.container #wheel #choice-6 {
+  right: 101px;
+  bottom: 90px;
+  transform: rotate(247.5deg);
+}
+.container #wheel #choice-7 {
+  left: 102px;
+  bottom: 90px;
+  transform: rotate(292.5deg);
+}
+.container #wheel #choice-8 {
+  left: 20px;
+  bottom: 171px;
+  transform: rotate(337.5deg);
 }
 .container #wheel #spinner {
   width: 450px;
@@ -53,6 +115,12 @@ body {
   height: 30px;
   border-radius: 50%;
   background: goldenrod;
+}
+@media screen and (max-width: 767px) {
+  .container #wheel {
+    transform: scale(0.6);
+    margin-top: 0;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
