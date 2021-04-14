@@ -17,6 +17,8 @@ body {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  padding: 30px 0 30px 0;
+  box-sizing: border-box;
 }
 .container h1 {
   font-family: "Rock Salt", "Roboto", sans-serif;
@@ -24,18 +26,32 @@ body {
   text-align: center;
   color: white;
 }
+@media screen and (max-width: 767px) {
+  .container h1 {
+    font-size: 1.5rem;
+  }
+}
 .container #wheel-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  position: relative;
+  width: 550px;
+  height: 550px;
+  margin: 20px 0 20px 0;
+}
+.container #wheel-wrap #wheel-border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
   width: 550px;
   height: 550px;
   border-radius: 50%;
   background: goldenrod;
   box-shadow: 0 0 30px navy;
 }
-.container #wheel-wrap #wheel {
+.container #wheel-wrap #wheel-border #wheel {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,22 +63,22 @@ body {
   overflow: hidden;
   position: relative;
 }
-.container #wheel-wrap #wheel .line {
+.container #wheel-wrap #wheel-border #wheel .line {
   position: absolute;
   width: 505px;
   height: 2px;
   background: white;
 }
-.container #wheel-wrap #wheel .line-2 {
+.container #wheel-wrap #wheel-border #wheel .line-2 {
   transform: rotate(45deg);
 }
-.container #wheel-wrap #wheel .line-3 {
+.container #wheel-wrap #wheel-border #wheel .line-3 {
   transform: rotate(-45deg);
 }
-.container #wheel-wrap #wheel .line-4 {
+.container #wheel-wrap #wheel-border #wheel .line-4 {
   transform: rotate(90deg);
 }
-.container #wheel-wrap #wheel .choice {
+.container #wheel-wrap #wheel-border #wheel .choice {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,62 +93,62 @@ body {
   height: 40px;
   text-shadow: 5px 25px 0 orangered, 5px -25px 0 limegreen;
 }
-.container #wheel-wrap #wheel #choice-1 {
+.container #wheel-wrap #wheel-border #wheel #choice-1 {
   left: 20px;
   top: 172px;
   transform: rotate(22.5deg);
 }
-.container #wheel-wrap #wheel #choice-2 {
+.container #wheel-wrap #wheel-border #wheel #choice-2 {
   left: 102px;
   top: 90px;
   transform: rotate(67.5deg);
 }
-.container #wheel-wrap #wheel #choice-3 {
+.container #wheel-wrap #wheel-border #wheel #choice-3 {
   right: 101px;
   top: 90px;
   transform: rotate(112.5deg);
 }
-.container #wheel-wrap #wheel #choice-4 {
+.container #wheel-wrap #wheel-border #wheel #choice-4 {
   right: 20px;
   top: 172px;
   transform: rotate(157.5deg);
 }
-.container #wheel-wrap #wheel #choice-5 {
+.container #wheel-wrap #wheel-border #wheel #choice-5 {
   right: 20px;
   bottom: 171px;
   transform: rotate(202.5deg);
 }
-.container #wheel-wrap #wheel #choice-6 {
+.container #wheel-wrap #wheel-border #wheel #choice-6 {
   right: 101px;
   bottom: 90px;
   transform: rotate(247.5deg);
 }
-.container #wheel-wrap #wheel #choice-7 {
+.container #wheel-wrap #wheel-border #wheel #choice-7 {
   left: 102px;
   bottom: 90px;
   transform: rotate(292.5deg);
 }
-.container #wheel-wrap #wheel #choice-8 {
+.container #wheel-wrap #wheel-border #wheel #choice-8 {
   left: 20px;
   bottom: 171px;
   transform: rotate(337.5deg);
 }
-.container #wheel-wrap #wheel #spinner-wrap {
+.container #wheel-wrap #wheel-border #wheel #spinner-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   filter: drop-shadow(0 0 3px navy);
 }
-.container #wheel-wrap #wheel #spinner-wrap #spinner {
+.container #wheel-wrap #wheel-border #wheel #spinner-wrap #spinner {
   width: 450px;
   height: 50px;
   background: orangered;
   clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
 }
-.container #wheel-wrap #wheel #spinner-wrap #spinner:hover {
+.container #wheel-wrap #wheel-border #wheel #spinner-wrap #spinner:hover {
   cursor: pointer;
 }
-.container #wheel-wrap #wheel #spinner-wrap #spinner-cap {
+.container #wheel-wrap #wheel-border #wheel #spinner-wrap #spinner-cap {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -164,10 +180,13 @@ body {
 .container #form-wrap {
   position: absolute;
   width: 700px;
-  height: calc(100vh - 40px);
+  height: auto;
   background: mediumslateblue;
   border-radius: 20px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+  margin: 20px;
+  padding: 10px 10px 30px 10px;
+  box-sizing: border-box;
   display: none;
 }
 .container #form-wrap #close-btn {
@@ -205,7 +224,7 @@ body {
 .container #form-wrap form button {
   font-size: 1rem;
   color: darkslateblue;
-  margin-top: 15px;
+  margin: 15px 0 50px 0;
   width: 150px;
   height: 35px;
   background: limegreen;
@@ -218,6 +237,7 @@ body {
 @media screen and (max-width: 767px) {
   .container #form-wrap {
     width: 90%;
+    top: 0;
   }
 }
 

@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
   spinner.addEventListener('click', () => {
     const randomTime = Math.ceil(Math.random() * 10000);
     speed = 1;
-    spin();
+    requestAnimationFrame(spin);
     setTimeout(() => {
       clearInterval(interval);
     }, randomTime);
@@ -96,10 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   customize.addEventListener('click', () => {
     formWrap.style.display = 'block';
+    customize.style.filter = 'blur(5px)';
   });
 
   closeBtn.addEventListener('click', () => {
     formWrap.style.display = 'none';
+    customize.style.filter = 'blur(0)';
   });
 
   formBtn.addEventListener('click', (e) => {

@@ -22,118 +22,130 @@ body {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  padding: 30px 0 30px 0;
+  box-sizing: border-box;
   h1 {
     font-family: 'Rock Salt', 'Roboto', sans-serif;
     font-size: 2rem;
     text-align: center;
     color: white;
+    @media screen and (max-width: 767px) {
+      font-size: 1.5rem;
+    }
   }
   #wheel-wrap {
     @include mainFlex();
-    margin-top: 50px;
+    position: relative;
     width: 550px;
     height: 550px;
-    border-radius: 50%;
-    background: goldenrod;
-    box-shadow: 0 0 30px navy;
-    #wheel {
+    margin: 20px 0 20px 0;
+    #wheel-border {
       @include mainFlex();
-      width: 500px;
-      height: 500px;
+      position: absolute;
+      width: 550px;
+      height: 550px;
       border-radius: 50%;
-      border: 2px solid white;
-      background: linear-gradient(#c33764, #1d2671);
-      overflow: hidden;
-      position: relative;
-      .line {
-        position: absolute;
-        width: 505px;
-        height: 2px;
-        background: white;
-      }
-      .line-2 {
-        transform: rotate(45deg);
-      }
-      .line-3 {
-        transform: rotate(-45deg);
-      }
-      .line-4 {
-        transform: rotate(90deg);
-      }
-      .choice {
+      background: goldenrod;
+      box-shadow: 0 0 30px navy;
+      #wheel {
         @include mainFlex();
-        justify-content: flex-start;
-        position: absolute;
-        font-size: 1.5rem;
-        font-style: italic;
-        text-transform: capitalize;
-        text-decoration: none;
-        color: white;
-        width: 180px;
-        height: 40px;
-        text-shadow: 
-          5px 25px 0 orangered,
-          5px -25px 0 limegreen;
-      }
-      #choice-1 {
-        left: 20px;
-        top: 172px;
-        transform: rotate(22.5deg);
-      }
-      #choice-2 {
-        left: 102px;
-        top: 90px;
-        transform: rotate(67.5deg);
-      }
-      #choice-3 {
-        right: 101px;
-        top: 90px;
-        transform: rotate(112.5deg);
-      }
-      #choice-4 {
-        right: 20px;
-        top: 172px;
-        transform: rotate(157.5deg);
-      }
-      #choice-5 {
-        right: 20px;
-        bottom: 171px;
-        transform: rotate(202.5deg);
-      }
-      #choice-6 {
-        right: 101px;
-        bottom: 90px;
-        transform: rotate(247.5deg);
-      }
-      #choice-7 {
-        left: 102px;
-        bottom: 90px;
-        transform: rotate(292.5deg);
-      }
-      #choice-8 {
-        left: 20px;
-        bottom: 171px;
-        transform: rotate(337.5deg);
-      }
-      #spinner-wrap {
-        @include mainFlex();
-        filter: drop-shadow(0 0 3px navy);
-        #spinner {
-          width: 450px;
-          height: 50px;
-          background: orangered;
-          clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
-          &:hover {
-            cursor: pointer;
-          }
-        }
-        #spinner-cap {
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        border: 2px solid white;
+        background: linear-gradient(#c33764, #1d2671);
+        overflow: hidden;
+        position: relative;
+        .line {
           position: absolute;
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          background: goldenrod;
-          box-shadow: 0 0 5px navy;
+          width: 505px;
+          height: 2px;
+          background: white;
+        }
+        .line-2 {
+          transform: rotate(45deg);
+        }
+        .line-3 {
+          transform: rotate(-45deg);
+        }
+        .line-4 {
+          transform: rotate(90deg);
+        }
+        .choice {
+          @include mainFlex();
+          justify-content: flex-start;
+          position: absolute;
+          font-size: 1.5rem;
+          font-style: italic;
+          text-transform: capitalize;
+          text-decoration: none;
+          color: white;
+          width: 180px;
+          height: 40px;
+          text-shadow: 
+            5px 25px 0 orangered,
+            5px -25px 0 limegreen;
+        }
+        #choice-1 {
+          left: 20px;
+          top: 172px;
+          transform: rotate(22.5deg);
+        }
+        #choice-2 {
+          left: 102px;
+          top: 90px;
+          transform: rotate(67.5deg);
+        }
+        #choice-3 {
+          right: 101px;
+          top: 90px;
+          transform: rotate(112.5deg);
+        }
+        #choice-4 {
+          right: 20px;
+          top: 172px;
+          transform: rotate(157.5deg);
+        }
+        #choice-5 {
+          right: 20px;
+          bottom: 171px;
+          transform: rotate(202.5deg);
+        }
+        #choice-6 {
+          right: 101px;
+          bottom: 90px;
+          transform: rotate(247.5deg);
+        }
+        #choice-7 {
+          left: 102px;
+          bottom: 90px;
+          transform: rotate(292.5deg);
+        }
+        #choice-8 {
+          left: 20px;
+          bottom: 171px;
+          transform: rotate(337.5deg);
+        }
+        #spinner-wrap {
+          @include mainFlex();
+          filter: drop-shadow(0 0 3px navy);
+          #spinner {
+            width: 450px;
+            height: 50px;
+            background: orangered;
+            clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+            &:hover {
+              cursor: pointer;
+            }
+          }
+          #spinner-cap {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: goldenrod;
+            box-shadow: 0 0 5px navy;
+          }
         }
       }
     }
@@ -158,10 +170,13 @@ body {
   #form-wrap {
     position: absolute;
     width: 700px;
-    height: calc(100vh - 40px);
+    height: auto;
     background: mediumslateblue;
     border-radius: 20px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    box-shadow: 0 0 18px rgba(0,0,0,0.3);
+    margin: 20px;
+    padding: 10px 10px 30px 10px;
+    box-sizing: border-box;
     display: none;
     #close-btn {
       position: absolute;
@@ -195,7 +210,7 @@ body {
       button {
         font-size: 1rem;
         color: darkslateblue;
-        margin-top: 15px;
+        margin: 15px 0 50px 0;
         width: 150px;
         height: 35px;
         background: limegreen;
@@ -208,6 +223,7 @@ body {
     }
     @media screen and (max-width: 767px) {
       width: 90%;
+      top: 0;
     }
   }
 }
