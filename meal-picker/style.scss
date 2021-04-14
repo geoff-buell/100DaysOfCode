@@ -66,13 +66,18 @@ body {
         position: absolute;
         font-size: 1.5rem;
         font-style: italic;
-        // text-decoration: underline;
+        text-transform: capitalize;
+        text-decoration: none;
         color: white;
         width: 180px;
         height: 40px;
         text-shadow: 
           5px 25px 0 orangered,
           5px -25px 0 limegreen;
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
       }
       #choice-1 {
         left: 20px;
@@ -143,6 +148,70 @@ body {
     @media screen and (max-width: 320px) {
       transform: scale(0.5);
       margin-top: 0;
+    }
+  }
+  #customize {
+    margin-top: 30px;
+    color: white;
+    text-decoration: underline;
+    opacity: 0.5;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  #form-wrap {
+    position: absolute;
+    width: 700px;
+    height: calc(100vh - 40px);
+    background: mediumslateblue;
+    border-radius: 20px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    display: none;
+    #close-btn {
+      position: absolute;
+      font-size: 3rem;
+      color: white;
+      top: 0;
+      right: 15px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    h3 {
+      color: white;
+      text-align: center;
+      margin: 50px 0 30px 0;
+    }
+    form {
+      @include mainFlex();
+      flex-direction: column;
+      width: 90%;
+      margin: auto;
+      input {
+        width: 90%;
+        height: 35px;
+        margin-bottom: 20px;
+        padding: 0 10px 0 10px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: none;
+      }
+      button {
+        font-size: 1rem;
+        color: darkslateblue;
+        margin-top: 15px;
+        width: 150px;
+        height: 35px;
+        background: limegreen;
+        border-radius: 5px;
+        border: none;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    @media screen and (max-width: 767px) {
+      width: 90%;
     }
   }
 }

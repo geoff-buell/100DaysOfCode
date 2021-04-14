@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const spinner = document.getElementById('spinner');
+  const customize = document.getElementById('customize');
+  const formWrap = document.getElementById('form-wrap');
+  const closeBtn = document.getElementById('close-btn');
+  const formBtn = document.getElementById('form-btn');
 
   const choice1 = document.getElementById('choice-1'),
         choice2 = document.getElementById('choice-2'),
@@ -11,10 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
         choice7 = document.getElementById('choice-7'),
         choice8 = document.getElementById('choice-8');
 
+  const custom1 = document.getElementById('custom-choice-1'),
+        custom2 = document.getElementById('custom-choice-2'),
+        custom3 = document.getElementById('custom-choice-3'),
+        custom4 = document.getElementById('custom-choice-4'),
+        custom5 = document.getElementById('custom-choice-5'),
+        custom6 = document.getElementById('custom-choice-6'),
+        custom7 = document.getElementById('custom-choice-7'),
+        custom8 = document.getElementById('custom-choice-8');
+
   const options = [
     'Tacos', 'Burgers', 'Steak', 'Chicken',
     'Salad', 'Pizza', 'Sushi', 'BBQ'
-  ]
+  ];
 
   const addOptions = () => {
     choice1.textContent = options[0];
@@ -29,9 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
   
   addOptions();
 
+  const changeOptions = () => {
+    choice1.textContent = custom1.value;
+    choice2.textContent = custom2.value;
+    choice3.textContent = custom3.value;
+    choice4.textContent = custom4.value;
+    choice5.textContent = custom5.value;
+    choice6.textContent = custom6.value;
+    choice7.textContent = custom7.value;
+    choice8.textContent = custom8.value;
+  }
+
   let deg = 0;
   let speed = 1;
-
   let interval;
 
   const changeSpeed = () => {
@@ -53,6 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       clearInterval(interval);
     }, randomTime);
+  });
+
+  customize.addEventListener('click', () => {
+    formWrap.style.display = 'block';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    formWrap.style.display = 'none';
+  });
+
+  formBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    changeOptions();
+    formWrap.style.display = 'none';
   });
 
 });

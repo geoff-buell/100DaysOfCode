@@ -70,10 +70,16 @@ body {
   position: absolute;
   font-size: 1.5rem;
   font-style: italic;
+  text-transform: capitalize;
+  text-decoration: none;
   color: white;
   width: 180px;
   height: 40px;
   text-shadow: 5px 25px 0 orangered, 5px -25px 0 limegreen;
+}
+.container #wheel-wrap #wheel .choice:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 .container #wheel-wrap #wheel #choice-1 {
   left: 20px;
@@ -148,6 +154,74 @@ body {
   .container #wheel-wrap {
     transform: scale(0.5);
     margin-top: 0;
+  }
+}
+.container #customize {
+  margin-top: 30px;
+  color: white;
+  text-decoration: underline;
+  opacity: 0.5;
+}
+.container #customize:hover {
+  cursor: pointer;
+}
+.container #form-wrap {
+  position: absolute;
+  width: 700px;
+  height: calc(100vh - 40px);
+  background: mediumslateblue;
+  border-radius: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+.container #form-wrap #close-btn {
+  position: absolute;
+  font-size: 3rem;
+  color: white;
+  top: 0;
+  right: 15px;
+}
+.container #form-wrap #close-btn:hover {
+  cursor: pointer;
+}
+.container #form-wrap h3 {
+  color: white;
+  text-align: center;
+  margin: 50px 0 30px 0;
+}
+.container #form-wrap form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+}
+.container #form-wrap form input {
+  width: 90%;
+  height: 35px;
+  margin-bottom: 20px;
+  padding: 0 10px 0 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: none;
+}
+.container #form-wrap form button {
+  font-size: 1rem;
+  color: darkslateblue;
+  margin-top: 15px;
+  width: 150px;
+  height: 35px;
+  background: limegreen;
+  border-radius: 5px;
+  border: none;
+}
+.container #form-wrap form button:hover {
+  cursor: pointer;
+}
+@media screen and (max-width: 767px) {
+  .container #form-wrap {
+    width: 90%;
   }
 }
 
