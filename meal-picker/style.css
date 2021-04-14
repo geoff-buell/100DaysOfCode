@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap");
 * {
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -18,39 +19,50 @@ body {
   height: 100vh;
 }
 .container h1 {
+  font-family: "Rock Salt", "Roboto", sans-serif;
   font-size: 2rem;
   text-align: center;
   color: white;
 }
-.container #wheel {
+.container #wheel-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: goldenrod;
+  box-shadow: 0 0 30px navy;
+}
+.container #wheel-wrap #wheel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  border: 6px solid navy;
-  background: lightsteelblue;
+  border: 2px solid white;
+  background: linear-gradient(#c33764, #1d2671);
   overflow: hidden;
   position: relative;
 }
-.container #wheel .line {
+.container #wheel-wrap #wheel .line {
   position: absolute;
   width: 505px;
-  height: 3px;
-  background: navy;
+  height: 2px;
+  background: white;
 }
-.container #wheel .line-2 {
+.container #wheel-wrap #wheel .line-2 {
   transform: rotate(45deg);
 }
-.container #wheel .line-3 {
+.container #wheel-wrap #wheel .line-3 {
   transform: rotate(-45deg);
 }
-.container #wheel .line-4 {
+.container #wheel-wrap #wheel .line-4 {
   transform: rotate(90deg);
 }
-.container #wheel .choice {
+.container #wheel-wrap #wheel .choice {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,61 +70,61 @@ body {
   position: absolute;
   font-size: 1.5rem;
   font-style: italic;
-  color: mediumblue;
+  color: white;
   width: 180px;
   height: 40px;
-  text-shadow: 5px 25px 0 orangered, 5px -25px 0 olivedrab;
+  text-shadow: 5px 25px 0 orangered, 5px -25px 0 limegreen;
 }
-.container #wheel #choice-1 {
+.container #wheel-wrap #wheel #choice-1 {
   left: 20px;
   top: 172px;
   transform: rotate(22.5deg);
 }
-.container #wheel #choice-2 {
+.container #wheel-wrap #wheel #choice-2 {
   left: 102px;
   top: 90px;
   transform: rotate(67.5deg);
 }
-.container #wheel #choice-3 {
+.container #wheel-wrap #wheel #choice-3 {
   right: 101px;
   top: 90px;
   transform: rotate(112.5deg);
 }
-.container #wheel #choice-4 {
+.container #wheel-wrap #wheel #choice-4 {
   right: 20px;
   top: 172px;
   transform: rotate(157.5deg);
 }
-.container #wheel #choice-5 {
+.container #wheel-wrap #wheel #choice-5 {
   right: 20px;
   bottom: 171px;
   transform: rotate(202.5deg);
 }
-.container #wheel #choice-6 {
+.container #wheel-wrap #wheel #choice-6 {
   right: 101px;
   bottom: 90px;
   transform: rotate(247.5deg);
 }
-.container #wheel #choice-7 {
+.container #wheel-wrap #wheel #choice-7 {
   left: 102px;
   bottom: 90px;
   transform: rotate(292.5deg);
 }
-.container #wheel #choice-8 {
+.container #wheel-wrap #wheel #choice-8 {
   left: 20px;
   bottom: 171px;
   transform: rotate(337.5deg);
 }
-.container #wheel #spinner {
+.container #wheel-wrap #wheel #spinner {
   width: 450px;
   height: 50px;
   background: orangered;
   clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
 }
-.container #wheel #spinner:hover {
+.container #wheel-wrap #wheel #spinner:hover {
   cursor: pointer;
 }
-.container #wheel #spinner-cap {
+.container #wheel-wrap #wheel #spinner-cap {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -120,8 +132,14 @@ body {
   background: goldenrod;
 }
 @media screen and (max-width: 767px) {
-  .container #wheel {
+  .container #wheel-wrap {
     transform: scale(0.6);
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 320px) {
+  .container #wheel-wrap {
+    transform: scale(0.5);
     margin-top: 0;
   }
 }

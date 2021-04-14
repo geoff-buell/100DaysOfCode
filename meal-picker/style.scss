@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 
 @mixin mainFlex {
   display: flex;
@@ -22,107 +23,120 @@ body {
   width: 100vw;
   height: 100vh;
   h1 {
+    font-family: 'Rock Salt', 'Roboto', sans-serif;
     font-size: 2rem;
     text-align: center;
     color: white;
   }
-  #wheel {
+  #wheel-wrap {
     @include mainFlex();
     margin-top: 50px;
-    width: 500px;
-    height: 500px;
+    width: 550px;
+    height: 550px;
     border-radius: 50%;
-    border: 6px solid navy;
-    background: lightsteelblue;
-    overflow: hidden;
-    position: relative;
-    .line {
-      position: absolute;
-      width: 505px;
-      height: 3px;
-      background: navy;
-    }
-    .line-2 {
-      transform: rotate(45deg);
-    }
-    .line-3 {
-      transform: rotate(-45deg);
-    }
-    .line-4 {
-      transform: rotate(90deg);
-    }
-    .choice {
+    background: goldenrod;
+    box-shadow: 0 0 30px navy;
+    #wheel {
       @include mainFlex();
-      justify-content: flex-start;
-      position: absolute;
-      font-size: 1.5rem;
-      font-style: italic;
-      // text-decoration: underline;
-      color: mediumblue;
-      width: 180px;
-      height: 40px;
-      text-shadow: 
-        5px 25px 0 orangered,
-        5px -25px 0 olivedrab;
-    }
-    #choice-1 {
-      left: 20px;
-      top: 172px;
-      transform: rotate(22.5deg);
-    }
-    #choice-2 {
-      left: 102px;
-      top: 90px;
-      transform: rotate(67.5deg);
-    }
-    #choice-3 {
-      right: 101px;
-      top: 90px;
-      transform: rotate(112.5deg);
-    }
-    #choice-4 {
-      right: 20px;
-      top: 172px;
-      transform: rotate(157.5deg);
-    }
-    #choice-5 {
-      right: 20px;
-      bottom: 171px;
-      transform: rotate(202.5deg);
-    }
-    #choice-6 {
-      right: 101px;
-      bottom: 90px;
-      transform: rotate(247.5deg);
-    }
-    #choice-7 {
-      left: 102px;
-      bottom: 90px;
-      transform: rotate(292.5deg);
-    }
-    #choice-8 {
-      left: 20px;
-      bottom: 171px;
-      transform: rotate(337.5deg);
-    }
-    #spinner {
-      width: 450px;
-      height: 50px;
-      background: orangered;
-      clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
-      &:hover {
-        cursor: pointer;
-      }
-    }
-    #spinner-cap {
-      position: absolute;
-      width: 30px;
-      height: 30px;
+      width: 500px;
+      height: 500px;
       border-radius: 50%;
-      background: goldenrod;
+      border: 2px solid white;
+      background: linear-gradient(#c33764, #1d2671);
+      overflow: hidden;
+      position: relative;
+      .line {
+        position: absolute;
+        width: 505px;
+        height: 2px;
+        background: white;
+      }
+      .line-2 {
+        transform: rotate(45deg);
+      }
+      .line-3 {
+        transform: rotate(-45deg);
+      }
+      .line-4 {
+        transform: rotate(90deg);
+      }
+      .choice {
+        @include mainFlex();
+        justify-content: flex-start;
+        position: absolute;
+        font-size: 1.5rem;
+        font-style: italic;
+        // text-decoration: underline;
+        color: white;
+        width: 180px;
+        height: 40px;
+        text-shadow: 
+          5px 25px 0 orangered,
+          5px -25px 0 limegreen;
+      }
+      #choice-1 {
+        left: 20px;
+        top: 172px;
+        transform: rotate(22.5deg);
+      }
+      #choice-2 {
+        left: 102px;
+        top: 90px;
+        transform: rotate(67.5deg);
+      }
+      #choice-3 {
+        right: 101px;
+        top: 90px;
+        transform: rotate(112.5deg);
+      }
+      #choice-4 {
+        right: 20px;
+        top: 172px;
+        transform: rotate(157.5deg);
+      }
+      #choice-5 {
+        right: 20px;
+        bottom: 171px;
+        transform: rotate(202.5deg);
+      }
+      #choice-6 {
+        right: 101px;
+        bottom: 90px;
+        transform: rotate(247.5deg);
+      }
+      #choice-7 {
+        left: 102px;
+        bottom: 90px;
+        transform: rotate(292.5deg);
+      }
+      #choice-8 {
+        left: 20px;
+        bottom: 171px;
+        transform: rotate(337.5deg);
+      }
+      #spinner {
+        width: 450px;
+        height: 50px;
+        background: orangered;
+        clip-path: polygon(90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%, 0% 0%);
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      #spinner-cap {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: goldenrod;
+      }
     }
     @media screen and (max-width: 767px) {
       transform: scale(0.6);
+      margin-top: 0;
+    }
+    @media screen and (max-width: 320px) {
+      transform: scale(0.5);
       margin-top: 0;
     }
   }
