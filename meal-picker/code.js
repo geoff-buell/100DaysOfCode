@@ -29,22 +29,30 @@ document.addEventListener('DOMContentLoaded', () => {
   
   addOptions();
 
-  const spin = () => {
-    
-    const randomTime = Math.ceil(Math.random() * 10000);
-    let deg = 0, speed = 1;
+  let deg = 0;
+  let speed = 1;
 
-    const int = setInterval(() => {
-      spinner.style.transform = `rotate(${deg}deg)`;
-      deg++
-    }, speed);
+  let interval;
 
-    setTimeout(() => {
-      clearInterval(int);
-    }, randomTime);
-
+  const changeSpeed = () => {
+    speed += 0.01;
   }
 
-  spinner.addEventListener('click', () => spin());
+  const spin = () => {
+    clearInterval(interval);
+    spinner.style.transform = `rotate(${deg}deg)`;
+    deg++;
+    changeSpeed();
+    interval = setInterval(spin, speed);
+  }
+
+  spinner.addEventListener('click', () => {
+    const randomTime = Math.ceil(Math.random() * 10000);
+    speed = 1;
+    spin();
+    setTimeout(() => {
+      clearInterval(interval);
+    }, randomTime);
+  });
 
 });
