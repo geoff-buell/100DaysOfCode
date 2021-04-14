@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         custom8 = document.getElementById('custom-choice-8');
 
   const options = [
-    'Tacos', 'Burgers', 'Steak', 'Chicken',
+    'Tacos', 'Burgers', 'Steak', 'Ramen',
     'Salad', 'Pizza', 'Sushi', 'BBQ'
   ];
 
@@ -43,14 +43,30 @@ document.addEventListener('DOMContentLoaded', () => {
   addOptions();
 
   const changeOptions = () => {
-    choice1.textContent = custom1.value;
-    choice2.textContent = custom2.value;
-    choice3.textContent = custom3.value;
-    choice4.textContent = custom4.value;
-    choice5.textContent = custom5.value;
-    choice6.textContent = custom6.value;
-    choice7.textContent = custom7.value;
-    choice8.textContent = custom8.value;
+    custom1.value === '' ? 
+      choice1.textContent = options[0] :
+      choice1.textContent = custom1.value;
+    custom2.value === '' ?
+      choice2.textContent = options[1] :  
+      choice2.textContent = custom2.value;
+    custom3.value === '' ?
+      choice3.textContent = options[2] :
+      choice3.textContent = custom3.value;
+    custom4.value === '' ?
+      choice4.textContent = options[3] :
+      choice4.textContent = custom4.value;
+    custom5.value === '' ?
+      choice5.textContent = options[4] :
+      choice5.textContent = custom5.value;
+    custom6.value === '' ?
+      choice6.textContent = options[5] :  
+      choice6.textContent = custom6.value;
+    custom7.value === '' ?
+      choice7.textContent = options[6] :
+      choice7.textContent = custom7.value;
+    custom8.value === '' ?
+      choice8.textContent = options[7] :
+      choice8.textContent = custom8.value;
   }
 
   let deg = 0;

@@ -77,10 +77,6 @@ body {
   height: 40px;
   text-shadow: 5px 25px 0 orangered, 5px -25px 0 limegreen;
 }
-.container #wheel-wrap #wheel .choice:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
 .container #wheel-wrap #wheel #choice-1 {
   left: 20px;
   top: 172px;
