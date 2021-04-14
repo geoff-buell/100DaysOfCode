@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     changeOptions();
     formWrap.style.display = 'none';
+    customize.style.filter = 'blur(0)';
   });
 
 });
