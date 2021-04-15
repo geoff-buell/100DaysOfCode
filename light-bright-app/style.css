@@ -4,7 +4,7 @@
 }
 
 body {
-  background: #222;
+  background: black;
 }
 
 header {
@@ -24,24 +24,30 @@ header {
 }
 
 #surface-area {
-  width: 100%;
-  height: calc(100vh - 50px);
-  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: calc(100vw - 20px);
+  height: calc(100vh - 70px);
+  margin: 10px;
+  padding: 5px 0 5px 0;
   box-sizing: border-box;
+  border: 1px solid blue;
+  overflow: hidden;
 }
 @media screen and (max-width: 767px) {
   #surface-area {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 120px);
   }
 }
 #surface-area .circle {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  border: 1px solid white;
+  border: 1px solid blue;
   box-sizing: border-box;
   background: black;
-  margin: 10px;
+  margin: 3px;
 }
 #surface-area .circle:hover {
   cursor: pointer;
