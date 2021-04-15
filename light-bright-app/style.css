@@ -63,6 +63,7 @@ header button:hover {
   box-sizing: border-box;
   background: black;
   margin: 3px;
+  user-select: none;
 }
 #surface-area .circle:hover {
   cursor: pointer;

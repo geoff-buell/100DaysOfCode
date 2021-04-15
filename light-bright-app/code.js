@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     '#ff3333', '#33d6ff', '#ffff33', '#33ff33', '#ffad33', '#cc33ff'
   ]; 
 
+  let isMouseDown = false;
+
   let cirID = 0;
 
   let i = 0;
@@ -117,17 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
       lastMemory = e.target;
       e.target.classList.add('glow');
       e.target.style.backgroundColor = colors[i];
-      i++;
-      if (i === colors.length) {
-        i = 0;
-      }
     } else if (e.target.classList.value === 'circle glow') {
       lastMemory = e.target;
       e.target.style.backgroundColor = colors[i];
-      i++;
-      if (i === colors.length) {
-        i = 0;
-      }
     }
   }
 
@@ -161,7 +155,32 @@ document.addEventListener('DOMContentLoaded', () => {
     instructions.style.display = 'none';
   }
 
-  document.addEventListener('mousedown', (e) => addColor(e));
+  document.addEventListener('touchstart', () => {
+    isMouseDown = true;
+    document.addEventListener('touchmove', (e) => {
+      if (isMouseDown) {
+        addColor(e);
+      }
+    });
+  });
+  document.addEventListener('touchend', () => isMouseDown = false);
+
+  document.addEventListener('click', (e) => {
+    addColor(e);
+    i++;
+      if (i === colors.length) {
+        i = 0;
+      }
+  });
+  document.addEventListener('mousedown', () => {
+    isMouseDown = true;
+    document.addEventListener('mousemove', (e) => {
+      if (isMouseDown) {
+        addColor(e);
+      }
+    });
+  });
+  document.addEventListener('mouseup', () => isMouseDown = false);
   document.addEventListener('dblclick', (e) => removeColor(e));
   resetColorBtn.addEventListener('click', () => removeLast());
   resetAllBtn.addEventListener('click', () => removeAll());

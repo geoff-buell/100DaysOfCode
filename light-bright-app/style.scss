@@ -57,7 +57,6 @@ header {
   margin: 10px;
   padding: 5px 0 5px 0;
   box-sizing: border-box;
-  // border: 1px solid $blue;
   overflow: hidden;
   @media screen and (max-width: 767px) {
     height: calc(100vh - 120px);
@@ -70,6 +69,7 @@ header {
     box-sizing: border-box;
     background: black;
     margin: 3px;
+    user-select: none;
     &:hover {
       cursor: pointer;
     }
