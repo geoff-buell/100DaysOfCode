@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const surfaceArea = document.getElementById('surface-area');
 
   const colors = [
-    '#ff3333', '#33d6ff', '#ffff33', '#33ff33', '#ffad33', '#cc33ff'
+    '#ff3333', '#ffad33', '#ffff33', '#ffffb3', 
+    '#33ff33', '#33d6ff', '#cc33ff'
   ]; 
 
   let isMouseDown = false;
