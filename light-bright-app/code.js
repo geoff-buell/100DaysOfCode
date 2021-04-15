@@ -92,7 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
   circles.forEach(() => {
     const div = document.createElement('div');
     div.classList.add('circle');
+    div.addEventListener('click', () => addColor());
     surfaceArea.appendChild(div);
   });
+
+  const addColor = () => {
+    console.log('glow');
+  }
 
 });
