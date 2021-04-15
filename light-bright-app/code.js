@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const instructionsBtn = document.getElementById('instructions-btn');
+  const instructions = document.getElementById('instructions');
+  const closeBtn = document.getElementById('close-btn');
   const resetColorBtn = document.getElementById('reset-color-btn');
   const resetAllBtn = document.getElementById('reset-all-btn');
 
@@ -15,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let i = 0;
   let lastMemory; 
   
-  const circles = [
+  const circlesArr = [
     'o','o','o','o','o','o','o','o','o','o','o','o','o','o','o',
     'o','o','o','o','o','o','o','o','o','o','o','o','o','o','o',
     'o','o','o','o','o','o','o','o','o','o','o','o','o','o','o',
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'o','o','o','o','o','o','o','o','o','o','o','o','o','o','o'
   ];
 
-  circles.forEach(() => {
+  circlesArr.forEach(() => {
     const div = document.createElement('div'); 
     div.classList.add('circle');
     div.id = cirID;
@@ -129,16 +131,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-
-
   const removeColor = (e) => {
     e.target.classList.remove('glow');
     e.target.style.backgroundColor = 'black';
   }
 
   const removeLast = () => {
-    lastMemory.classList.remove('glow');
-    lastMemory.style.backgroundColor = 'black';
+    if (lastMemory !== undefined) {
+      lastMemory.classList.remove('glow');
+      lastMemory.style.backgroundColor = 'black';
+    } else {
+      return;
+    }
   }
 
   const removeAll = () => {
@@ -149,14 +153,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  document.addEventListener('click', (e) => addColor(e));
+  const displayInstructions = () => {
+    instructions.style.display = 'block';
+  }
 
+  const hideInstructions = () => {
+    instructions.style.display = 'none';
+  }
+
+  document.addEventListener('mousedown', (e) => addColor(e));
   document.addEventListener('dblclick', (e) => removeColor(e));
-
   resetColorBtn.addEventListener('click', () => removeLast());
-
   resetAllBtn.addEventListener('click', () => removeAll());
-
-
+  instructionsBtn.addEventListener('click', () => displayInstructions());
+  closeBtn.addEventListener('click', () => hideInstructions());
 
 });

@@ -39,6 +39,7 @@ header button:hover {
 }
 
 #surface-area {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -69,6 +70,35 @@ header button:hover {
 #surface-area .glow {
   border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: inset 0 0 13px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7);
+}
+#surface-area #instructions {
+  display: none;
+  position: absolute;
+  width: auto;
+  height: auto;
+  background: black;
+  border: 1px solid blue;
+  padding: 50px;
+}
+@media screen and (max-width: 767px) {
+  #surface-area #instructions {
+    font-size: 0.8rem;
+  }
+}
+#surface-area #instructions #close-btn {
+  font-size: 2rem;
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+#surface-area #instructions #close-btn:hover {
+  cursor: pointer;
+}
+#surface-area #instructions h3 {
+  margin-bottom: 20px;
+}
+#surface-area #instructions ul {
+  line-height: 1.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */
