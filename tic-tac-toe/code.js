@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   let isXTurn = true;
+  let isGameOver = false;
+  let validPlays = 0;
   let winningCombo;
 
   const addTiles = () => {
@@ -37,15 +39,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isXTurn && tile.textContent === '') {
       tile.textContent = 'X';
       tilesArr[tile.id] = 'X';
+      validPlays++;
       isXTurn = !isXTurn;
       isXTurn ? playerTurn.textContent = 'X' : playerTurn.textContent = 'O';
     } else if (!isXTurn && tile.textContent === '') {
       tile.textContent = 'O';
       tilesArr[tile.id] = 'O';
+      validPlays++;
       isXTurn = !isXTurn;
       isXTurn ? playerTurn.textContent = 'X' : playerTurn.textContent = 'O';
     }
     checkForWin();
+    validPlays === 9 ? displayMessage() : false;
   }
 
   const checkForWin = () => {
@@ -99,9 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
     tilesArr[2] === tilesArr[6] ?
     gameOver(7) :
     false;
+
   }
 
   const gameOver = (val) => {
+    isGameOver = true;
     winningCombo = val;
     switch (winningCombo) {
       case 0:
@@ -144,12 +151,21 @@ document.addEventListener('DOMContentLoaded', () => {
         tiles[4].style.color = $green;
         tiles[6].style.color = $green;
     }
-    setTimeout(() => {
+    displayMessage();
+  }
+
+  const displayMessage = () => {
+    if (isGameOver) {
+      setTimeout(() => {
+        gameOverMsg.style.display = 'block';
+        playerTurn.textContent === 'X' ? 
+        winner.textContent = 'Player O Wins!' : 
+        winner.textContent = 'Player X Wins!';
+      }, 1000);
+    } else if (!isGameOver) {
       gameOverMsg.style.display = 'block';
-      playerTurn.textContent === 'X' ? 
-      winner.textContent = 'O' : 
-      winner.textContent = 'X';
-    }, 1000);
+      winner.textContent = 'Tie Game!'
+    }
   }
 
   const reset = () => {
@@ -164,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     winningCombo = '';
     isXTurn = true;
+    validPlays = 0;
     playerTurn.textContent = 'X';
     gameOverMsg.style.display = 'none';
   }
