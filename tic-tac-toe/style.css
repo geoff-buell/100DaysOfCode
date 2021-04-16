@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background: gray;
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+#gameboard {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  height: 300px;
+  border: 1px solid blue;
+}
+#gameboard .tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: 2px solid blue;
+  box-sizing: border-box;
+}
+#gameboard .tile:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=style.css.map */
