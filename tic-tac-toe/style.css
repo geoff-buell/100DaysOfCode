@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
 * {
+  font-family: "Montserrat", sans-serif;
+  color: #F6F7EB;
   margin: 0;
   padding: 0;
 }
@@ -9,11 +12,18 @@ body {
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  background: gray;
+  background: #393E41;
 }
 
 header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+header h1 {
   margin-bottom: 20px;
+}
+header #player-turn {
+  font-weight: 600;
 }
 
 #gameboard {
@@ -21,19 +31,46 @@ header {
   flex-wrap: wrap;
   width: 300px;
   height: 300px;
-  border: 1px solid blue;
+  position: relative;
 }
 #gameboard .tile {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.8rem;
+  font-weight: 600;
   width: 100px;
   height: 100px;
-  border: 2px solid blue;
   box-sizing: border-box;
 }
 #gameboard .tile:hover {
   cursor: pointer;
+}
+#gameboard .line {
+  position: absolute;
+  z-index: 1;
+  background: #F6F7EB;
+  border-radius: 2px;
+}
+#gameboard .r {
+  width: 300px;
+  height: 4px;
+}
+#gameboard .r-1 {
+  top: 98px;
+}
+#gameboard .r-2 {
+  bottom: 98px;
+}
+#gameboard .c {
+  width: 4px;
+  height: 300px;
+}
+#gameboard .c-1 {
+  left: 98px;
+}
+#gameboard .c-2 {
+  right: 98px;
 }
 
 /*# sourceMappingURL=style.css.map */

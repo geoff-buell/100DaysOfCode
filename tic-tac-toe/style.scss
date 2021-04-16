@@ -1,10 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
 @mixin mainFlex {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+$onyx: #393E41;
+$ivory: #F6F7EB;
+$green: #16b550;
+
 * {
+  font-family: 'Montserrat', sans-serif;
+  color: $ivory;
   margin: 0;
   padding: 0;
 }
@@ -13,11 +21,18 @@ body {
   @include mainFlex();
   flex-direction: column;
   height: 100vh;
-  background: gray;
+  background: $onyx;
 }
 
 header {
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+  h1 {
+    margin-bottom: 20px;
+  }
+  #player-turn {
+    font-weight: 600;
+  }
 }
 
 #gameboard {
@@ -25,15 +40,42 @@ header {
   flex-wrap: wrap;
   width: 300px;
   height: 300px;
-  border: 1px solid blue;
+  position: relative;
   .tile {
     @include mainFlex();
+    font-size: 1.8rem;
+    font-weight: 600;
     width: 100px;
     height: 100px;
-    border: 2px solid blue;
     box-sizing: border-box;
     &:hover {
       cursor: pointer;
     }
+  }
+  .line {
+    position: absolute;
+    z-index: 1;
+    background: $ivory;
+    border-radius: 2px;
+  }
+  .r {
+    width: 300px;
+    height: 4px;
+  }
+  .r-1 {
+    top: 98px;
+  }
+  .r-2 {
+    bottom: 98px;
+  }
+  .c {
+    width: 4px;
+    height: 300px;
+  }
+  .c-1 {
+    left: 98px;
+  }
+  .c-2 {
+    right: 98px;
   }
 }
