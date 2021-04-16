@@ -81,24 +81,26 @@ header {
   }
 }
 
-#gameover {
-  @include mainFlex();
-  flex-direction: column;
+#gameover-msg {
   position: absolute;
   z-index: 2;
+  text-align: center;
   color: $onyx;
   width: 200px;
   height: 150px;
   background: $ivory;
   border-radius: 8px;
   box-shadow: 0 0 5px black;
+  display: none;
   h3 {
+    margin-top: 35px;
     margin-bottom: 20px;
   }
   button {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     color: $ivory;
+    margin: auto;
     padding: 8px;
     background: $green;
     border-radius: 4px;

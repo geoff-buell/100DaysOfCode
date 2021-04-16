@@ -1,24 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const gameboard = document.getElementById('gameboard');
+  const gameOverMsg = document.getElementById('gameover-msg');
+  const winner = document.getElementById('winner');
+  const resetBtn = document.getElementById('reset-btn');
   const playerTurn = document.getElementById('player-turn');
   playerTurn.textContent = 'X';
 
-  const tilesArr = [
+  const $ivory = '#F6F7EB';
+  const $green = '#16b550';
+
+  let tilesArr = [
     0, 1, 2,
     3, 4, 5,
     6, 7, 8
   ];
 
   let isXTurn = true;
+  let winningCombo;
 
-  tilesArr.forEach((index) => {
-    const tile = document.createElement('div');
-    tile.id = index;
-    tile.classList.add('tile');
-    tile.addEventListener('click', () => handleClick(tile));
-    gameboard.appendChild(tile);
-  });
+  const addTiles = () => {
+    tilesArr.forEach((index) => {
+      const tile = document.createElement('div');
+      tile.id = index;
+      tile.classList.add('tile');
+      tile.addEventListener('click', () => handleClick(tile));
+      gameboard.appendChild(tile);
+    });
+  }
+
+  addTiles();
+
+  const tiles = document.querySelectorAll('.tile');
 
   const handleClick = (tile) => {
     if (isXTurn && tile.textContent === '') {
@@ -39,57 +52,121 @@ document.addEventListener('DOMContentLoaded', () => {
     // winning combos
     // [0,1,2], [3,4,5], [6,7,8], [0,3,6], 
     // [1,4,7], [2,5,8], [0,4,8], [2,4,6]
-
     tilesArr[0] === tilesArr[1] &&
     tilesArr[1] === tilesArr[2] &&
     tilesArr[0] === tilesArr[2] ?
-    gameOver() :
+    gameOver(0) :
     false;
 
     tilesArr[3] === tilesArr[4] &&
     tilesArr[4] === tilesArr[5] &&
     tilesArr[3] === tilesArr[5] ?
-    gameOver() :
+    gameOver(1) :
     false;
 
     tilesArr[6] === tilesArr[7] &&
     tilesArr[7] === tilesArr[8] &&
     tilesArr[6] === tilesArr[8] ?
-    gameOver() :
+    gameOver(2) :
     false;
 
     tilesArr[0] === tilesArr[3] &&
     tilesArr[3] === tilesArr[6] &&
     tilesArr[0] === tilesArr[6] ?
-    gameOver() :
+    gameOver(3) :
     false;
 
     tilesArr[1] === tilesArr[4] &&
     tilesArr[4] === tilesArr[7] &&
     tilesArr[1] === tilesArr[7] ?
-    gameOver() :
+    gameOver(4) :
     false;
 
     tilesArr[2] === tilesArr[5] &&
     tilesArr[5] === tilesArr[8] &&
     tilesArr[2] === tilesArr[8] ?
-    gameOver() :
+    gameOver(5) :
     false;
 
     tilesArr[0] === tilesArr[4] &&
     tilesArr[4] === tilesArr[8] &&
     tilesArr[0] === tilesArr[8] ?
-    gameOver() :
+    gameOver(6) :
     false;
 
     tilesArr[2] === tilesArr[4] &&
     tilesArr[4] === tilesArr[6] &&
     tilesArr[2] === tilesArr[6] ?
-    gameOver() :
+    gameOver(7) :
     false;
   }
 
-  const gameOver = () => {
-    //gameover
+  const gameOver = (val) => {
+    winningCombo = val;
+    switch (winningCombo) {
+      case 0:
+        tiles[0].style.color = $green;
+        tiles[1].style.color = $green;
+        tiles[2].style.color = $green;
+        break;
+      case 1:
+        tiles[3].style.color = $green;
+        tiles[4].style.color = $green;
+        tiles[5].style.color = $green;
+        break;
+      case 2:
+        tiles[6].style.color = $green;
+        tiles[7].style.color = $green;
+        tiles[8].style.color = $green;
+        break;
+      case 3:
+        tiles[0].style.color = $green;
+        tiles[3].style.color = $green;
+        tiles[6].style.color = $green;
+        break;
+      case 4: 
+        tiles[1].style.color = $green;
+        tiles[4].style.color = $green;
+        tiles[7].style.color = $green;
+        break;
+      case 5:
+        tiles[2].style.color = $green;
+        tiles[5].style.color = $green;
+        tiles[8].style.color = $green;
+        break;
+      case 6:
+        tiles[0].style.color = $green;
+        tiles[4].style.color = $green;
+        tiles[8].style.color = $green;
+        break;
+      case 7:
+        tiles[2].style.color = $green;
+        tiles[4].style.color = $green;
+        tiles[6].style.color = $green;
+    }
+    setTimeout(() => {
+      gameOverMsg.style.display = 'block';
+      playerTurn.textContent === 'X' ? 
+      winner.textContent = 'O' : 
+      winner.textContent = 'X';
+    }, 1000);
   }
+
+  const reset = () => {
+    tiles.forEach((tile) => {
+      tile.textContent = '';
+      tile.style.color = $ivory;
+    });
+    tilesArr = [
+      0, 1, 2,
+      3, 4, 5,
+      6, 7, 8
+    ];
+    winningCombo = '';
+    isXTurn = true;
+    playerTurn.textContent = 'X';
+    gameOverMsg.style.display = 'none';
+  }
+
+  resetBtn.addEventListener('click', () => reset());
 });
