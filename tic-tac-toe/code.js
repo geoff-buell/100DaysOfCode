@@ -39,54 +39,57 @@ document.addEventListener('DOMContentLoaded', () => {
     // winning combos
     // [0,1,2], [3,4,5], [6,7,8], [0,3,6], 
     // [1,4,7], [2,5,8], [0,4,8], [2,4,6]
-    
+
     tilesArr[0] === tilesArr[1] &&
     tilesArr[1] === tilesArr[2] &&
     tilesArr[0] === tilesArr[2] ?
-    alert(`${tilesArr[0]} wins!`) :
+    gameOver() :
     false;
 
     tilesArr[3] === tilesArr[4] &&
     tilesArr[4] === tilesArr[5] &&
     tilesArr[3] === tilesArr[5] ?
-    alert(`${tilesArr[3]} wins!`) :
+    gameOver() :
     false;
 
     tilesArr[6] === tilesArr[7] &&
     tilesArr[7] === tilesArr[8] &&
     tilesArr[6] === tilesArr[8] ?
-    alert(`${tilesArr[0]} wins!`) :
+    gameOver() :
     false;
 
     tilesArr[0] === tilesArr[3] &&
     tilesArr[3] === tilesArr[6] &&
     tilesArr[0] === tilesArr[6] ?
-    alert(`${tilesArr[0]} wins!`) :
+    gameOver() :
     false;
 
     tilesArr[1] === tilesArr[4] &&
     tilesArr[4] === tilesArr[7] &&
     tilesArr[1] === tilesArr[7] ?
-    alert(`${tilesArr[0]} wins!`) :
+    gameOver() :
     false;
 
     tilesArr[2] === tilesArr[5] &&
     tilesArr[5] === tilesArr[8] &&
     tilesArr[2] === tilesArr[8] ?
-    alert(`${tilesArr[0]} wins!`) :
+    gameOver() :
     false;
 
     tilesArr[0] === tilesArr[4] &&
     tilesArr[4] === tilesArr[8] &&
     tilesArr[0] === tilesArr[8] ?
-    alert(`${tilesArr[0]} wins!`) :
+    gameOver() :
     false;
 
     tilesArr[2] === tilesArr[4] &&
     tilesArr[4] === tilesArr[6] &&
     tilesArr[2] === tilesArr[6] ?
-    alert(`${tilesArr[0]} wins!`) :
+    gameOver() :
     false;
   }
 
+  const gameOver = () => {
+    //gameover
+  }
 });
