@@ -162,7 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
         winner.textContent = 'Player O Wins!' : 
         winner.textContent = 'Player X Wins!';
       }, 1000);
-    } else if (!isGameOver) {
+    } 
+    if (!isGameOver) {
       gameOverMsg.style.display = 'block';
       winner.textContent = 'Tie Game!'
     }
@@ -180,6 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     winningCombo = '';
     isXTurn = true;
+    isGameOver = false;
     validPlays = 0;
     playerTurn.textContent = 'X';
     gameOverMsg.style.display = 'none';
