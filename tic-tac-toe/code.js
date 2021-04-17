@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameOverMsg = document.getElementById('gameover-msg');
   const winner = document.getElementById('winner');
   const resetBtn = document.getElementById('reset-btn');
+  const playerToggleBtn = document.getElementById('toggle-btn');
   const playerTurn = document.getElementById('player-turn');
   playerTurn.textContent = 'X';
 
@@ -16,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     6, 7, 8
   ];
 
+  let isOnePlayer = true;
+  let isComputerTurn = false;
   let isXTurn = true;
   let isGameOver = false;
   let validPlays = 0;
@@ -36,21 +39,68 @@ document.addEventListener('DOMContentLoaded', () => {
   const tiles = document.querySelectorAll('.tile');
 
   const handleClick = (tile) => {
-    if (isXTurn && tile.textContent === '') {
-      tile.textContent = 'X';
-      tilesArr[tile.id] = 'X';
-      validPlays++;
-      isXTurn = !isXTurn;
-      isXTurn ? playerTurn.textContent = 'X' : playerTurn.textContent = 'O';
-    } else if (!isXTurn && tile.textContent === '') {
-      tile.textContent = 'O';
-      tilesArr[tile.id] = 'O';
-      validPlays++;
-      isXTurn = !isXTurn;
-      isXTurn ? playerTurn.textContent = 'X' : playerTurn.textContent = 'O';
+    if (isOnePlayer === true) {
+      if (isXTurn && tile.textContent === '') {
+        markX(tile);
+        isComputerTurn = true;
+        !isGameOver ? 
+        setTimeout(() => computerMarkO(), 1000) :
+        false;
+      }
     }
+    if (isOnePlayer === false) {
+      if (isXTurn && tile.textContent === '') {
+        markX(tile);
+      } else if (!isXTurn && tile.textContent === '') {
+        markO(tile);
+      }
+    }
+  }
+
+  const markX = (tile) => {
+    tile.textContent = 'X';
+    tilesArr[tile.id] = 'X';
+    validPlays++;
+    isXTurn = !isXTurn;
+    isXTurn ? playerTurn.textContent = 'X' : playerTurn.textContent = 'O';
     checkForWin();
     validPlays === 9 ? displayMessage() : false;
+  }
+
+  const markO = (tile) => {
+    tile.textContent = 'O';
+    tilesArr[tile.id] = 'O';
+    validPlays++;
+    isXTurn = !isXTurn;
+    isXTurn ? playerTurn.textContent = 'X' : playerTurn.textContent = 'O';
+    checkForWin();
+    validPlays === 9 ? displayMessage() : false;
+  }
+
+  const getRandomTile = () => {
+    const availTilesArr = [];
+    for (let i = 0; i < tilesArr.length; i++) {
+      if (tilesArr[i] !== 'X' && tilesArr[i] !== 'O') {
+        availTilesArr.push(i);
+      }
+    }
+    const randomIndex = Math.floor(Math.random() * availTilesArr.length);
+    return availTilesArr[randomIndex];
+  }
+
+  const computerMarkO = () => {
+    if (isComputerTurn) {
+      let randomID = getRandomTile();
+      let randomTile = document.getElementById(randomID);
+      randomTile.textContent = 'O';
+      tilesArr[randomID] = 'O';
+      validPlays++;
+      isXTurn = !isXTurn;
+      isXTurn ? playerTurn.textContent = 'X' : playerTurn.textContent = 'O';
+      checkForWin();
+      validPlays === 9 ? displayMessage() : false;
+    }
+    isComputerTurn = false;
   }
 
   const checkForWin = () => {
@@ -187,5 +237,13 @@ document.addEventListener('DOMContentLoaded', () => {
     gameOverMsg.style.display = 'none';
   }
 
+  const handleNumPlayers = () => {
+    isOnePlayer = !isOnePlayer;
+    isOnePlayer ? 
+    playerToggleBtn.style.float = 'left' : 
+    playerToggleBtn.style.float = 'right';
+  }
+
   resetBtn.addEventListener('click', () => reset());
+  playerToggleBtn.addEventListener('click', () => handleNumPlayers());
 });
