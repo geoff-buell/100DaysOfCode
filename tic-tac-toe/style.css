@@ -74,6 +74,30 @@ header #player-turn {
   right: 98px;
 }
 
+#num-of-players {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+#num-of-players #toggle-switch {
+  margin: 0 10px 0 10px;
+  width: 50px;
+  height: 25px;
+  border-radius: 100px;
+  border: 2px solid #F6F7EB;
+}
+#num-of-players #toggle-switch #toggle-btn {
+  float: left;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #F6F7EB;
+}
+#num-of-players #toggle-switch #toggle-btn:hover {
+  cursor: pointer;
+}
+
 #gameover-msg {
   position: absolute;
   z-index: 2;

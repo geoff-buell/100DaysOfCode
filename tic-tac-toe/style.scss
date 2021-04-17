@@ -81,6 +81,29 @@ header {
   }
 }
 
+#num-of-players {
+  @include mainFlex();
+  margin-top: 30px;
+  #toggle-switch {
+    margin: 0 10px 0 10px;
+    width: 50px;
+    height: 25px;
+    border-radius: 100px;
+    border: 2px solid $ivory;
+    #toggle-btn {
+      float: left;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: $ivory;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
 #gameover-msg {
   position: absolute;
   z-index: 2;
