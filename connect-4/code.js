@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameboard = document.getElementById('gameboard');
   const startPosWrap = document.getElementById('start-pos-wrap');
 
-  const redColor = 'maroon';
-  const blueColor = 'navy';
+  const redColor = '#9c0606';
+  const blueColor = '#235789';
 
   const startPosArr = ['c1','c2','c3','c4','c5','c6','c7'];
   const addStartPos = () => {
@@ -12,10 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const startPos = document.createElement('div');
       const circle = document.createElement('div');
       circle.classList.add('hover-circle');
-      circle.style.border = 'none';
       startPos.id = i;
       startPos.classList.add('hover-slot');
-      startPos.style.border = 'none';
       startPos.appendChild(circle);
       startPosWrap.appendChild(startPos);
     });
@@ -58,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       slot.classList.add('c7') : false;
 
       slot.addEventListener('mouseover', () => handleMouseover(slot));
-      slot.addEventListener('click', () => dropChip(slot, circle));
+      slot.addEventListener('click', () => dropChip(slot));
       slot.appendChild(circle);
       gameboard.appendChild(slot);
     });
@@ -123,10 +121,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const dropChip = (slot, circle) => {
+  // const checkSlot = (slot) => {
+  //   const selectedSlot = document.getElementById(slot.id);
+  //   console.log(selectedSlot);
+  // }
+
+  const dropChip = (slot) => {
     isRedTurn ? 
-    circle.style.backgroundColor = redColor :
-    circle.style.backgroundColor = blueColor;
+    slot.firstChild.style.backgroundColor = redColor :
+    slot.firstChild.style.backgroundColor = blueColor;
     isRedTurn = !isRedTurn;
   }
 
