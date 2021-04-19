@@ -13,15 +13,25 @@ body {
   background: gray;
 }
 
-#gameboard {
+#container {
+  width: 700px;
+  height: 700px;
+}
+#container #start-pos-wrap {
   display: flex;
   flex-wrap: wrap;
-  margin: 100px 0 0 0;
+  width: 700px;
+  height: 100px;
+  padding-left: 1px;
+}
+#container #gameboard {
+  display: flex;
+  flex-wrap: wrap;
   width: 700px;
   height: 600px;
   border: 1px solid blue;
 }
-#gameboard .slot {
+#container .slot {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,10 +40,10 @@ body {
   border: 1px solid purple;
   box-sizing: border-box;
 }
-#gameboard .slot:hover {
+#container .slot:hover {
   cursor: pointer;
 }
-#gameboard .slot .circle {
+#container .slot .circle {
   width: 80px;
   height: 80px;
   border-radius: 50%;

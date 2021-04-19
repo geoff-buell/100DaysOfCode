@@ -17,13 +17,23 @@ body {
   background: gray;
 }
 
-#gameboard {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 100px 0 0 0;
+#container {
   width: 700px;
-  height: 600px;
-  border: 1px solid blue;
+  height: 700px;
+  #start-pos-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+    height: 100px;
+    padding-left: 1px;
+  }
+  #gameboard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+    height: 600px;
+    border: 1px solid blue;
+  }
   .slot {
     @include mainFlex();
     width: 100px;
