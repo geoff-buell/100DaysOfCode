@@ -34,6 +34,23 @@ body {
     height: 600px;
     border: 1px solid blue;
   }
+  .hover-slot {
+    @include mainFlex();
+    width: 100px;
+    height: 100px;
+    border: 1px solid purple;
+    box-sizing: border-box;
+    visibility: hidden;
+    &:hover {
+      cursor: pointer;
+    }
+    .hover-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 1px solid purple;
+    }
+  }
   .slot {
     @include mainFlex();
     width: 100px;
