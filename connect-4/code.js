@@ -56,11 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
       slot.classList.add('c7') : false;
 
       slot.addEventListener('mouseover', () => handleMouseover(slot));
-      slot.addEventListener('click', () => dropChip(slot));
+      slot.addEventListener('click', () => checkSlotBelow(slot));
       slot.appendChild(circle);
       gameboard.appendChild(slot);
     });
-    console.log(gameboard);
   }
 
   addSlots();
@@ -68,52 +67,56 @@ document.addEventListener('DOMContentLoaded', () => {
   const slots = document.querySelectorAll('.slot');
   const hoverSlots = document.querySelectorAll('.hover-slot');
 
+  const hideHoverSlots = () => {
+    hoverSlots.forEach((slot) => slot.style.visibility = 'hidden');
+  }
+
   const handleMouseover = (slot) => {
     switch (slot.classList[1]) {
       case 'c1':
-        hoverSlots.forEach((slot) => slot.style.visibility = 'hidden');
+        hideHoverSlots();
         hoverSlots[0].style.visibility = 'visible';
         isRedTurn ?
         hoverSlots[0].firstChild.style.backgroundColor = redColor :
         hoverSlots[0].firstChild.style.backgroundColor = blueColor;
         break;
       case 'c2':
-        hoverSlots.forEach((slot) => slot.style.visibility = 'hidden');
+        hideHoverSlots();
         hoverSlots[1].style.visibility = 'visible';
         isRedTurn ?
         hoverSlots[1].firstChild.style.backgroundColor = redColor :
         hoverSlots[1].firstChild.style.backgroundColor = blueColor;
         break;
       case 'c3':
-        hoverSlots.forEach((slot) => slot.style.visibility = 'hidden');
+        hideHoverSlots();
         hoverSlots[2].style.visibility = 'visible';
         isRedTurn ?
         hoverSlots[2].firstChild.style.backgroundColor = redColor :
         hoverSlots[2].firstChild.style.backgroundColor = blueColor;
         break;
       case 'c4':
-        hoverSlots.forEach((slot) => slot.style.visibility = 'hidden');
+        hideHoverSlots();
         hoverSlots[3].style.visibility = 'visible';
         isRedTurn ?
         hoverSlots[3].firstChild.style.backgroundColor = redColor :
         hoverSlots[3].firstChild.style.backgroundColor = blueColor;
         break;
       case 'c5':
-        hoverSlots.forEach((slot) => slot.style.visibility = 'hidden');
+        hideHoverSlots();
         hoverSlots[4].style.visibility = 'visible';
         isRedTurn ?
         hoverSlots[4].firstChild.style.backgroundColor = redColor :
         hoverSlots[4].firstChild.style.backgroundColor = blueColor;
         break;
       case 'c6':
-        hoverSlots.forEach((slot) => slot.style.visibility = 'hidden');
+        hideHoverSlots();
         hoverSlots[5].style.visibility = 'visible';
         isRedTurn ?
         hoverSlots[5].firstChild.style.backgroundColor = redColor :
         hoverSlots[5].firstChild.style.backgroundColor = blueColor;
         break;
       case 'c7':
-        hoverSlots.forEach((slot) => slot.style.visibility = 'hidden');
+        hideHoverSlots();
         hoverSlots[6].style.visibility = 'visible';
         isRedTurn ?
         hoverSlots[6].firstChild.style.backgroundColor = redColor :
@@ -121,16 +124,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // const checkSlot = (slot) => {
-  //   const selectedSlot = document.getElementById(slot.id);
-  //   console.log(selectedSlot);
-  // }
+  const checkSlotBelow = (slot) => {
+    const slotBelow = document.getElementById(parseInt(slot.id) + 7);
+    if (slotBelow === null) {
+      dropChip(slot);
+    } else if (slotBelow.classList[2] !== 'occupied') {
+      checkSlotBelow(slotBelow);
+    } else {
+      dropChip(slot);
+    }
+  }
 
   const dropChip = (slot) => {
-    isRedTurn ? 
-    slot.firstChild.style.backgroundColor = redColor :
-    slot.firstChild.style.backgroundColor = blueColor;
-    isRedTurn = !isRedTurn;
+    if (slot.classList[2] === 'occupied') {
+      return;
+    } else {
+      slot.classList.add('occupied');
+      if (isRedTurn) {
+        slotsArr[slot.id] = 'r';
+        slot.firstChild.style.backgroundColor = redColor;
+      } else if (!isRedTurn) {
+        slotsArr[slot.id] = 'b';
+        slot.firstChild.style.backgroundColor = blueColor;
+      }
+      isRedTurn = !isRedTurn;
+      checkForWin(slot);
+    }
   }
+
+  let count = 1;
+
+  const checkForWin = (slot) => {
+    // holy shiiiiiit
+    checkSlotToRight(slot);
+    // console.log(count);
+  }
+
+  const checkSlotToRight = (slot) => {
+    const currentSlot = document.getElementById(slot.id);
+    const slotToRight = document.getElementById(parseInt(slot.id) + 1);
+    // console.log(slotsArr[slot.id]);
+    // console.log(slotsArr[slotToRight.id]);
+    if (slotToRight === null) {
+      return;
+    } else if (slotsArr[currentSlot.id] === slotsArr[slotToRight.id]) {
+      count++;
+      checkSlotToRight(slotToRight);
+    } else {
+      count = 1;
+    }
+
+    console.log(count);
+  } 
 
 });
