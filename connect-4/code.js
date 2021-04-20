@@ -129,7 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (slotBelow === null) {
       dropChip(slot);
     } else if (slotBelow.classList[2] !== 'occupied') {
-      checkSlotBelow(slotBelow);
+      isRedTurn ? 
+      slot.firstChild.style.backgroundColor = redColor :
+      slot.firstChild.style.backgroundColor = blueColor;
+      setTimeout(() => slot.firstChild.style.backgroundColor = '#b5afa5', 50);
+      setTimeout(() => checkSlotBelow(slotBelow), 50);
     } else {
       dropChip(slot);
     }
@@ -157,22 +161,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkForWin = (slot) => {
     // holy shiiiiiit
     checkSlotToRight(slot);
-    // console.log(count);
   }
 
   const checkSlotToRight = (slot) => {
-    const currentSlot = document.getElementById(slot.id);
     const slotToRight = document.getElementById(parseInt(slot.id) + 1);
-    // console.log(slotsArr[slot.id]);
-    // console.log(slotsArr[slotToRight.id]);
+    count === 4 ? console.log('win') : false;
+
     if (slotToRight === null) {
       return;
-    } else if (slotsArr[currentSlot.id] === slotsArr[slotToRight.id]) {
+    } else if (slotsArr[slot.id] === slotsArr[slotToRight.id]) {
       count++;
       checkSlotToRight(slotToRight);
-    } else {
-      count = 1;
-    }
+      if (count !== 4) {
+        count = 1;
+      }
+    } 
 
     console.log(count);
   } 
