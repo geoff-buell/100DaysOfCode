@@ -24,13 +24,18 @@ body {
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
   color: $brownColor;
-  height: 100vh;
+  margin-top: 20px;
+  height: calc(100vh - 20px);
   background: $khakiColor;
+  position: relative;
 }
 
 header {
   @include mainFlex();
-  justify-content: space-around;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  margin: 20px 0 0 0;
   width: 720px;
   h1 {
     font-family: 'Racing Sans One', sans-serif;
@@ -39,6 +44,7 @@ header {
   #new-game-btn {
     font-size: 0.9rem;
     color: white;
+    margin-top: 10px;
     width: 90px;
     height: 28px;
     border-radius: 5px;
@@ -54,11 +60,19 @@ header {
   width: 720px;
   height: 720px;
   position: relative;
+  transform: scale(0.7);
+  @media screen and (max-width: 767px) {
+    transform: scale(0.5);
+  }
+  @media screen and (max-width: 360px) {
+    transform: scale(0.4);
+  }
   #start-pos-wrap {
     display: flex;
     flex-wrap: wrap;
     width: 700px;
     height: 100px;
+    margin-top: 10px;
     padding-left: 10px;
   }
   #gameboard {

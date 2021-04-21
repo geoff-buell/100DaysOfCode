@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const gameOver = () => {
-    isGameOver = !isGameOver;
+    isGameOver = true;
     hideHoverSlots();
     gameOverMsg.style.display = 'block';
     isRedTurn ? winner.textContent = 'Blue Wins!' : winner.textContent = 'Red Wins!'
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const reset = () => {
-    isGameOver = !isGameOver;
+    isGameOver = false;
     gameOverMsg.style.display = 'none';
     redArr = [];
     blueArr = [];
