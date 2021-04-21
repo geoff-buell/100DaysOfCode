@@ -23,6 +23,7 @@ h1 {
 #container {
   width: 720px;
   height: 720px;
+  position: relative;
 }
 #container #start-pos-wrap {
   display: flex;
@@ -72,6 +73,49 @@ h1 {
   border-radius: 50%;
   border: 2px solid #3f292b;
   background: #b5afa5;
+}
+
+#gameover-msg {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  width: 300px;
+  height: 200px;
+  background: #b5afa5;
+  border: 2px solid #3f292b;
+  box-shadow: 0 0 5px #3f292b;
+}
+#gameover-msg h3 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 40px 0 30px 0;
+}
+#gameover-msg #close-btn {
+  font-size: 3rem;
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+#gameover-msg #close-btn:hover {
+  cursor: pointer;
+}
+#gameover-msg #play-again-btn {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: white;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  background: #178036;
+}
+#gameover-msg #play-again-btn:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

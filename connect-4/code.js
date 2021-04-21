@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const gameboard = document.getElementById('gameboard');
   const startPosWrap = document.getElementById('start-pos-wrap');
+  const gameOverMsg = document.getElementById('gameover-msg');
+  const winner = document.getElementById('winner');
+  const closeBtn = document.getElementById('close-btn');
+  const playAgainBtn = document.getElementById('play-again-btn');
 
   const redColor = '#9c0606';
   const blueColor = '#235789';
@@ -148,11 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
       slot.classList.add('occupied');
       if (isRedTurn) {
         redArr.push(parseInt(slot.id));
-        // slotsArr[slot.id] = 'r';
         slot.firstChild.style.backgroundColor = redColor;
       } else if (!isRedTurn) {
         blueArr.push(parseInt(slot.id));
-        // slotsArr[slot.id] = 'b';
         slot.firstChild.style.backgroundColor = blueColor;
       }
       isRedTurn = !isRedTurn;
@@ -162,11 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const checkForWin = () => {
     let theArray;
-    !isRedTurn ? theArray = redArr : theArray = blueArr;
+    isRedTurn ? theArray = blueArr : theArray = redArr;
     redArr.sort();
     blueArr.sort();
-    console.log(redArr);
-    console.log(blueArr);
     for (let i = 0; i < theArray.length; i++) {
       // check horizontal
       if (
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ) {
           return;
         } else {
-          console.log('win');
+          gameOver();
         }
       }
       // check vertical
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         theArray.includes(theArray[i] + 14) &&
         theArray.includes(theArray[i] + 21)
       ) {
-        console.log('win');
+        gameOver();
       }
       // check diagonal
       if (
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
         theArray.includes(theArray[i] + 12) &&
         theArray.includes(theArray[i] + 18)
       ) {
-        console.log('win');
+        gameOver();
       }
       // check other diagonal 
       if (
@@ -212,9 +212,22 @@ document.addEventListener('DOMContentLoaded', () => {
         theArray.includes(theArray[i] + 16) && 
         theArray.includes(theArray[i] + 24)
       ) {
-        console.log('win');
+        gameOver();
       }
     }
   }
+
+  const gameOver = () => {
+    gameOverMsg.style.display = 'block';
+    isRedTurn ? winner.textContent = 'Blue Wins!' : winner.textContent = 'Red Wins!'
+    isRedTurn ? winner.style.color = blueColor : winner.style.color = redColor;
+  }
+
+  const reset = () => {
+    //reset
+  }
+
+  closeBtn.addEventListener('click', () => gameOverMsg.style.display = 'none');
+  playAgainBtn.addEventListener('click', () => reset());
 
 });
