@@ -78,56 +78,42 @@ document.addEventListener('DOMContentLoaded', () => {
     hoverSlots.forEach((slot) => slot.style.visibility = 'hidden');
   }
 
+  const showHoverSlot = (i) => {
+    hoverSlots[i].style.visibility = 'visible';
+    isRedTurn ?
+    hoverSlots[i].firstChild.style.backgroundColor = redColor :
+    hoverSlots[i].firstChild.style.backgroundColor = blueColor;
+  }
+
   const handleMouseover = (slot) => {
     switch (slot.classList[1]) {
       case 'c1':
         hideHoverSlots();
-        hoverSlots[0].style.visibility = 'visible';
-        isRedTurn ?
-        hoverSlots[0].firstChild.style.backgroundColor = redColor :
-        hoverSlots[0].firstChild.style.backgroundColor = blueColor;
+        showHoverSlot(0);
         break;
       case 'c2':
         hideHoverSlots();
-        hoverSlots[1].style.visibility = 'visible';
-        isRedTurn ?
-        hoverSlots[1].firstChild.style.backgroundColor = redColor :
-        hoverSlots[1].firstChild.style.backgroundColor = blueColor;
+        showHoverSlot(1);
         break;
       case 'c3':
         hideHoverSlots();
-        hoverSlots[2].style.visibility = 'visible';
-        isRedTurn ?
-        hoverSlots[2].firstChild.style.backgroundColor = redColor :
-        hoverSlots[2].firstChild.style.backgroundColor = blueColor;
+        showHoverSlot(2);
         break;
       case 'c4':
         hideHoverSlots();
-        hoverSlots[3].style.visibility = 'visible';
-        isRedTurn ?
-        hoverSlots[3].firstChild.style.backgroundColor = redColor :
-        hoverSlots[3].firstChild.style.backgroundColor = blueColor;
+        showHoverSlot(3);
         break;
       case 'c5':
         hideHoverSlots();
-        hoverSlots[4].style.visibility = 'visible';
-        isRedTurn ?
-        hoverSlots[4].firstChild.style.backgroundColor = redColor :
-        hoverSlots[4].firstChild.style.backgroundColor = blueColor;
+        showHoverSlot(4);
         break;
       case 'c6':
         hideHoverSlots();
-        hoverSlots[5].style.visibility = 'visible';
-        isRedTurn ?
-        hoverSlots[5].firstChild.style.backgroundColor = redColor :
-        hoverSlots[5].firstChild.style.backgroundColor = blueColor;
+        showHoverSlot(5);
         break;
       case 'c7':
         hideHoverSlots();
-        hoverSlots[6].style.visibility = 'visible';
-        isRedTurn ?
-        hoverSlots[6].firstChild.style.backgroundColor = redColor :
-        hoverSlots[6].firstChild.style.backgroundColor = blueColor;
+        showHoverSlot(6);
     }
   }
 
