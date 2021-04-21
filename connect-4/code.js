@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   let isRedTurn = true;
+  let isGameOver = false;
   let redArr = [];
   let blueArr = [];
 
@@ -88,34 +89,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const handleMouseover = (slot) => {
-    switch (slot.classList[1]) {
-      case 'c1':
-        hideHoverSlots();
-        showHoverSlot(0);
-        break;
-      case 'c2':
-        hideHoverSlots();
-        showHoverSlot(1);
-        break;
-      case 'c3':
-        hideHoverSlots();
-        showHoverSlot(2);
-        break;
-      case 'c4':
-        hideHoverSlots();
-        showHoverSlot(3);
-        break;
-      case 'c5':
-        hideHoverSlots();
-        showHoverSlot(4);
-        break;
-      case 'c6':
-        hideHoverSlots();
-        showHoverSlot(5);
-        break;
-      case 'c7':
-        hideHoverSlots();
-        showHoverSlot(6);
+    if (!isGameOver) {
+      switch (slot.classList[1]) {
+        case 'c1':
+          hideHoverSlots();
+          showHoverSlot(0);
+          break;
+        case 'c2':
+          hideHoverSlots();
+          showHoverSlot(1);
+          break;
+        case 'c3':
+          hideHoverSlots();
+          showHoverSlot(2);
+          break;
+        case 'c4':
+          hideHoverSlots();
+          showHoverSlot(3);
+          break;
+        case 'c5':
+          hideHoverSlots();
+          showHoverSlot(4);
+          break;
+        case 'c6':
+          hideHoverSlots();
+          showHoverSlot(5);
+          break;
+        case 'c7':
+          hideHoverSlots();
+          showHoverSlot(6);
+      }
     }
   }
 
@@ -128,17 +131,19 @@ document.addEventListener('DOMContentLoaded', () => {
   handleCircleEmojis();
 
   const checkSlotBelow = (slot) => {
-    let slotBelow = document.getElementById(parseInt(slot.id) + 7);
-    if (slotBelow === null) {
-      dropChip(slot);
-    } else if (slotBelow.classList[2] !== 'occupied') {
-      isRedTurn ? 
-      slot.firstChild.style.backgroundColor = redColor :
-      slot.firstChild.style.backgroundColor = blueColor;
-      setTimeout(() => slot.firstChild.style.backgroundColor = khakiColor, 50);
-      setTimeout(() => checkSlotBelow(slotBelow), 50);
-    } else {
-      dropChip(slot);
+    if (!isGameOver) {
+      let slotBelow = document.getElementById(parseInt(slot.id) + 7);
+      if (slotBelow === null) {
+        dropChip(slot);
+      } else if (slotBelow.classList[2] !== 'occupied') {
+        isRedTurn ? 
+        slot.firstChild.style.backgroundColor = redColor :
+        slot.firstChild.style.backgroundColor = blueColor;
+        setTimeout(() => slot.firstChild.style.backgroundColor = khakiColor, 50);
+        setTimeout(() => checkSlotBelow(slotBelow), 50);
+      } else {
+        dropChip(slot);
+      }
     }
   }
 
@@ -216,12 +221,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const gameOver = () => {
+    isGameOver = !isGameOver;
+    hideHoverSlots();
     gameOverMsg.style.display = 'block';
     isRedTurn ? winner.textContent = 'Blue Wins!' : winner.textContent = 'Red Wins!'
     isRedTurn ? winner.style.color = blueColor : winner.style.color = redColor;
   }
 
   const reset = () => {
+    isGameOver = !isGameOver;
     gameOverMsg.style.display = 'none';
     redArr = [];
     blueArr = [];
