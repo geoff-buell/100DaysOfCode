@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const redColor = '#9c0606';
   const blueColor = '#235789';
+  const khakiColor = '#b5afa5';
 
   const startPosArr = ['c1','c2','c3','c4','c5','c6','c7'];
   const addStartPos = () => {
@@ -138,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isRedTurn ? 
       slot.firstChild.style.backgroundColor = redColor :
       slot.firstChild.style.backgroundColor = blueColor;
-      setTimeout(() => slot.firstChild.style.backgroundColor = '#b5afa5', 50);
+      setTimeout(() => slot.firstChild.style.backgroundColor = khakiColor, 50);
       setTimeout(() => checkSlotBelow(slotBelow), 50);
     } else {
       dropChip(slot);
@@ -224,7 +225,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const reset = () => {
-    //reset
+    gameOverMsg.style.display = 'none';
+    redArr = [];
+    blueArr = [];
+    slots.forEach((slot) => {
+      slot.firstChild.style.backgroundColor = khakiColor;
+      slot.classList.remove('occupied');
+    });
   }
 
   closeBtn.addEventListener('click', () => gameOverMsg.style.display = 'none');
