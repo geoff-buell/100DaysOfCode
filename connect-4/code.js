@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const winner = document.getElementById('winner');
   const closeBtn = document.getElementById('close-btn');
   const playAgainBtn = document.getElementById('play-again-btn');
+  const newGameBtn = document.getElementById('new-game-btn');
+  const circleEmojis = document.getElementById('circle-emojis');
 
   const redColor = '#9c0606';
   const blueColor = '#235789';
@@ -117,6 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const handleCircleEmojis = () => {
+    isRedTurn ? 
+    circleEmojis.textContent = '🔴 🔴 🔴 🔴' : 
+    circleEmojis.textContent = '🔵 🔵 🔵 🔵';
+  }
+
+  handleCircleEmojis();
+
   const checkSlotBelow = (slot) => {
     let slotBelow = document.getElementById(parseInt(slot.id) + 7);
     if (slotBelow === null) {
@@ -145,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         slot.firstChild.style.backgroundColor = blueColor;
       }
       isRedTurn = !isRedTurn;
+      handleCircleEmojis();
       checkForWin();
     }
   }
@@ -222,5 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   closeBtn.addEventListener('click', () => gameOverMsg.style.display = 'none');
   playAgainBtn.addEventListener('click', () => reset());
+  newGameBtn.addEventListener('click', () => reset());
 
 });
