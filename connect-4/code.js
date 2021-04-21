@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   let isRedTurn = true;
+  let redArr = [];
+  let blueArr = [];
 
   const addSlots = () => {
     slotsArr.forEach((i) => {
@@ -125,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const checkSlotBelow = (slot) => {
-    const slotBelow = document.getElementById(parseInt(slot.id) + 7);
+    let slotBelow = document.getElementById(parseInt(slot.id) + 7);
     if (slotBelow === null) {
       dropChip(slot);
     } else if (slotBelow.classList[2] !== 'occupied') {
@@ -145,39 +147,74 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       slot.classList.add('occupied');
       if (isRedTurn) {
-        slotsArr[slot.id] = 'r';
+        redArr.push(parseInt(slot.id));
+        // slotsArr[slot.id] = 'r';
         slot.firstChild.style.backgroundColor = redColor;
       } else if (!isRedTurn) {
-        slotsArr[slot.id] = 'b';
+        blueArr.push(parseInt(slot.id));
+        // slotsArr[slot.id] = 'b';
         slot.firstChild.style.backgroundColor = blueColor;
       }
       isRedTurn = !isRedTurn;
-      checkForWin(slot);
+      checkForWin();
     }
   }
 
-  let count = 1;
-
-  const checkForWin = (slot) => {
-    // holy shiiiiiit
-    checkSlotToRight(slot);
-  }
-
-  const checkSlotToRight = (slot) => {
-    const slotToRight = document.getElementById(parseInt(slot.id) + 1);
-    count === 4 ? console.log('win') : false;
-
-    if (slotToRight === null) {
-      return;
-    } else if (slotsArr[slot.id] === slotsArr[slotToRight.id]) {
-      count++;
-      checkSlotToRight(slotToRight);
-      if (count !== 4) {
-        count = 1;
+  const checkForWin = () => {
+    let theArray;
+    !isRedTurn ? theArray = redArr : theArray = blueArr;
+    redArr.sort();
+    blueArr.sort();
+    console.log(redArr);
+    console.log(blueArr);
+    for (let i = 0; i < theArray.length; i++) {
+      // check horizontal
+      if (
+        theArray.includes(theArray[i]) &&
+        theArray.includes(theArray[i] + 1) &&
+        theArray.includes(theArray[i] + 2) &&
+        theArray.includes(theArray[i] + 3)
+      ) {
+        if (
+          theArray[i] === 6 || 
+          theArray[i] === 13 || 
+          theArray[i] === 20 || 
+          theArray[i] === 27 || 
+          theArray[i] === 34
+        ) {
+          return;
+        } else {
+          console.log('win');
+        }
       }
-    } 
-
-    console.log(count);
-  } 
+      // check vertical
+      if (
+        theArray.includes(theArray[i]) &&
+        theArray.includes(theArray[i] + 7) &&
+        theArray.includes(theArray[i] + 14) &&
+        theArray.includes(theArray[i] + 21)
+      ) {
+        console.log('win');
+      }
+      // check diagonal
+      if (
+        theArray.includes(theArray[i]) &&
+        theArray.includes(theArray[i] + 6) &&
+        theArray.includes(theArray[i] + 12) &&
+        theArray.includes(theArray[i] + 18)
+      ) {
+        console.log('win');
+      }
+      // check other diagonal 
+      if (
+        theArray.includes(theArray[i]) &&
+        theArray.includes(theArray[i] + 8) &&
+        theArray.includes(theArray[i] + 16) && 
+        theArray.includes(theArray[i] + 24)
+      ) {
+        console.log('win');
+      }
+    }
+  }
 
 });
