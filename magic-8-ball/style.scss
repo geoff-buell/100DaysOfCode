@@ -63,6 +63,8 @@ body {
     @include mainFlex();
     position: relative;
     overflow: hidden;
+    mask-image: radial-gradient(white, black);
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
     width: 400px;
     height: 400px;
     background: #222;
@@ -76,6 +78,7 @@ body {
     }
     .circle {
       @include mainFlex();
+      z-index: 2;
       width: 220px;
       height: 220px;
       background: #111;
