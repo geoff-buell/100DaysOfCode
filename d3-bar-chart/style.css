@@ -1,9 +1,3 @@
-/* #CAD2C5 */
-/* #84A98C */
-/* #52796F */
-/* #354F52 */
-/* #2F3E46 */
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
@@ -28,13 +22,31 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   background: #e8e8e8;
 }
 
 .bar {
-  background: #52796f;
-  /* margin: 0 1px 0 1px; */
+  fill: #52796f;
+  margin-left: 1px;
 }
 
+#tooltip {
+  color: #e8e8e8;
+  width: 150px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  border-radius: 8px;
+  background: #2F3E46;
+}
+
+.overlay {
+  position: absolute;
+  background: red;
+}
 
 

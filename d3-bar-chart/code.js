@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const width = 800;
       const height = 450;
       const padding = 40;
-      const barWidth = width / 275;
+      const barWidth = (width / 275) - 1;
 
       const svg = d3.select('#bar-chart')
                     .append('svg')
@@ -23,6 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const GDPMax = d3.max(dataset, (d) => d[1]);
 
       const yearsDate = dataset.map((i) => new Date(i[0]));
+
+      const yearInfo = dataset.map((i) => {
+        let quarter;
+        const sub = i[0].substring(5, 7);
+        sub === '01' ? quarter = 'Q1' : false;
+        sub === '04' ? quarter = 'Q2' : false;
+        sub === '07' ? quarter = 'Q3' : false;
+        sub === '10' ? quarter = 'Q4' : false;
+        return i[0].substring(0, 4) + ' ' + quarter;
+      });
+      console.log(yearInfo);
 
       const QMin = d3.min(yearsDate);
       const QMax = new Date(d3.max(yearsDate));
@@ -63,14 +74,25 @@ document.addEventListener('DOMContentLoaded', () => {
          .attr('x', width / 2 - 65)
          .attr('y', height - 3)
          .attr('class', 'tick')
-         .text('1947-2015 By Quarter');
+         .text('1947-2015 Quarterly');
 
       const GDP = dataset.map(i => i[1]);
+      console.log(GDP);
       const linearScale = d3.scaleLinear()
                             .domain([0, GDPMax])
                             .range([0, height - padding * 2]);
                             
       const scaledGDP = GDP.map(i => linearScale(i));
+
+      const tooltip = d3.select('#bar-chart')
+                        .append('div')
+                        .attr('id', 'tooltip')
+                        .style('opacity', 0);
+
+      const overlay = d3.select('#bar-chart')
+                        .append('div')
+                        .attr('class', 'overlay')
+                        .style('opacity', 0);
 
       d3.select('svg')
         .selectAll('rect')
@@ -85,7 +107,35 @@ document.addEventListener('DOMContentLoaded', () => {
         .attr('height', (d) => d)
         .attr('transform', 'translate(0, -40)')
         .attr('class', 'bar')
-        .style('fill', '#52796f');
+        .on('mouseover', (d, i) => {
+          overlay
+            .transition()
+            .duration(0)
+            .style('height', d + 'px')
+            .style('width', barWidth + 'px')
+            .style('left', i * barWidth + 0 + 'px')
+            .style('top', 0)
+            .style('transform', 'translate(0, -100px)')
+            .style('opacity', 1);
+          tooltip
+            .transition()
+            .duration(0)
+            .style('left', i * barWidth + 30 + 'px')
+            .style('top', height - 100 + 'px')
+            .style('transform', 'translateX(60px)')
+            .style('opacity', 0.8);
+          tooltip.html(yearInfo[i] + '<br>' + '$' + GDP[i] + ' Billion')
+        })
+        .on('mouseout', () => {
+          overlay
+            .transition()
+            .duration(200)
+            .style('opacity', 0);
+          tooltip 
+            .transition()
+            .duration(200)
+            .style('opacity', 0);
+        });
 
 
     } catch(error) {
