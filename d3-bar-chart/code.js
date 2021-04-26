@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const width = 800;
       const height = 450;
       const padding = 40;
+      const barWidth = width / 275;
 
       const svg = d3.select('#bar-chart')
                     .append('svg')
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const GDPMin = d3.min(dataset, (d) => d[1]);
       const GDPMax = d3.max(dataset, (d) => d[1]);
 
-      const yearsDate = dataset.map((d) => new Date(d[0]));
+      const yearsDate = dataset.map((i) => new Date(i[0]));
 
       const QMin = d3.min(yearsDate);
       const QMax = new Date(d3.max(yearsDate));
@@ -64,14 +65,27 @@ document.addEventListener('DOMContentLoaded', () => {
          .attr('class', 'tick')
          .text('1947-2015 By Quarter');
 
+      const GDP = dataset.map(i => i[1]);
+      const linearScale = d3.scaleLinear()
+                            .domain([0, GDPMax])
+                            .range([0, height - padding * 2]);
+                            
+      const scaledGDP = GDP.map(i => linearScale(i));
+
       d3.select('svg')
         .selectAll('rect')
-        .data(dataset)
+        .data(scaledGDP)
         .enter()
         .append('rect')
         .attr('data-date', (d, i) => dataset[i][0])
         .attr('data-gdp', (d, i) => dataset[i][1])
-        .attr('class', 'bar');
+        .attr('x', (d, i) => xScale(yearsDate[i]))
+        .attr('y', (d) => height - d)
+        .attr('width', barWidth)
+        .attr('height', (d) => d)
+        .attr('transform', 'translate(0, -40)')
+        .attr('class', 'bar')
+        .style('fill', '#52796f');
 
 
     } catch(error) {
