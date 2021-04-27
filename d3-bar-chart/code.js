@@ -83,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
                      .enter()
                      .append('rect')
                      .attr('class', 'bar')
-                     .attr('data-date', (d, i) => dataset[i][0])
-                     .attr('data-gdp', (d, i) => dataset[i][1])
+                     .attr('data-date', (d) => d[0])
+                     .attr('data-gdp', (d) => d[1])
                      .attr('x', (d, i) => xScale(yearsDate[i]))
                      .attr('y', (d, i) => height - scaledGDP[i])
                      .attr('width', barWidth)
@@ -92,9 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
                      .attr('transform', 'translate(0, -40)');
 
       const mouseover = (event, d) => {
+        console.log(tooltip)
         tooltip
           .transition()
           .duration(0)
+          .attr('data-date', d[0])
           .style('opacity', 0.8)
           .style('left', width - 153 + 'px')
           .style('top', height - 55 + 'px');
