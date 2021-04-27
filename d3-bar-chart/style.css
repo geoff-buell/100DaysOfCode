@@ -31,6 +31,10 @@ body {
   margin-left: 1px;
 }
 
+.bar:hover {
+  fill: #e8e8e8;
+}
+
 #tooltip {
   color: #e8e8e8;
   width: 150px;
@@ -44,9 +48,39 @@ body {
   background: #2F3E46;
 }
 
-.overlay {
-  position: absolute;
-  background: red;
+@media screen and (max-width: 900px) {
+  .container {
+    transform: scale(0.9);
+  }
 }
-
+@media screen and (max-width: 800px) {
+  .container {
+    transform: scale(0.8);
+  }
+}
+@media screen and (max-width: 700px) {
+  .container {
+    transform: scale(0.7);
+  }
+}
+@media screen and (max-width: 600px) {
+  .container {
+    transform: scale(0.6);
+  }
+}
+@media screen and (max-width: 500px) {
+  .container {
+    transform: scale(0.5);
+  }
+}
+@media screen and (max-width: 400px) {
+  .container {
+    transform: scale(0.4);
+  }
+}
+@media screen and (max-width: 300px) {
+  .container {
+    transform: scale(0.3);
+  }
+}
 

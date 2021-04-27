@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
       let response = await fetch(url);
       let data = await response.json();
       const dataset = data.data;
-      console.log(dataset);
 
       const width = 800;
       const height = 450;
@@ -23,17 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const GDPMax = d3.max(dataset, (d) => d[1]);
 
       const yearsDate = dataset.map((i) => new Date(i[0]));
-
-      const yearInfo = dataset.map((i) => {
-        let quarter;
-        const sub = i[0].substring(5, 7);
-        sub === '01' ? quarter = 'Q1' : false;
-        sub === '04' ? quarter = 'Q2' : false;
-        sub === '07' ? quarter = 'Q3' : false;
-        sub === '10' ? quarter = 'Q4' : false;
-        return i[0].substring(0, 4) + ' ' + quarter;
-      });
-      console.log(yearInfo);
 
       const QMin = d3.min(yearsDate);
       const QMax = new Date(d3.max(yearsDate));
@@ -77,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
          .text('1947-2015 Quarterly');
 
       const GDP = dataset.map(i => i[1]);
-      console.log(GDP);
+      
       const linearScale = d3.scaleLinear()
                             .domain([0, GDPMax])
                             .range([0, height - padding * 2]);
@@ -89,54 +77,44 @@ document.addEventListener('DOMContentLoaded', () => {
                         .attr('id', 'tooltip')
                         .style('opacity', 0);
 
-      const overlay = d3.select('#bar-chart')
-                        .append('div')
-                        .attr('class', 'overlay')
-                        .style('opacity', 0);
+      const bars = d3.select('svg')
+                     .selectAll('rect')
+                     .data(dataset)
+                     .enter()
+                     .append('rect')
+                     .attr('class', 'bar')
+                     .attr('data-date', (d, i) => dataset[i][0])
+                     .attr('data-gdp', (d, i) => dataset[i][1])
+                     .attr('x', (d, i) => xScale(yearsDate[i]))
+                     .attr('y', (d, i) => height - scaledGDP[i])
+                     .attr('width', barWidth)
+                     .attr('height', (d, i) => scaledGDP[i])
+                     .attr('transform', 'translate(0, -40)');
 
-      d3.select('svg')
-        .selectAll('rect')
-        .data(scaledGDP)
-        .enter()
-        .append('rect')
-        .attr('data-date', (d, i) => dataset[i][0])
-        .attr('data-gdp', (d, i) => dataset[i][1])
-        .attr('x', (d, i) => xScale(yearsDate[i]))
-        .attr('y', (d) => height - d)
-        .attr('width', barWidth)
-        .attr('height', (d) => d)
-        .attr('transform', 'translate(0, -40)')
-        .attr('class', 'bar')
-        .on('mouseover', (d, i) => {
-          overlay
-            .transition()
-            .duration(0)
-            .style('height', d + 'px')
-            .style('width', barWidth + 'px')
-            .style('left', i * barWidth + 0 + 'px')
-            .style('top', 0)
-            .style('transform', 'translate(0, -100px)')
-            .style('opacity', 1);
-          tooltip
-            .transition()
-            .duration(0)
-            .style('left', i * barWidth + 30 + 'px')
-            .style('top', height - 100 + 'px')
-            .style('transform', 'translateX(60px)')
-            .style('opacity', 0.8);
-          tooltip.html(yearInfo[i] + '<br>' + '$' + GDP[i] + ' Billion')
-        })
-        .on('mouseout', () => {
-          overlay
-            .transition()
-            .duration(200)
-            .style('opacity', 0);
-          tooltip 
-            .transition()
-            .duration(200)
-            .style('opacity', 0);
-        });
+      const mouseover = (event, d) => {
+        tooltip
+          .transition()
+          .duration(0)
+          .style('opacity', 0.8)
+          .style('left', width - 153 + 'px')
+          .style('top', height - 55 + 'px');
+        tooltip
+          .html(
+            d[0] + '<br/>' + '$' + 
+            d[1].toFixed(1).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + 
+            ' Billion'
+          );
+      } 
 
+      const mouseout = () => {
+        tooltip
+          .transition()
+          .duration(200)
+          .style('opacity', 0);
+      }
+
+      bars.on('mouseover', mouseover);
+      bars.on('mouseout', mouseout);    
 
     } catch(error) {
       console.log(error);
