@@ -17,24 +17,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     .attr('width', width)
                     .attr('height', height);
 
-      const timeParse = d3.timeParse('%M:%S');              
+      let raceTimeData = [];
+      let date;
+
+      for (let i = 0; i < data.length; i++) {
+        date = new Date();
+        date.setMinutes(data[i].Seconds / 60);
+        date.setSeconds(data[i].Seconds % 60);
+        raceTimeData.push(date);
+      }
+
       const timeFormat = d3.timeFormat('%M:%S');              
       
-      const fastestTime = d3.min(data, (d) => timeParse(d.Time));
-      const slowestTime = d3.max(data, (d) => timeParse(d.Time));
+      const fastestTime = d3.min(raceTimeData, (d) => d);
+      const slowestTime = d3.max(raceTimeData, (d) => d);
 
-      const beginningYear = d3.min(data, (d) => d.Year - 1); 
-      const latestYear = d3.max(data, (d) => d.Year + 1);
+      const minYear = d3.min(data, (d) => d.Year - 1); 
+      const maxYear = d3.max(data, (d) => d.Year + 1);
 
-      const xScale = d3.scaleLinear()
-                       .domain([beginningYear, latestYear])
+      const xScale = d3.scaleUtc()
+                       .domain([minYear, maxYear])
                        .range([padding, width - padding]);
 
       const xAxis = d3.axisBottom()
                       .tickFormat(d3.format('d'))
                       .scale(xScale);
 
-      const yScale = d3.scaleLinear()
+      const yScale = d3.scaleTime()
                        .domain([slowestTime, fastestTime])
                        .range([height - padding, padding]);
 
@@ -51,6 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
          .attr('transform', 'translate(' + padding + ', 0)')
          .attr('id', 'y-axis')
          .call(yAxis);   
+
+      svg.selectAll('circle')
+         .data(data)   
+         .enter()
+         .append('circle')
+         .attr('class', 'dot')
+         .attr('r', 5)
+         .attr('cx', (d) => xScale(d.Year))
+         .attr('cy', (d, i) => yScale(raceTimeData[i]))
+         .attr('data-xvalue', (d) => d.Year)
+         .attr('data-yvalue', (d, i) => yScale(raceTimeData[i]))
+         .style('fill', (d) => d.Doping === '' ? '#6564db' : '#ff6347');
 
     } catch(error) {
       console.log(error);
