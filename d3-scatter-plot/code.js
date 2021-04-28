@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const xScale = d3.scaleUtc()
                        .domain([minYear, maxYear])
-                       .range([padding, width - padding]);
+                       .range([padding + 30, width - padding]);
 
       const xAxis = d3.axisBottom()
                       .tickFormat(d3.format('d'))
@@ -57,9 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
          .call(xAxis);
 
       svg.append('g')
-         .attr('transform', 'translate(' + padding + ', 0)')
+         .attr('transform', 'translate(' + (padding + 30) + ', 0)')
          .attr('id', 'y-axis')
          .call(yAxis);   
+
+      svg.append('text')
+         .attr('transform', 'rotate(-90)')  
+         .attr('x', -260)
+         .attr('y', 20)
+         .style('font-size', 12)
+         .text('Time in Minutes');
 
       svg.selectAll('circle')
          .data(data)   
@@ -71,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
          .attr('cy', (d, i) => yScale(raceTimeData[i]))
          .attr('data-xvalue', (d) => d.Year)
          .attr('data-yvalue', (d, i) => yScale(raceTimeData[i]))
+         .style('stroke', '#0d1317')
+         .style('stroke-width', 0.5)
          .style('fill', (d) => d.Doping === '' ? '#6564db' : '#ff6347');
 
     } catch(error) {
