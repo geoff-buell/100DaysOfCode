@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       let response = await fetch(url);
       let data = await response.json();
-      console.log(data);
 
       const width = 800;
       const height = 450;
@@ -20,8 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const tooltip = d3.select('#scatter-plot')
                         .append('div')
                         .attr('id', 'tooltip')
-                        .style('background', '#0d1317')             
-                        .style('color', '#fff')
                         .style('opacity', 0); 
 
       let raceTimeData = [];
@@ -87,7 +84,29 @@ document.addEventListener('DOMContentLoaded', () => {
                       .attr('data-yvalue', (d, i) => yScale(raceTimeData[i]))
                       .style('stroke', '#0d1317')
                       .style('stroke-width', 0.5)
-                      .style('fill', (d) => d.Doping === '' ? '#6564db' : '#ff6347');              
+                      .style('fill', (d) => d.Doping === '' ? '#6564db' : '#ff6347');   
+
+      const mouseover = (event, d) => {
+        tooltip
+          .attr('data-year', (event, d) => d.Year)
+          .style('left', (event.pageX - 90) + 'px')
+          .style('top', (event.pageY - 90) + 'px')
+          .style('opacity', 0.8);
+        tooltip.html(
+          d.Name + ': ' + d.Nationality + '<br/>' + 'Year: ' + 
+          d.Year + '<br/>' + ' Time: ' + d.Time + '<br/>' + d.Doping
+        )
+      }                
+
+      const mouseout = () => {
+        tooltip
+          .transition()
+          .duration(200)
+          .style('opacity', 0);
+      }
+                      
+      dots.on('mouseover', mouseover);
+      dots.on('mouseout', mouseout);                
 
       const legend = svg.selectAll('.legend')   
                         .data(data)

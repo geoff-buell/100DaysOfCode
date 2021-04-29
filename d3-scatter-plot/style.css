@@ -18,6 +18,7 @@ body {
 }
 
 .container {
+  position: relative;
   width: 870px;
   height: 600px;
   display: flex;
@@ -31,4 +32,15 @@ body {
 #subtitle {
   font-size: 1.2rem;
   margin: 5px;
+}
+
+#tooltip {
+  font-size: 0.8rem;
+  color: white;
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 8px;
+  background: #0d1317;
+  border-radius: 6px;
 }
