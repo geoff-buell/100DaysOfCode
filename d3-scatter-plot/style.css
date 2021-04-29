@@ -46,3 +46,39 @@ body {
   background: #0d1317;
   border-radius: 6px;
 }
+
+@media screen and (max-width: 870px) {
+  .container {
+    transform: scale(0.9);
+  }
+}
+@media screen and (max-width: 770px) {
+  .container {
+    transform: scale(0.8);
+  }
+}
+@media screen and (max-width: 670px) {
+  .container {
+    transform: scale(0.7);
+  }
+}
+@media screen and (max-width: 570px) {
+  .container {
+    transform: scale(0.6);
+  }
+}
+@media screen and (max-width: 470px) {
+  .container {
+    transform: scale(0.5);
+  }
+}
+@media screen and (max-width: 370px) {
+  .container {
+    transform: scale(0.4);
+  }
+}
+@media screen and (max-width: 270px) {
+  .container {
+    transform: scale(0.3);
+  }
+}
