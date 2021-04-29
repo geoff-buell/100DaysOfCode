@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 * {
   margin: 0;
@@ -6,7 +7,8 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
+  font-family: 'Open Sans', sans-serif;
   color: #0d1317;
   display: flex;
   justify-content: center;
@@ -28,5 +30,5 @@ body {
 
 #subtitle {
   font-size: 1.2rem;
-  margin: 10px;
+  margin: 5px;
 }

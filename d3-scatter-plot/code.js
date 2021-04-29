@@ -17,6 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     .attr('width', width)
                     .attr('height', height);
 
+      const tooltip = d3.select('#scatter-plot')
+                        .append('div')
+                        .attr('id', 'tooltip')
+                        .style('background', '#0d1317')             
+                        .style('color', '#fff')
+                        .style('opacity', 0); 
+
       let raceTimeData = [];
       let date;
 
@@ -65,22 +72,59 @@ document.addEventListener('DOMContentLoaded', () => {
          .attr('transform', 'rotate(-90)')  
          .attr('x', -260)
          .attr('y', 20)
-         .style('font-size', 12)
+         .style('font-size', 12 + 'px')
          .text('Time in Minutes');
 
-      svg.selectAll('circle')
-         .data(data)   
-         .enter()
-         .append('circle')
-         .attr('class', 'dot')
-         .attr('r', 5)
-         .attr('cx', (d) => xScale(d.Year))
-         .attr('cy', (d, i) => yScale(raceTimeData[i]))
-         .attr('data-xvalue', (d) => d.Year)
-         .attr('data-yvalue', (d, i) => yScale(raceTimeData[i]))
-         .style('stroke', '#0d1317')
-         .style('stroke-width', 0.5)
-         .style('fill', (d) => d.Doping === '' ? '#6564db' : '#ff6347');
+      const dots = svg.selectAll('.dot')
+                      .data(data)   
+                      .enter()
+                      .append('circle')
+                      .attr('class', 'dot')
+                      .attr('r', 5)
+                      .attr('cx', (d) => xScale(d.Year))
+                      .attr('cy', (d, i) => yScale(raceTimeData[i]))
+                      .attr('data-xvalue', (d) => d.Year)
+                      .attr('data-yvalue', (d, i) => yScale(raceTimeData[i]))
+                      .style('stroke', '#0d1317')
+                      .style('stroke-width', 0.5)
+                      .style('fill', (d) => d.Doping === '' ? '#6564db' : '#ff6347');              
+
+      const legend = svg.selectAll('.legend')   
+                        .data(data)
+                        .enter()
+                        .append('g')
+                        .attr('class', 'legend')
+                        .attr('id', 'legend');
+
+      legend.append('rect')
+            .attr('width', 12)
+            .attr('height', 12)
+            .attr('x', width - 200)
+            .attr('y', padding)
+            .style('stroke', '#0d1317')
+            .style('stoke-width', 0.5)
+            .style('fill', '#6564db');
+
+      legend.append('rect')
+            .attr('width', 12)
+            .attr('height', 12)
+            .attr('x', width - 200)
+            .attr('y', padding + 20)
+            .style('stroke', '#0d1317')
+            .style('stoke-width', 0.5)
+            .style('fill', '#ff6347');
+
+      svg.append('text')
+            .attr('x', width - 180)
+            .attr('y', padding + 10)
+            .style('font-size', 12 + 'px')
+            .text('No Doping Allegations');   
+            
+      svg.append('text')
+            .attr('x', width - 180)
+            .attr('y', padding + 30)
+            .style('font-size', 12 + 'px')
+            .text('Doping Allegations')      
 
     } catch(error) {
       console.log(error);
