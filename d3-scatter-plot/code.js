@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       let response = await fetch(url);
       let data = await response.json();
+      // console.log(data);
 
       const width = 800;
       const height = 450;
@@ -19,22 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const tooltip = d3.select('#scatter-plot')
                         .append('div')
                         .attr('id', 'tooltip')
-                        .style('opacity', 0); 
-
-      let raceTimeData = [];
-      let date;
-
-      for (let i = 0; i < data.length; i++) {
-        date = new Date();
-        date.setMinutes(data[i].Seconds / 60);
-        date.setSeconds(data[i].Seconds % 60);
-        raceTimeData.push(date);
-      }
-
-      const timeFormat = d3.timeFormat('%M:%S');              
+                        .style('opacity', 0);              
       
-      const fastestTime = d3.min(raceTimeData, (d) => d);
-      const slowestTime = d3.max(raceTimeData, (d) => d);
+      const fastestTime = d3.min(data, (d) => new Date(d.Seconds * 1000));
+      const slowestTime = d3.max(data, (d) => new Date(d.Seconds * 1000));
 
       const minYear = d3.min(data, (d) => d.Year - 1); 
       const maxYear = d3.max(data, (d) => d.Year + 1);
@@ -52,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                        .range([height - padding, padding]);
 
       const yAxis = d3.axisLeft()
-                      .tickFormat(timeFormat)
+                      .tickFormat(d3.timeFormat('%M:%S'))
                       .scale(yScale);
 
       svg.append('g')
@@ -79,18 +68,19 @@ document.addEventListener('DOMContentLoaded', () => {
                       .attr('class', 'dot')
                       .attr('r', 5)
                       .attr('cx', (d) => xScale(d.Year))
-                      .attr('cy', (d, i) => yScale(raceTimeData[i]))
+                      .attr('cy', (d) => yScale(new Date(d.Seconds * 1000)))
                       .attr('data-xvalue', (d) => d.Year)
-                      .attr('data-yvalue', (d, i) => yScale(raceTimeData[i]))
+                      .attr('data-yvalue', (d) => new Date(d.Seconds * 1000))
                       .style('stroke', '#0d1317')
                       .style('stroke-width', 0.5)
                       .style('fill', (d) => d.Doping === '' ? '#6564db' : '#ff6347');   
 
       const mouseover = (event, d) => {
+        const [x, y] = d3.pointer(event);
         tooltip
-          .attr('data-year', (event, d) => d.Year)
-          .style('left', (event.pageX - 90) + 'px')
-          .style('top', (event.pageY - 90) + 'px')
+          .attr('data-year', d.Year)
+          .style('left', (x + 50) + 'px')
+          .style('top', (y + 100) + 'px')
           .style('opacity', 0.8);
         tooltip.html(
           d.Name + ': ' + d.Nationality + '<br/>' + 'Year: ' + 
