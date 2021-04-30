@@ -22,8 +22,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const colors = [
         '#0091ad', '#1780a1', '#2e6f95', '#455e89', '#5c4d7d',
-        '#723c70', '#892b64', '#a01a58', '#b7094c'
-      ];                  
+        '#723c70', '#892b64', '#a01a58', '#b7094c', '#b70923'
+      ];   
+
+      console.log(colors[0]);
+      
+      const colorData = (temp) => {
+        if (temp >= 0 && temp < 3) { return colors[0] }
+        else if (temp >= 3 && temp < 5.5) { return colors[1] }
+        else if (temp >= 5.5 && temp < 6) { return colors[2] }
+        else if (temp >= 6 && temp < 6.5) { return colors[3] }
+        else if (temp >= 6.5 && temp < 7) { return colors[4] }
+        else if (temp >= 7 && temp < 8.5) { return colors[5] }
+        else if (temp >= 8.5 && temp < 9) { return colors[6] }
+        else if (temp >= 9 && temp < 9.5) { return colors[7] }
+        else if (temp >= 9.5 && temp < 10) { return colors[8] }
+        else if (temp >= 10 && temp < 15) { return colors[9] }
+      } 
 
       const baseTemp = data.baseTemperature;
 
@@ -73,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
              .attr('width', rectWidth)
              .attr('height', rectHeight)       
              .attr("transform", "translate(0, -29)") 
-             .attr('fill', '#2e6f95');           
+             .style('fill', (d) => colorData(baseTemp + d.variance));           
 
     } catch(error) {
       console.log(error);
