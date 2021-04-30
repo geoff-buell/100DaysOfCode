@@ -20,9 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         .attr('width', width)
                         .attr('height', height);
 
+      // const colors = [
+      //   '#012a4a', '#013a63', '#01497c', '#014f86', '#2a6f97',
+      //   '#2c7da0', '#468faf', '#61a5c2', '#89c2d9', '#a9d6e5'
+      // ];   
+
       const colors = [
-        '#0091ad', '#1780a1', '#2e6f95', '#455e89', '#5c4d7d',
-        '#723c70', '#892b64', '#a01a58', '#b7094c', '#b70923'
+        '#54478c', '#2c699a', '#048ba8', '#0db39e', '#16db93',
+        '#83e377', '#b9e769', '#efea5a', '#f1c453', '#f29e4c'
       ];   
 
       console.log(colors[0]);
@@ -85,9 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
              .attr('data-temp', (d) => baseTemp + d.variance)
              .attr('x', (d) => xScale(d.year))
              .attr('y', (d) => yScale(d.month)) 
-             .attr('width', rectWidth)
-             .attr('height', rectHeight)       
-             .attr("transform", "translate(0, -29)") 
+             .attr('width', 5)
+             .attr('height', 32)       
+             .attr("transform", "translate(0, -32)") 
              .style('fill', (d) => colorData(baseTemp + d.variance));           
 
     } catch(error) {
