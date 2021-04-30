@@ -24,8 +24,6 @@ body {
   height: calc(100vh - 50px);
 }
 
-#heat-map {
-  width: 100%;
-  height: 90%;
+/* #heat-map {
   border: 1px solid blue;
-}
+} */
