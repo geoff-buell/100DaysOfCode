@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const width = 1250;
       const height = 500;
       const padding = 80;
-      const rectWidth = (width - 2 * padding) / 262;
-      const rectHeight = (height - 2 * padding) / 12;
+      const cellWidth = (width - 2 * padding) / 262; //years
+      const cellHeight = (height - 2 * padding) / 12; //months
 
       const heatmap = d3.select('#heat-map')
                         .append('svg')
@@ -47,20 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const baseTemp = data.baseTemperature;
 
+      const minYear = d3.min(data.monthlyVariance, (d) => d.year);
+      const maxYear = d3.max(data.monthlyVariance, (d) => d.year);
+
       console.log(d3.min(data.monthlyVariance, (d) => d.variance));
       console.log(d3.max(data.monthlyVariance, (d) => d.variance));
       
       const xScale = d3.scaleTime()
-                       .domain(d3.extent(data.monthlyVariance, (d) => d.year))
-                       .range([padding, width - padding]);  
-                       
-      const yScale = d3.scaleTime()
-                       .domain(d3.extent(data.monthlyVariance, (d) => d.month))
-                       .range([padding, height - padding]);
+                       .domain([minYear, maxYear + 1])
+                       .range([padding, width - padding]);
       
-      const customYScale = d3.scaleTime()
-                       .domain([new Date(2021, 11, 31), new Date(2021, 0, 1)])
-                       .range([height - padding, padding]);
+      const yScale = d3.scaleTime()
+                       .domain([new Date(0, 0, 1), new Date(0, 11, 31)])
+                       .range([padding, height - padding]);
 
       const xAxis = d3.axisBottom()
                       .tickFormat(d3.format('d'))
@@ -68,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const yAxis = d3.axisLeft()
                       .tickFormat(d3.timeFormat('%B'))
-                      .scale(customYScale);
+                      .scale(yScale);
                       
       heatmap.append('g')
              .attr('transform', 'translate(0, ' + (height - padding) + ')')
@@ -89,10 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
              .attr('data-year', (d) => d.year)
              .attr('data-temp', (d) => baseTemp + d.variance)
              .attr('x', (d) => xScale(d.year))
-             .attr('y', (d) => yScale(d.month)) 
-             .attr('width', 5)
-             .attr('height', 32)       
-             .attr("transform", "translate(0, -32)") 
+             .attr('y', (d) => padding + (d.month - 1) * ((height - 2 * padding) / 12)) 
+             .attr('width', cellWidth)
+             .attr('height', cellHeight)       
              .style('fill', (d) => colorData(baseTemp + d.variance));           
 
     } catch(error) {
