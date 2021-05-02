@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(data.monthlyVariance);
 
       const width = 1250;
-      const height = 500;
+      const height = 600;
       const padding = 80;
       const cellWidth = (width - 2 * padding) / 262; //years
       const cellHeight = (height - 2 * padding) / 12; //months
@@ -20,17 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         .attr('width', width)
                         .attr('height', height);
 
-      // const colors = [
-      //   '#012a4a', '#013a63', '#01497c', '#014f86', '#2a6f97',
-      //   '#2c7da0', '#468faf', '#61a5c2', '#89c2d9', '#a9d6e5'
-      // ];   
-
       const colors = [
         '#54478c', '#2c699a', '#048ba8', '#0db39e', '#16db93',
         '#83e377', '#b9e769', '#efea5a', '#f1c453', '#f29e4c'
       ];   
-
-      console.log(colors[0]);
       
       const colorData = (temp) => {
         if (temp >= 0 && temp < 3) { return colors[0] }
@@ -49,9 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const minYear = d3.min(data.monthlyVariance, (d) => d.year);
       const maxYear = d3.max(data.monthlyVariance, (d) => d.year);
-
-      console.log(d3.min(data.monthlyVariance, (d) => d.variance));
-      console.log(d3.max(data.monthlyVariance, (d) => d.variance));
       
       const xScale = d3.scaleTime()
                        .domain([minYear, maxYear + 1])
@@ -91,7 +81,36 @@ document.addEventListener('DOMContentLoaded', () => {
              .attr('y', (d) => padding + (d.month - 1) * ((height - 2 * padding) / 12)) 
              .attr('width', cellWidth)
              .attr('height', cellHeight)       
-             .style('fill', (d) => colorData(baseTemp + d.variance));           
+             .style('fill', (d) => colorData(baseTemp + d.variance));          
+             
+      const legendData = [0, 3, 5.5, 6, 6.5, 7, 8.5, 9, 9.5, 10];
+      const legendCellWidth = 40;
+
+      const legend = heatmap.append('svg')
+                            .attr('x', width - (padding + legendCellWidth * legendData.length))
+                            .attr('y', height - 40)
+                            .attr('width', legendCellWidth * legendData.length)
+                            .attr('height', 100)
+                            .attr('id', 'legend');
+          
+      legend.selectAll('.legend')
+            .data(legendData)
+            .enter()
+            .append('rect')
+            .attr('x', (d, i) => (legendCellWidth * i))
+            .attr('y', 0)
+            .attr('width', legendCellWidth)
+            .attr('height', 10)
+            .style('fill', (d) => colorData(d));
+
+      legend.selectAll('.text')
+            .data(legendData)
+            .enter()
+            .append('text')
+            .text((d) => d.toString() + 'º')
+            .attr('x', (d, i) => legendCellWidth * i)
+            .attr('y', 25)
+            .style('font-size', 12 + 'px')
 
     } catch(error) {
       console.log(error);
