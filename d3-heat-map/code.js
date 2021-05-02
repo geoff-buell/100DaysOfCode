@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                            .enter()
                            .append('rect')
                            .attr('class', 'cell')
-                           .attr('data-month', (d) => d.month)
+                           .attr('data-month', (d) => d.month - 1)
                            .attr('data-year', (d) => d.year)
                            .attr('data-temp', (d) => baseTemp + d.variance)
                            .attr('x', (d) => xScale(d.year))
@@ -107,8 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const [x, y] = d3.pointer(event);
         tooltip
           .attr('data-year', d.year)
-          .style('left', (x) + 'px')
-          .style('top', (y + 20) + 'px')
+          .style('left', x + 'px')
+          .style('top', y + 'px')
           .style('opacity', 1);
         tooltip
           .html(
