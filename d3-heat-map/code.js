@@ -38,6 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (temp >= 10 && temp < 15) { return colors[9] }
       } 
 
+      const convertMonth = (month) => {
+        if (month === 1) { return 'January' }
+        else if (month === 2) { return 'February' }
+        else if (month === 3) { return 'March' }
+        else if (month === 4) { return 'April' }
+        else if (month === 5) { return 'May' }
+        else if (month === 6) { return 'June' }
+        else if (month === 7) { return 'July' }
+        else if (month === 8) { return 'August' }
+        else if (month === 9) { return 'September' }
+        else if (month === 10) { return 'October' }
+        else if (month === 11) { return 'November' }
+        else if (month === 12) { return 'December' }
+      }
+
       const baseTemp = data.baseTemperature;
 
       const minYear = d3.min(data.monthlyVariance, (d) => d.year);
@@ -69,19 +84,47 @@ document.addEventListener('DOMContentLoaded', () => {
              .attr('id', 'y-axis')
              .call(yAxis);  
 
-      heatmap.selectAll('.cell')
-             .data(data.monthlyVariance)
-             .enter()
-             .append('rect')
-             .attr('class', 'cell')
-             .attr('data-month', (d) => d.month)
-             .attr('data-year', (d) => d.year)
-             .attr('data-temp', (d) => baseTemp + d.variance)
-             .attr('x', (d) => xScale(d.year))
-             .attr('y', (d) => padding + (d.month - 1) * ((height - 2 * padding) / 12)) 
-             .attr('width', cellWidth)
-             .attr('height', cellHeight)       
-             .style('fill', (d) => colorData(baseTemp + d.variance));          
+      const tooltip = d3.select('#heat-map')
+                        .append('div')
+                        .attr('id', 'tooltip')
+                        .style('opacity', 0); 
+
+      const cells = heatmap.selectAll('.cell')
+                           .data(data.monthlyVariance)
+                           .enter()
+                           .append('rect')
+                           .attr('class', 'cell')
+                           .attr('data-month', (d) => d.month)
+                           .attr('data-year', (d) => d.year)
+                           .attr('data-temp', (d) => baseTemp + d.variance)
+                           .attr('x', (d) => xScale(d.year))
+                           .attr('y', (d) => padding + (d.month - 1) * ((height - 2 * padding) / 12)) 
+                           .attr('width', cellWidth)
+                           .attr('height', cellHeight)       
+                           .style('fill', (d) => colorData(baseTemp + d.variance));   
+
+      const mouseover = (event, d) => {
+        const [x, y] = d3.pointer(event);
+        tooltip
+          .attr('data-year', d.year)
+          .style('left', (x) + 'px')
+          .style('top', (y + 20) + 'px')
+          .style('opacity', 1);
+        tooltip
+          .html(
+            convertMonth(d.month) + ' ' + d.year + '<br/>' + 
+            'Temperature: ' + (baseTemp + d.variance).toFixed(1) + ' ºC' + '<br/>' +
+            'Variance: ' + d.variance.toFixed(1) + ' ºC'
+          );  
+      }       
+
+      const mouseout = () => {
+        tooltip
+          .style('opacity', 0);
+      }
+             
+      cells.on('mouseover', mouseover)
+           .on('mouseout', mouseout);       
              
       const legendData = [0, 3, 5.5, 6, 6.5, 7, 8.5, 9, 9.5, 10];
       const legendCellWidth = 40;
