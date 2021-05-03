@@ -1,24 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  async function getData() {
+  const width = 900;
+  const height = 600;
 
-    try {
-      const educationURL = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json';
-      const countyURL = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json';
+  const map = d3.select('#map')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
 
-      let educationResponse = await fetch(educationURL);
-      let educationData = await educationResponse.json();
-      console.log(educationData);
-      let countyResponse = await fetch(countyURL);
-      let countyData = await countyResponse.json();
-      console.log(countyData);
-
-    } catch(error) {
-      console.log(error);
-    }
-
+  const drawMap = () => {
+    map.selectAll('path')
+       .data(countyData)
+       .enter()
+       .append('path')
+       .attr('d', d3.geoPath())
+       .attr('class', 'county');
   }
 
-  getData();
+  const countyURL = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json';
+  const educationURL = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json';
 
+  let countyData;
+  let educationData;
+
+  d3.json(countyURL).then(
+    (data, error) => {
+      if (error) {
+        console.log(error); 
+      } else {
+        countyData = topojson.feature(data, data.objects.counties).features;
+        console.log(countyData);
+
+        d3.json(educationURL).then(
+          (data, error) => {
+            if (error) {
+              console.log(error); 
+            } else {
+              educationData = data;
+              console.log(data);
+              console.log(d3.min(data, (d) => d.bachelorsOrHigher));
+              console.log(d3.max(data, (d) => d.bachelorsOrHigher));
+              drawMap();
+            }
+          }
+        );
+      }
+    }
+  );
+  
 }); 
