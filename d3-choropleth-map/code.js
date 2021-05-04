@@ -85,13 +85,20 @@ document.addEventListener('DOMContentLoaded', () => {
        .attr('d', d3.geoPath())
        .attr('class', 'county')
        .attr('data-fips', (d) => d.id)
-       .attr('data-education', (d, i) => educationData[i].bachelorsOrHigher)
+       .attr('data-education', (d) => {
+          let id = d.id;
+          let county = educationData.find((item) => {
+            return item['fips'] === id;
+          })
+          let percentage = county['bachelorsOrHigher'];
+          return percentage;
+        })
        .attr('fill', (d) => {
          let id = d.id;
          let county = educationData.find((item) => {
            return item['fips'] === id;
          });
-         const percentage = county['bachelorsOrHigher'];
+         let percentage = county['bachelorsOrHigher'];
          if (percentage >= 0 && percentage < 10) { return colors[0] }
          else if (percentage >= 10 && percentage < 20) { return colors[1] }
          else if (percentage >= 20 && percentage < 30) { return colors[2] }
