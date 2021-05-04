@@ -102,13 +102,22 @@ document.addEventListener('DOMContentLoaded', () => {
          else if (percentage >= 70 && percentage < 80) { return colors[7] } 
        })
        .on('mouseover', mouseover)
-       .on('mouseout', mouseout);       
+       .on('mouseout', mouseout);    
+       
+    map.append('path')
+       .classed('stateBorder', true)
+       .attr('fill', 'none')
+       .attr('stroke', 'gainsboro')
+       .attr('stroke-width', 0.75)
+       .datum(stateData, (a, b) => a !== b)
+       .attr('d', d3.geoPath());
   }
 
   const countyURL = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json';
   const educationURL = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json';
 
   let countyData;
+  let stateData;
   let educationData;
 
   d3.json(countyURL).then(
@@ -116,7 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (error) {
         console.log(error); 
       } else {
-        countyData = topojson.feature(data, data.objects.counties).features;  
+        countyData = topojson.feature(data, data.objects.counties).features; 
+        stateData = topojson.mesh(data, data.objects.states); 
         // console.log(countyData);
         d3.json(educationURL).then(
           (data, error) => {
