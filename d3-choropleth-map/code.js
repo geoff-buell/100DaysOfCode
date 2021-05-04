@@ -52,6 +52,31 @@ document.addEventListener('DOMContentLoaded', () => {
         .attr('y', 25)
         .style('font-size', 12 + 'px')
 
+  const tooltip = d3.select('#map')
+                    .append('div')
+                    .attr('id', 'tooltip')
+                    .style('opacity', 0);  
+
+  const mouseover = (event, d) => {
+    const [x, y] = d3.pointer(event);
+    tooltip.style('opacity', 1)
+           .style('left', x + 'px')
+           .style('top', y + 'px'); 
+    let id = d.id;
+    let county = educationData.find((item) => {
+      return item['fips'] === id;
+    });
+    tooltip.attr('data-education', county['bachelorsOrHigher']);
+    tooltip.html(
+      county['area_name'] + ', ' + county['state'] + ': ' +
+      county['bachelorsOrHigher'] + '%'
+    );
+  }                    
+
+  const mouseout = () => {
+    tooltip.style('opacity', 0);
+  }
+
   const drawMap = () => {
     map.selectAll('path')
        .data(countyData)
@@ -62,8 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
        .attr('data-fips', (d) => d.id)
        .attr('data-education', (d, i) => educationData[i].bachelorsOrHigher)
        .attr('fill', (d) => {
-         const id = d.id;
-         const county = educationData.find((item) => {
+         let id = d.id;
+         let county = educationData.find((item) => {
            return item['fips'] === id;
          });
          const percentage = county['bachelorsOrHigher'];
@@ -75,8 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
          else if (percentage >= 50 && percentage < 60) { return colors[5] }
          else if (percentage >= 60 && percentage < 70) { return colors[6] }
          else if (percentage >= 70 && percentage < 80) { return colors[7] } 
-       });
+       })
+       .on('mouseover', mouseover)
+       .on('mouseout', mouseout);    
   }
+
 
   const countyURL = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json';
   const educationURL = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json';
