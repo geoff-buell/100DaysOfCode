@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const mouseover = (event, d) => {
     const [x, y] = d3.pointer(event);
-    tooltip.style('opacity', 1)
+    tooltip.style('opacity', 0.9)
            .style('left', x + 'px')
            .style('top', y + 'px'); 
     let id = d.id;
@@ -102,9 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
          else if (percentage >= 70 && percentage < 80) { return colors[7] } 
        })
        .on('mouseover', mouseover)
-       .on('mouseout', mouseout);    
+       .on('mouseout', mouseout);       
   }
-
 
   const countyURL = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json';
   const educationURL = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json';
