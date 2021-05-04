@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader&display=swap');
 
 * {
   margin: 0;
@@ -15,11 +16,15 @@ body {
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-family: 'Newsreader', serif;
+  font-size: 3rem;
+  margin-bottom: 25px;
 }
 
 h2 {
-  font-size: 1rem;
+  font-size: 0.8rem;
+  align-self: flex-end;
+  margin-right: 105px;
 }
 
 .container {
