@@ -19,8 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
        .append('path')
        .attr('d', d3.geoPath())
        .attr('class', 'county')
-       .attr('fill', (countyDataItem) => {
-         const id = countyDataItem['id'];
+       .attr('data-fips', (d) => d.id)
+       .attr('data-education', (d, i) => educationData[i].bachelorsOrHigher)
+       .attr('fill', (d) => {
+         const id = d.id;
          const county = educationData.find((item) => {
            return item['fips'] === id;
          });
