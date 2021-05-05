@@ -1,11 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  const colors = [
-    '#F8997D', '#F4937C', '#EF8D7B', '#EB877A', '#E68179', '#E27B78',
-    '#DE7577', '#D96F76', '#D56975', '#D06375', '#CC5D74', '#C75773', 
-    '#C35172', '#BF4B71', '#BA4570', '#B63F6F', '#B1396E', '#AD336D'
-  ];
-
   const width = 1000;
   const height = 600;
 
@@ -40,58 +34,58 @@ document.addEventListener('DOMContentLoaded', () => {
               let color;
               switch (category) {
                 case 'Wii':
-                  color = colors[0];
+                  color = 'yellowGreen';
                   break;
                 case 'DS':
-                  color = colors[1];
+                  color = 'brown';
                   break;
                 case 'X360':
-                  color = colors[2];
+                  color = 'violet';
                   break;
                 case 'GB':
-                  color = colors[3];
+                  color = 'darkKhaki';
                   break;
                 case 'PS3':
-                  color = colors[4];
+                  color = 'tomato';
                   break;
                 case 'NES':
-                  color = colors[5];
+                  color = 'goldenrod';
                   break;
                 case 'PS2':
-                  color = colors[6];
+                  color = 'teal';
                   break;
                 case '3DS':
-                  color = colors[7];
+                  color = 'blueViolet';
                   break;
                 case 'PS4':
-                  color = colors[8];
+                  color = 'steelBlue';
                   break;
                 case 'SNES':
-                  color = colors[9];
+                  color = 'tan';
                   break;
                 case 'PS':
-                  color = colors[10];
+                  color = 'slateGrey';
                   break;
                 case 'N64':
-                  color = colors[11];
+                  color = 'slateBlue';
                   break;
                 case 'GBA':
-                  color = colors[12];
+                  color = 'skyBlue';
                   break;
                 case 'XB':
-                  color = colors[13];
+                  color = 'salmon';
                   break;
                 case 'PC':
-                  color = colors[14];
+                  color = 'seaGreen';
                   break;
                 case '2600':
-                  color = colors[15];
+                  color = 'sandyBrown';
                   break;
                 case 'PSP':
-                  color = colors[16];
+                  color = 'royalBlue';
                   break;
                 case 'XOne':
-                  color = colors[17];    
+                  color = 'purple';    
               }
               return color;
             })
