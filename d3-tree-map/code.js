@@ -97,9 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
             .attr('stroke', 'gainsboro');
 
     section.append('text')
-            .text((d) => d.data.name)
-            .attr('x', 5)
-            .attr('y', 15)
+            .selectAll('tspan')
+            .data((d) => d.data.name.split(/(?=[A-Z][^A-Z])/g))
+            .enter()
+            .append('tspan')
+            .text((d) => d)
+            .attr('x', 3)
+            .attr('y', (d, i) => 13 + i * 11)
             .style('font-size', 10 + 'px');
   }
 
