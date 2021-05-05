@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const section = treeMap.selectAll('g')
                             .data(gameTiles)
                             .enter()
-                            .append('g');
+                            .append('g')
+                            .attr('transform', (d) => 'translate(' + d.x0 + ', ' + d.y0 + ')');
 
     section.append('rect')
             .attr('class', 'tile')
@@ -94,6 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
               }
               return color;
             })
+            .attr('data-name', (d) => d.data.name)
+            .attr('data-category', (d) => d.data.category)
+            .attr('data-value', (d) => d.value);
   }
 
   const url = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json';
