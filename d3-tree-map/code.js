@@ -97,7 +97,16 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .attr('data-name', (d) => d.data.name)
             .attr('data-category', (d) => d.data.category)
-            .attr('data-value', (d) => d.value);
+            .attr('data-value', (d) => d.value)
+            .attr('width', (d) => d.x1 - d.x0)
+            .attr('height', (d) => d.y1 - d.y0)
+            .attr('stroke', 'gainsboro');
+
+    section.append('text')
+            .text((d) => d.data.name)
+            .attr('x', 5)
+            .attr('y', 15)
+            .style('font-size', 10 + 'px');
   }
 
   const url = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json';
