@@ -6,7 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const treeMap = d3.select('#tree-map')
                     .append('svg')
                     .attr('width', width)
-                    .attr('height', height);             
+                    .attr('height', height);    
+                    
+  const tooltip = d3.select('body')
+                    .append('div')
+                    .attr('id', 'tooltip')
+                    .style('opacity', 0);
 
   const drawTreeMap = () => {
     const hierarchy = d3.hierarchy(gameData, (d) => d.children)
@@ -23,6 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
     let categories = gameTiles.map((nodes) => nodes.data.category);
     categories = categories.filter((category, index, self) => self.indexOf(category) === index); 
     // console.log(categories);
+
+    const handleMouseover = (event, d) => {
+      const mouseX = event.pageX;
+      const mouseY = event.pageY;
+      const dataName = d.data.name;
+      const dataCategory = d.data.category;
+      const dataVal = d.data.value;
+      tooltip.style('opacity', 0.9)
+              .style('left', mouseX + 50 + 'px')
+              .style('top', mouseY + 'px')
+              .attr('data-value', (d) => dataVal);
+      tooltip.html(
+        'Name: ' + dataName + '<br/>' +
+        'Platform: ' + dataCategory + '<br/>' +
+        'Value: ' + dataVal
+      )        
+    }
+
+    const handleMouseout = () => {
+      tooltip.style('opacity', 0);
+    }
 
     const section = treeMap.selectAll('g')
                             .data(gameTiles)
@@ -94,10 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .attr('data-name', (d) => d.data.name)
             .attr('data-category', (d) => d.data.category)
-            .attr('data-value', (d) => d.value)
+            .attr('data-value', (d) => d.data.value)
             .attr('width', (d) => d.x1 - d.x0)
             .attr('height', (d) => d.y1 - d.y0)
-            .attr('stroke', 'gainsboro');
+            .attr('stroke', 'gainsboro')
+            .on('mouseover', handleMouseover)
+            .on('mouseout', handleMouseout);
 
     section.append('text')
             .selectAll('tspan')
@@ -109,11 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
             .attr('y', (d, i) => 13 + i * 11)
             .style('font-size', 10 + 'px');  
 
-            const legend = d3.select('#legend')
-            .append('svg')
-            .attr('width', width)
-            .attr('height', 100)
-            .style('padding-top', 10 + 'px');
+    const legend = d3.select('#legend')
+                      .append('svg')
+                      .attr('width', width)
+                      .attr('height', 100)
+                      .style('padding-top', 10 + 'px');
 
     const rectSize = 20;                  
     const rectHSpacing = 100;   
@@ -202,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .style('font-size', 12 + 'px')
         .text((d) => d);            
         
-      }
+  }
 
   const url = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json';
 
