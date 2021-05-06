@@ -141,10 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
                       .append('svg')
                       .attr('width', width)
                       .attr('height', 100)
+                      .style('padding-left', 60 + 'px')
                       .style('padding-top', 10 + 'px');
 
     const rectSize = 20;                  
-    const rectHSpacing = 100;   
+    const rectHSpacing = 110;   
     const rectVSpacing = 20;              
     const elementsPerRow = Math.floor(width / rectHSpacing);
 
