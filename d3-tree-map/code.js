@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const treeMap = d3.select('#tree-map')
                     .append('svg')
                     .attr('width', width)
-                    .attr('height', height);
+                    .attr('height', height);             
 
   const drawTreeMap = () => {
     const hierarchy = d3.hierarchy(gameData, (d) => d.children)
@@ -19,7 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     createTreeMap(hierarchy);
 
     const gameTiles = hierarchy.leaves();
-    console.log(gameTiles);  
+    // console.log(gameTiles); 
+    let categories = gameTiles.map((nodes) => nodes.data.category);
+    categories = categories.filter((category, index, self) => self.indexOf(category) === index); 
+    // console.log(categories);
 
     const section = treeMap.selectAll('g')
                             .data(gameTiles)
@@ -104,8 +107,102 @@ document.addEventListener('DOMContentLoaded', () => {
             .text((d) => d)
             .attr('x', 3)
             .attr('y', (d, i) => 13 + i * 11)
-            .style('font-size', 10 + 'px');
-  }
+            .style('font-size', 10 + 'px');  
+
+            const legend = d3.select('#legend')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', 100)
+            .style('padding-top', 10 + 'px');
+
+    const rectSize = 20;                  
+    const rectHSpacing = 100;   
+    const rectVSpacing = 20;              
+    const elementsPerRow = Math.floor(width / rectHSpacing);
+
+    const legendItem = legend.selectAll('g')
+                        .data(categories)
+                        .enter()
+                        .append('g')
+                        .attr('transform', (d, i) => {
+                          return (
+                            'translate(' + (i % elementsPerRow) * rectHSpacing + ', ' +
+                            (Math.floor(i / elementsPerRow) * rectSize + rectVSpacing *
+                            Math.floor(i / elementsPerRow)) + ')'
+                          )
+                        });
+
+    legendItem.append('rect')
+        .attr('width', rectSize)
+        .attr('height', rectSize)                              
+        .attr('class', 'legend-item')                  
+        .attr('fill', (d) => {
+          let color;
+          switch (d) {
+            case 'Wii':
+              color = 'yellowGreen';
+              break;
+            case 'DS':
+              color = 'brown';
+              break;
+            case 'X360':
+              color = 'violet';
+              break;
+            case 'GB':
+              color = 'darkKhaki';
+              break;
+            case 'PS3':
+              color = 'tomato';
+              break;
+            case 'NES':
+              color = 'goldenrod';
+              break;
+            case 'PS2':
+              color = 'teal';
+              break;
+            case '3DS':
+              color = 'blueViolet';
+              break;
+            case 'PS4':
+              color = 'steelBlue';
+              break;
+            case 'SNES':
+              color = 'tan';
+              break;
+            case 'PS':
+              color = 'slateGrey';
+              break;
+            case 'N64':
+              color = 'slateBlue';
+              break;
+            case 'GBA':
+              color = 'skyBlue';
+              break;
+            case 'XB':
+              color = 'salmon';
+              break;
+            case 'PC':
+              color = 'seaGreen';
+              break;
+            case '2600':
+              color = 'sandyBrown';
+              break;
+            case 'PSP':
+              color = 'royalBlue';
+              break;
+            case 'XOne':
+              color = 'purple';    
+          }
+          return color;
+        });
+
+    legendItem.append('text')
+        .attr('x', rectSize + 6)
+        .attr('y', rectSize - 6)
+        .style('font-size', 12 + 'px')
+        .text((d) => d);            
+        
+      }
 
   const url = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json';
 
