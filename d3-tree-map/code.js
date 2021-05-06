@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tooltip.html(
         'Name: ' + dataName + '<br/>' +
         'Platform: ' + dataCategory + '<br/>' +
-        'Value: ' + dataVal
+        'Value: ' + dataVal + ' Million'
       )        
     }
 
