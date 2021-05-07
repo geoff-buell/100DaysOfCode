@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
+  font-family: 'Comfortaa', sans-serif;
+  color: slategrey;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -12,10 +17,12 @@ body {
 }
 
 .container {
+  background: url('https://i.pinimg.com/564x/b0/c0/50/b0c050d21155ab4cd75097d1beb0520a.jpg');
   display: flex;
   flex-wrap: wrap;
   width: 800px;
   height: 600px;
+  margin-top: 10px;
 }
 
 .flip-box {
@@ -48,10 +55,10 @@ body {
 }
 
 .flip-box-front {
-  background-color: tomato;
+  background-color: #2b5aa1;
 }
 
 .flip-box-back {
-  background-color: royalblue;
+  background-color: #a30000;
   transform: rotateY(180deg);
 }

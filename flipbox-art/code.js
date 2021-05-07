@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const container = document.querySelector('.container');
 
-  const flipboxArr = [
+  const flipBoxArr = [
     'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f',
     'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f',
     'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f',
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f'
   ]
 
-  flipboxArr.forEach(() => {
+  flipBoxArr.forEach(() => {
     const flipBox = document.createElement('div');
     const flipBoxInner = document.createElement('div');
     const flipBoxFront = document.createElement('div');
@@ -25,6 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
     flipBox.appendChild(flipBoxInner);
     container.appendChild(flipBox);
   });
-
-
+  
 });
