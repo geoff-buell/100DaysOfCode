@@ -16,13 +16,13 @@ body {
   flex-wrap: wrap;
   width: 800px;
   height: 600px;
-  border: 1px solid blue;
 }
 
 .flip-box {
   background-color: transparent;
   width: 100px;
-  height: 75px;
+  height: 100px;
+  margin-bottom: -1rem;
   perspective: 1000px;
 }
 
