@@ -16,13 +16,18 @@ body {
   background: gainsboro;
 }
 
+h1 {
+  margin: 10px;
+}
+
 .container {
   background: url('https://i.pinimg.com/564x/b0/c0/50/b0c050d21155ab4cd75097d1beb0520a.jpg');
+  background-repeat: no-repeat;
+  background-size: 800px 600px;
   display: flex;
   flex-wrap: wrap;
   width: 800px;
   height: 600px;
-  margin-top: 10px;
 }
 
 .flip-box {
@@ -61,4 +66,35 @@ body {
 .flip-box-back {
   background-color: #a30000;
   transform: rotateY(180deg);
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    transform: scale(0.8);
+  }
+}
+@media screen and (max-width: 700px) {
+  .container {
+    transform: scale(0.7);
+  }
+}
+@media screen and (max-width: 600px) {
+  .container {
+    transform: scale(0.6);
+  }
+}
+@media screen and (max-width: 500px) {
+  .container {
+    transform: scale(0.5);
+  }
+}
+@media screen and (max-width: 400px) {
+  .container {
+    transform: scale(0.4);
+  }
+}
+@media screen and (max-width: 300px) {
+  .container {
+    transform: scale(0.3);
+  }
 }
