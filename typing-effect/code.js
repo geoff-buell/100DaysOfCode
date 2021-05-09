@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (i < text.length) {
       content.innerHTML += text.charAt(i);
       i++;
-      setTimeout(typeContent, 100);
+      setTimeout(typeContent, 150);
     }
   }
   
