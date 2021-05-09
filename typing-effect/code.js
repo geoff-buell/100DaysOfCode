@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   container.appendChild(content);
 
-  const text = 'Hello, my name is Geoffrey Buell.'
+  const text = 'Hello, my name is Geoffrey Buell.';
   let i = 0;
 
   const typeContent = () => {
