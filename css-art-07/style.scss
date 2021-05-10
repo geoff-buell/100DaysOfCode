@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: slategrey;
+}
+
+.head, .top, .face, .left-eye, .right-eye, .nose, .mouth {
+  position: absolute;
+}
+
+.robot {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border: 1px solid red;
+}
