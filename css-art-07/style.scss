@@ -8,16 +8,87 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: slategrey;
+  background: oldlace;
 }
 
-.head, .top, .face, .left-eye, .right-eye, .nose, .mouth {
+.head, .top, .face, .left-eye, .right-eye, .nose, .mouth, .teeth, .neck {
   position: absolute;
+  z-index: 1;
 }
 
 .robot {
   position: relative;
   width: 300px;
   height: 300px;
-  border: 1px solid red;
+  // border: 1px solid red;
+  .head {
+    .top {
+      left: 120px;
+      width: 60px;
+      height: 50px;
+      background: red;
+      border-radius: 8px 8px 0 0;
+      border-bottom: 8px solid silver;
+      box-sizing: border-box;
+    }
+    .face {
+      top: 50px;
+      left: 50px;
+      width: 200px;
+      height: 200px;
+      background: steelblue;
+      border-radius: 20px;
+      .left-eye, .right-eye {
+        top: 25px;
+        width: 70px;
+        height: 70px;
+        background: saddlebrown;
+        border-radius: 50%;
+        border: 5px solid red;
+        box-sizing: border-box;
+      }
+      .left-eye {
+        left: 15px;
+      }
+      .right-eye {
+        right: 15px;
+      }
+      .nose {
+        top: 70px;
+        left: 80px;
+        width: 0; 
+        height: 0; 
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 50px solid deepskyblue;
+        border-radius: 5px;
+      }
+      .mouth {
+        bottom: 20px;
+        left: 40px;
+        width: 120px;
+        height: 50px;
+        background: ghostwhite;
+        border-radius: 3px;
+      }
+      .teeth {
+        bottom: 40px;
+        left: 40px;
+        width: 120px;
+        height: 10px;
+        background: gray;
+        opacity: 0.5;
+      }
+    }
+    .neck {
+      z-index: 0;
+      top: 250px;
+      left: 75px;
+      width: 150px;
+      height: 30px;
+      background: steelblue;
+      border-radius: 0 0 10px 10px;
+      box-shadow: inset 0 10px 15px darkslateblue;
+    }
+  }
 }
