@@ -11,7 +11,10 @@ body {
   background: oldlace;
 }
 
-.head, .top, .face, .left-eye, .right-eye, .nose, .mouth, .teeth, .neck {
+.head, .top, .face, .left-eye, .right-eye, 
+.pupil, .nose, .mouth, .teeth, .neck,
+.left-ear, .right-ear, .left-ant, .right-ant,
+.left-ant-top, .right-ant-top, .body {
   position: absolute;
   z-index: 1;
 }
@@ -20,7 +23,6 @@ body {
   position: relative;
   width: 300px;
   height: 300px;
-  // border: 1px solid red;
   .head {
     .top {
       left: 120px;
@@ -38,6 +40,9 @@ body {
       height: 200px;
       background: steelblue;
       border-radius: 20px;
+      box-shadow: 
+        inset 0 0 20px darkslateblue,
+        inset 0 10px 10px deepskyblue;
       .left-eye, .right-eye {
         top: 25px;
         width: 70px;
@@ -46,6 +51,15 @@ body {
         border-radius: 50%;
         border: 5px solid red;
         box-sizing: border-box;
+        box-shadow: 0 8px 5px darkslateblue;
+        .pupil {
+          width: 30px;
+          height: 30px;
+          background: gold;
+          border-radius: 50%;
+          top: 15px;
+          left: 15px;
+        }
       }
       .left-eye {
         left: 15px;
@@ -62,6 +76,7 @@ body {
         border-right: 20px solid transparent;
         border-bottom: 50px solid deepskyblue;
         border-radius: 5px;
+        opacity: 0.7;
       }
       .mouth {
         bottom: 20px;
@@ -70,6 +85,7 @@ body {
         height: 50px;
         background: ghostwhite;
         border-radius: 3px;
+        box-shadow: 4px 5px 8px darkslateblue;
       }
       .teeth {
         bottom: 40px;
@@ -90,5 +106,58 @@ body {
       border-radius: 0 0 10px 10px;
       box-shadow: inset 0 10px 15px darkslateblue;
     }
+    .left-ear, .right-ear {
+      z-index: 0;
+      top: 120px;
+      width: 80px;
+      height: 80px;
+      background: red;
+      border-radius: 50%;
+    }
+    .left-ear {
+      left: 15px;
+    }
+    .right-ear {
+      left: 205px;
+    }
+    .left-ant, .right-ant {
+      top: -55px;
+      width: 10px;
+      height: 100px;
+      background: linear-gradient(silver 70%, red);
+    }
+    .left-ant {
+      left: -4px;
+      transform: rotate(-5deg);
+    }
+    .right-ant {
+      right: -13px;
+      transform: rotate(15deg);
+    }
+    .left-ant-top, .right-ant-top {
+      top: -80px;
+      width: 30px;
+      height: 30px;
+      background: red;
+      border-radius: 50%;
+    }
+    .left-ant-top {
+      left: -19px;
+    }
+    .right-ant-top {
+      right: -39px;
+    }
+  }
+  .body {
+    top: 270px;
+    left: -20px;
+    width: 340px;
+    height: 40px;
+    background: steelblue;
+    border-radius: 40px 40px 0 0;
+    box-shadow: 
+      inset 0 -5px 10px oldlace,
+      inset 0 10px 20px darkslateblue,
+      inset 0 10px 10px deepskyblue;
   }
 }
