@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  const DAD_JOKE = document.getElementById('dad-joke');
+  const NEW_JOKE_BTN = document.getElementById('new-joke-btn');
+
   async function getJoke() {
     const url = 'https://icanhazdadjoke.com/';
   
@@ -9,10 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    const joke = await res.json();
-    console.log(joke);
+    const data = await res.json();
+    // console.log(data);
+    DAD_JOKE.innerHTML = data.joke;
   }
 
   getJoke();
+
+  NEW_JOKE_BTN.addEventListener('click', getJoke);
 
 });
