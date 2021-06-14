@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   NEW_JOKE_BTN.addEventListener('click', getJoke);
 
   document.addEventListener('keypress', (e) => {
-    if (e.code = 'Space') {
+    if (e.code === 'Space') {
       getJoke();
     }
   });
