@@ -1,10 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  font-family: 'Roboto Slab', serif;
+  color: #eef0f2;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background: #353b3c;
-  color: #eef0f2;
 }
 
 main {
@@ -12,10 +20,22 @@ main {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
+  width: 90%;
   height: 300px;
 }
 
 #dad-joke {
   text-align: center;
+}
+
+#new-joke-btn {
+  font-family: 'Roboto Slab', serif;
+  color: #eef0f2;
+  font-size: 1.2rem;
+  width: 200px;
+  height: 50px;
+  background: none;
+  outline: none;
+  border: 2px solid #eef0f2;
+  cursor: pointer;
 }
