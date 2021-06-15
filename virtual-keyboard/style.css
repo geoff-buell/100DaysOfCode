@@ -58,6 +58,12 @@ textarea {
   border: 1px solid lime;
 }
 
+.key-xl {
+  width: 15.5%;
+  height: 10vh;
+  border: 1px solid lime;
+}
+
 .num-char {
   display: flex;
   flex-direction: column;
@@ -91,12 +97,21 @@ textarea {
   justify-content: space-between;
 }
 
-.caps-light {
+#caps-light {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: black;
   margin: 8px;
+}
+
+#space-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42.5vw;
+  height: 10vh;
+  border: 1px solid lime;
 }
 
 p:only-child {
