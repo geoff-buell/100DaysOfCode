@@ -47,6 +47,12 @@ textarea {
 }
 
 .key-md {
+  width: 9.5%;
+  height: 10vh;
+  border: 1px solid lime;
+}
+
+.key-lg {
   width: 12%;
   height: 10vh;
   border: 1px solid lime;
@@ -60,6 +66,7 @@ textarea {
 }
 
 .alpha {
+  text-transform: uppercase;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,6 +82,21 @@ textarea {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
+}
+
+#caps-lock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.caps-light {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: black;
+  margin: 8px;
 }
 
 p:only-child {
