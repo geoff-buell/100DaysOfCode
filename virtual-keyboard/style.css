@@ -29,7 +29,7 @@ textarea {
   box-sizing: border-box;
 }
 
-#keyboard-wrap {
+#keyboard-border {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,6 +37,18 @@ textarea {
   bottom: 0;
   width: 100vw;
   height: 58vh;
+  background: linear-gradient(
+    90deg, hsla(339, 100%, 55%, 1) 0%, 
+    hsla(197, 100%, 64%, 1) 100%
+  );
+}
+
+#keyboard-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 99.5vw;
+  height: 57vh;
   background: #34312d;
 }
 
@@ -59,7 +71,12 @@ textarea {
 .key {
   border-radius: 6px;
   background: #14110f;
+  box-sizing: border-box;
+}
+
+.key:hover {
   cursor: pointer;
+  border: 1px solid lime;
 }
 
 .key-sm {
@@ -138,6 +155,6 @@ p:only-child {
 
 @media (max-width: 768px) {
   #keyboard {
-    width: 100vw;
+    width: 98vw;
   }
 }
