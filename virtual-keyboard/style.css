@@ -59,9 +59,21 @@ textarea {
   align-items: center;
 }
 
+.alpha {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .right {
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.left {
+  display: flex;
+  justify-content: flex-start;
   align-items: flex-end;
 }
 
