@@ -1,16 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader&display=swap');
+
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
+  font-family: 'Roboto', sans-serif;;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: gainsboro;
+  background: #f3f3f4;
 }
 
 h1 {
+  font-family: 'Newsreader', serif;
+  color: #34312d;
   margin-top: 20px;
 }
 
@@ -18,18 +24,28 @@ textarea {
   width: 80vw;
   height: 30vh;
   margin-top: 20px;
+  padding: 8px;
   border: 1px solid #999;
+  box-sizing: border-box;
+}
+
+#keyboard-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 58vh;
+  background: #34312d;
 }
 
 #keyboard {
-  position: fixed;
-  bottom: 0;
+  color: #f3f3f4;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 90vw;
-  height: 58vh;
-  background: grey;
 }
 
 .row {
@@ -37,31 +53,34 @@ textarea {
   justify-content: space-around;
   width: 100%;
   height: 10vh;
-  border: 1px solid red;
+  margin-top: 1vh;
+}
+
+.key {
+  border-radius: 6px;
+  background: #14110f;
+  cursor: pointer;
 }
 
 .key-sm {
+  font-size: 1.4rem;
   width: 6%;
   height: 10vh;
-  border: 1px solid blue;
 }
 
 .key-md {
   width: 9.5%;
   height: 10vh;
-  border: 1px solid lime;
 }
 
 .key-lg {
   width: 12%;
   height: 10vh;
-  border: 1px solid lime;
 }
 
 .key-xl {
   width: 15.5%;
   height: 10vh;
-  border: 1px solid lime;
 }
 
 .num-char {
@@ -101,7 +120,7 @@ textarea {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: black;
+  background: #f3f3f4;
   margin: 8px;
 }
 
@@ -111,9 +130,14 @@ textarea {
   align-items: center;
   width: 42.5vw;
   height: 10vh;
-  border: 1px solid lime;
 }
 
 p:only-child {
   padding: 8px;
+}
+
+@media (max-width: 768px) {
+  #keyboard {
+    width: 100vw;
+  }
 }
