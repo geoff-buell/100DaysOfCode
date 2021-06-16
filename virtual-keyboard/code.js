@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const text = document.getElementById('text');
   const keys = document.querySelectorAll('.key');
   const capsLight = document.getElementById('caps-light');
-  let capsLock = false;
+  const shiftKeys = document.querySelectorAll('.shift');
+  let capsLockStatus = false;
+  let shiftStatus = false;
 
   function handleDelete() {
     text.value = text['value'].substring(0, text['value'].length - 1);
@@ -23,11 +25,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function handleCapsLock() {
-    capsLock = !capsLock;
-    if (capsLock === true) {
+    capsLockStatus = !capsLockStatus;
+    if (capsLockStatus === true) {
       capsLight.style.background = 'lime';
     } else {
       capsLight.style.background = '#f3f3f4';
+    }
+  }
+
+  function handleShift() {
+    shiftStatus = !shiftStatus;
+    if (shiftStatus === true) {
+      shiftKeys.forEach((key) => key.style.border = '1px solid lime');
+    } else {
+      shiftKeys.forEach((key) => key.style.border = 'none');
     }
   }
   
@@ -42,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
       handleTab();
     } else if (key.id === 'caps-lock') {
       handleCapsLock();
+    } else if (key.id === 'shift-left' || key.id === 'shift-right') {
+      handleShift();
     } else {
       text.value = text.value + key.id;
     }
