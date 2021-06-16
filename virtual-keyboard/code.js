@@ -52,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (shiftStatus === true && key.classList.contains('alpha')) {
       text.value = text.value + key.id.toUpperCase();
       handleShift();
+    } else if (capsLockStatus === true && key.classList.contains('alpha')) {
+      text.value = text.value + key.id.toUpperCase();
     } else {
       text.value = text.value + key.id;
     }
