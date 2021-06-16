@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const text = document.getElementById('text');
   const keys = document.querySelectorAll('.key');
+  const capsLock = document.getElementById('caps-lock');
   const capsLight = document.getElementById('caps-light');
   const shiftKeys = document.querySelectorAll('.shift');
   let capsLockStatus = false;
@@ -28,8 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
     capsLockStatus = !capsLockStatus;
     if (capsLockStatus === true) {
       capsLight.style.background = 'lime';
+      capsLock.style.border = '1px solid lime';
     } else {
       capsLight.style.background = '#f3f3f4';
+      capsLock.style.border = 'none';
     }
   }
 
@@ -41,10 +44,22 @@ document.addEventListener('DOMContentLoaded', () => {
       shiftKeys.forEach((key) => key.style.border = 'none');
     }
   }
+
+  function handleKeyPress(key) {
+    if (shiftStatus === true && key.classList.contains('num-char')) {
+      text.value = text.value + key.children[0].textContent;
+      handleShift();
+    } else if (shiftStatus === true && key.classList.contains('alpha')) {
+      text.value = text.value + key.id.toUpperCase();
+      handleShift();
+    } else {
+      text.value = text.value + key.id;
+    }
+  }
   
   keys.forEach((key) => key.addEventListener('click', () => {
-
-    if (key.id === 'delete') { handleDelete();
+    if (key.id === 'delete') { 
+      handleDelete();
     } else if (key.id === 'return') {
       handleReturn();
     } else if (key.id === 'space-bar') {
@@ -56,11 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (key.id === 'shift-left' || key.id === 'shift-right') {
       handleShift();
     } else {
-      text.value = text.value + key.id;
+      handleKeyPress(key);
     }
-
-    
-
   }));
 
 });
