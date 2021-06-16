@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  const keyboardBorder = document.getElementById('keyboard-border');
   const openCloseBtn = document.getElementById('open-close-btn');
   const text = document.getElementById('text');
   const keys = document.querySelectorAll('.key');
   const capsLock = document.getElementById('caps-lock');
   const capsLight = document.getElementById('caps-light');
   const shiftKeys = document.querySelectorAll('.shift');
+
   let capsLockStatus = false;
   let shiftStatus = false;
   let openStatus = true;
@@ -92,10 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
   openCloseBtn.addEventListener('click', () => {
     openStatus = !openStatus;
     if (openStatus === true) {
-      //open keyboard
+      text.style.height = '30vh';
+      keyboardBorder.style.visibility = 'visible';
+      openCloseBtn.style.visibility = 'visible';
       openCloseBtn.textContent = '⬇';
     } else {
-      //close keyboard
+      text.style.height = '75vh';
+      keyboardBorder.style.visibility = 'hidden';
+      openCloseBtn.style.visibility = 'visible';
       openCloseBtn.textContent = '⬆';
     }
   });
