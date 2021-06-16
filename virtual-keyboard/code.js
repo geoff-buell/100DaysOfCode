@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  const capsLight = document.getElementById('caps-light');
   const text = document.getElementById('text');
   const keys = document.querySelectorAll('.key');
+  const capsLight = document.getElementById('caps-light');
+  let capsLock = false;
 
   function handleDelete() {
     text.value = text['value'].substring(0, text['value'].length - 1);
@@ -20,6 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
   function handleTab() {
     text.value = text.value + '        ';
   }
+
+  function handleCapsLock() {
+    capsLock = !capsLock;
+    if (capsLock === true) {
+      capsLight.style.background = 'lime';
+    } else {
+      capsLight.style.background = '#f3f3f4';
+    }
+  }
   
   keys.forEach((key) => key.addEventListener('click', () => {
 
@@ -30,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
       handleSpaceBar();
     } else if (key.id === 'tab') {
       handleTab();
+    } else if (key.id === 'caps-lock') {
+      handleCapsLock();
     } else {
       text.value = text.value + key.id;
     }
