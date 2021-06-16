@@ -5,7 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const keys = document.querySelectorAll('.key');
   
   keys.forEach((key) => key.addEventListener('click', () => {
-    text.value = text.value + key.id;
+
+    if (key.id === 'delete') {
+      text.value = text['value'].substring(0, text['value'].length - 1);
+    } else {
+      text.value = text.value + key.id;
+    }
+
+    
+
   }));
 
 });
