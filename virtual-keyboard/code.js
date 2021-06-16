@@ -58,22 +58,32 @@ document.addEventListener('DOMContentLoaded', () => {
       text.value = text.value + key.id;
     }
   }
+
+  function highlightKeyPress(key) {
+    key.style.border = '1px solid lime';
+    setTimeout(() => key.style.border = 'none', 200);
+  }
   
   keys.forEach((key) => key.addEventListener('click', () => {
     if (key.id === 'delete') { 
       handleDelete();
+      highlightKeyPress(key);
     } else if (key.id === 'return') {
       handleReturn();
+      highlightKeyPress(key);
     } else if (key.id === 'space-bar') {
       handleSpaceBar();
+      highlightKeyPress(key);
     } else if (key.id === 'tab') {
       handleTab();
+      highlightKeyPress(key);
     } else if (key.id === 'caps-lock') {
       handleCapsLock();
     } else if (key.id === 'shift-left' || key.id === 'shift-right') {
       handleShift();
     } else {
       handleKeyPress(key);
+      highlightKeyPress(key);
     }
   }));
 
