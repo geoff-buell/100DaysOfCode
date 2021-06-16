@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  const openCloseBtn = document.getElementById('open-close-btn');
   const text = document.getElementById('text');
   const keys = document.querySelectorAll('.key');
   const capsLock = document.getElementById('caps-lock');
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const shiftKeys = document.querySelectorAll('.shift');
   let capsLockStatus = false;
   let shiftStatus = false;
+  let openStatus = true;
 
   function handleDelete() {
     text.value = text['value'].substring(0, text['value'].length - 1);
@@ -86,5 +88,16 @@ document.addEventListener('DOMContentLoaded', () => {
       highlightKeyPress(key);
     }
   }));
+
+  openCloseBtn.addEventListener('click', () => {
+    openStatus = !openStatus;
+    if (openStatus === true) {
+      //open keyboard
+      openCloseBtn.textContent = '⬇';
+    } else {
+      //close keyboard
+      openCloseBtn.textContent = '⬆';
+    }
+  });
 
 });

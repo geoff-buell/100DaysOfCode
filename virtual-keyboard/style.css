@@ -141,12 +141,32 @@ textarea {
   margin: 8px;
 }
 
+#row-5 {
+  position: relative;
+}
+
 #space-bar {
+  width: 42.5vw;
+  height: 10vh;
+}
+
+#open-close-btn {
+  font-size: 1.4rem;
+  position: absolute;
+  right: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 42.5vw;
+  width: 10vh;
   height: 10vh;
+  border-radius: 6px;
+  background: #14110f;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+#open-close-btn:hover {
+  cursor: pointer;
 }
 
 p:only-child {
@@ -156,5 +176,8 @@ p:only-child {
 @media (max-width: 768px) {
   #keyboard {
     width: 98vw;
+  }
+  #open-close-btn {
+    right: 3px;
   }
 }
