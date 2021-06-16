@@ -180,4 +180,7 @@ p:only-child {
   #open-close-btn {
     right: 3px;
   }
+  .key {
+    font-size: 0.8rem;
+  }
 }
