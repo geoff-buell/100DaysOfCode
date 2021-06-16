@@ -8,13 +8,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const capsLight = document.getElementById('caps-light');
   const shiftKeys = document.querySelectorAll('.shift');
 
+  let openStatus = true;
   let capsLockStatus = false;
   let shiftStatus = false;
-  let openStatus = true;
+  let selectedStatus = false;
+  let selectionLength = 0;
+
+  function handleSelection(e) {
+    const selection = e.target.value.substring(e.target.selectionStart, e.target.selectionEnd);
+    selectedStatus = true;
+    selectionLength = selection.length;
+  }
 
   function handleDelete() {
-    text.value = text['value'].substring(0, text['value'].length - 1);
-    //need to add ability to delete selected text
+    if (selectedStatus === true) {
+      text.value = text['value'].substring(0, text['value'].length - selectionLength);
+      selectionLength = 0;
+      selectedStatus = false;
+    } else {
+      text.value = text['value'].substring(0, text['value'].length - 1);
+    }
   }
 
   function handleReturn() {
@@ -105,5 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       openCloseBtn.textContent = '⬆';
     }
   });
+
+  text.addEventListener('select', handleSelection);
 
 });
